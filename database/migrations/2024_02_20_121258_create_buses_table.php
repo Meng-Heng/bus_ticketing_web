@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('tbl_bus', function (Blueprint $table) {
+            $table->id()->unique();
+            $table->string("bus_plate")->unique();
+            $table->string("description", 255)->nullable();
+            $table->boolean("is_active");
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('buses');
     }
 };
