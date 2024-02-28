@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Seat;
+use App\Models\Seat_type;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+
+class SeatController extends Controller
+{
+    public function index() {
+        $seat = Seat::all();
+        return view('seat.view')->with('tbl_seat', $seat);
+    }
+
+    public function create() {
+        $seatTypes = Seat_type::all();
+
+        return view('seat.create', compact('seatTypes'));
+    }
+
+    public function store(Request $request) {
+        $validateData = $request->validate([
+            'seat_number'=> 'required',
+            'seat_type_id' => 'required|exists:tbl_seat_type,id',
+        ]);
+        $seat = new Seat();
+        $seat->seat_number = $request->seat_number;
+        $seat->seat_type_id = $request->seat_type_id;
+        $seat->save();
+        Session::flash('seat_created', 'Created successfully');
+        return redirect('seat/create');
+    }
+
+    public function edit($id) {
+        $seat = Seat::find($id);
+    }
+
+    public function show($id) {
+        $seat = Seat::findOrFail($id);
+        return view('seat.detail')->with('tbl_seat', $seat);
+    }
+}

@@ -13,4 +13,7 @@ class Seat_type extends Model
         'name',
         'description'
     ];
+    public function seats() {
+        return $this->hasMany(Seat_type::class, 'id');
+    }
 }
