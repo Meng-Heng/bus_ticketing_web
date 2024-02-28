@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Seat_type;
 
 class Seat extends Model
 {
@@ -13,6 +14,6 @@ class Seat extends Model
         'seat_number', 'seat_type_id'
     ];
     public function seat_type() {
-        return $this->belongsTo(SeatType::class);
+        return $this->belongsTo(Seat_type::class);
     }
 }
