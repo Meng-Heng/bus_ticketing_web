@@ -14,4 +14,7 @@ class Bus extends Model
         'description',
         'is_active'
     ];
+    // public function bus_seats() {
+    //     return $this->hasMany(Bus::class, 'id');
+    // }
 }

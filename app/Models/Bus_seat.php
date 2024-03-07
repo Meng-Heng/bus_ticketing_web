@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Seat;
+use App\Models\Price;
+use App\Models\Bus;
 
 class Bus_seat extends Model
 {

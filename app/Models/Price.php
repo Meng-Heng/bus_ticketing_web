@@ -12,4 +12,7 @@ class Price extends Model
     protected $fillable = [
         'price'
     ];
+    // public function bus_seats() {
+    //     return $this->hasMany(Price::class, 'id');
+    // }
 }

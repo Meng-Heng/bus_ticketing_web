@@ -15,11 +15,11 @@ class Ticket extends Model
     public function bus_seat() {
         return $this->belongsTo(Bus_seat::class);
     }
-    public function bus_seat_daily() {
+    public function schedule() {
         return $this->belongsTo(Bus_seat_daily::class);
     }
     public function user() {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
     public function payment() {
         return $this->belongsTo(Payment::class);
