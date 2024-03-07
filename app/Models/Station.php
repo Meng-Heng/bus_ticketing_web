@@ -12,4 +12,8 @@ class Station extends Model
     protected $fillable = [
         'name','p_address','s_address','commune','district','city'
     ];
+
+    public function bus_seat_daily() {
+        
+    }
 }
