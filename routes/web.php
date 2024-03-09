@@ -7,6 +7,15 @@ use App\Models\Bus;
 use App\Http\Controllers\BusController;
 use App\Models\Seat;
 use App\Http\Controllers\SeatController;
+use App\Models\Station;
+use App\Http\Controllers\StationController;
+use App\Models\Bus_seat;
+use App\Http\Controllers\BusSeatController;
+use App\Models\Price;
+use App\Http\Controllers\BusSeatDailyController;
+use App\Models\Bus_seat_daily;
+use App\Http\Controllers\TicketController;
+use App\Models\Ticket;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +93,51 @@ Route::get('/seat/{id}/edit', [SeatController::class, 'edit'])->name('seat.edit'
 Route::put('/seat/{id}', [SeatController::class, 'update'])->name('seat.update');
 Route::delete('/seat/{id}', [SeatController::class, 'destroy'])->name('seat.delete');
 Route::get('/seat/{id}', [SeatController::class, 'show'])->name('seat.detail');
+
+/*
+    Station view
+    Station Create
+    Station Update
+    Station Delete
+    Station Details
+*/
+Route::get('/station', [StationController::class, 'index'])->name('station.list');
+Route::get('/station/create', [StationController::class, 'create'])->name('station.create');
+Route::post('/station', [StationController::class, 'store'])->name('station.store');
+Route::get('/station/{id}/edit', [StationController::class, 'edit'])->name('station.edit');
+Route::put('/station/{id}', [StationController::class, 'update'])->name('station.update');
+Route::delete('/station/{id}', [StationController::class, 'destroy'])->name('station.delete');
+Route::get('/station/{id}', [StationController::class, 'show'])->name('station.view');
+
+/*
+    Bus Seat 
+*/
+Route::get('/bus-seat', [BusSeatController::class, 'index'])->name('bus_seat.list');
+Route::get('/bus-seat/create', [BusSeatController::class, 'create'])->name('bus_seat.create');
+Route::post('/bus-seat', [BusSeatController::class, 'store'])->name('bus_seat.store');
+Route::get('/bus-seat/{id}/edit', [BusSeatController::class, 'edit'])->name('bus_seat.edit');
+Route::put('/bus-seat/{id}', [BusSeatController::class, 'update'])->name('bus_seat.update');
+Route::delete('/bus-seat/{id}', [BusSeatController::class, 'destroy'])->name('bus_seat.delete');
+Route::get('/bus-seat/{id}', [BusSeatController::class, 'show'])->name('bus_seat.view');
+
+/*
+    Bus Seat Daily 
+*/
+Route::get('/schedule', [BusSeatDailyController::class, 'index'])->name('schedule.list');
+Route::get('/schedule/create', [BusSeatDailyController::class, 'create'])->name('schedule.create');
+Route::post('/schedule', [BusSeatDailyController::class, 'store'])->name('schedule.store');
+Route::get('/schedule/{id}/edit', [BusSeatDailyController::class, 'edit'])->name('schedule.edit');
+Route::put('/schedule/{id}', [BusSeatDailyController::class, 'update'])->name('schedule.update');
+Route::delete('/schedule/{id}', [BusSeatDailyController::class, 'destroy'])->name('schedule.delete');
+Route::get('/schedule/{id}', [BusSeatDailyController::class, 'show'])->name('schedule.view');
+
+/*
+    Ticket
+*/
+Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.list');
+Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
+Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
+Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket.edit');
+Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
+Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
+Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');

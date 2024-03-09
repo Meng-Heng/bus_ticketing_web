@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Seat_type;
+use Carbon\Carbon;
 
 class Seat extends Model
 {
@@ -16,4 +17,7 @@ class Seat extends Model
     public function seat_type() {
         return $this->belongsTo(Seat_type::class);
     }
+    // public function bus_seats() {
+    //     return $this->hasMany(Seat::class, 'id');
+    // }
 }

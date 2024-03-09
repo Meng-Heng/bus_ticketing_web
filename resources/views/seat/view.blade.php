@@ -32,7 +32,7 @@
                                 <div>{{ $seat->seat_type->description }}</div>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{!! url('seat-type/' . $seat->id . '/edit') !!}">Edit</a>
+                                <a class="btn btn-primary" href="{!! url('seat/' . $seat->id . '/edit') !!}">Edit</a>
                             </td>
                             <td>
                                 {!! Form::open(array('url'=>'seat/'. $seat->id, 'method'=>'DELETE')) !!}
