@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class UserTypeController extends Controller
 {
@@ -12,7 +14,8 @@ class UserTypeController extends Controller
      */
     public function index()
     {
-        //
+        $user_type = UserType::all();
+        return view('user-types.index', compact('user_type'));
     }
 
     /**
@@ -20,7 +23,7 @@ class UserTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('user-types.create');
     }
 
     /**
@@ -28,7 +31,12 @@ class UserTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'type' => 'required',
+            'description' => 'nullable',
+        ]);
+        $user_type::create($request->all());
+        return redirect()->route('user-types.index')->with('success', 'User type created successfully');
     }
 
     /**
@@ -36,7 +44,7 @@ class UserTypeController extends Controller
      */
     public function show(User_type $user_type)
     {
-        //
+        return view('user-types.show', compact('user_type'));
     }
 
     /**
@@ -44,7 +52,7 @@ class UserTypeController extends Controller
      */
     public function edit(User_type $user_type)
     {
-        //
+        return view('user-types.edit', compact('user_type'));
     }
 
     /**
@@ -52,7 +60,12 @@ class UserTypeController extends Controller
      */
     public function update(Request $request, User_type $user_type)
     {
-        //
+        $request->validate([
+            'type'=>'required',
+            'description'=>'nullable|max:25',
+        ]);
+        $user_type->update($request->all());
+        return redirect()->route('user-types.index')->with('success', 'User Types updated Successfully');
     }
 
     /**
@@ -60,6 +73,7 @@ class UserTypeController extends Controller
      */
     public function destroy(User_type $user_type)
     {
-        //
+        $user_type->delete();
+        return redirect()->route('user-types.index')->with('success', 'User Types deleted Successfully');
     }
 }

@@ -7,6 +7,18 @@ use App\Models\Bus;
 use App\Http\Controllers\BusController;
 use App\Models\Seat;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use App\Controllers\UserTypeController;
+use App\Models\User_type;
+use App\Http\Controllers\StaffController;
+use App\Models\Staff;
+use App\App\Controllers\ReviewsController;
+use App\Models\Review;
+use App\Controllers\PaymentController;
+use App\Models\Payment;
+use App\Controllers\PricesController;
+use App\Models\Price;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +96,23 @@ Route::get('/seat/{id}/edit', [SeatController::class, 'edit'])->name('seat.edit'
 Route::put('/seat/{id}', [SeatController::class, 'update'])->name('seat.update');
 Route::delete('/seat/{id}', [SeatController::class, 'destroy'])->name('seat.delete');
 Route::get('/seat/{id}', [SeatController::class, 'show'])->name('seat.detail');
+
+
+
+
+Route::resource('/users', UserController::class);
+Route::resource('/user-type', UserTypeController::class);
+// Route::resource('/staff', StaffController::class);
+Route::resource('/reviews', ReviewController::class);
+Route::resource('/prices', PriceController::class);
+Route::get('/staff', [StaffController::class, 'index']);
+
+
+
+Route::get('/payments', [PaymentController::class, 'index']);
+Route::get('/payments/create', [PaymentController::class, 'create']);
+Route::post('/payments', [PaymentController::class, 'store']);
+Route::get('/payments/{payment}', [PaymentController::class, 'show']);
+Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit']);
+Route::put('/payments/{payment}', [PaymentController::class, 'update']);
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);

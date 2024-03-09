@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_user_type', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('type');
-            $table->text('description');
+            $table->text('description')->nullable();
         });
     }
 
