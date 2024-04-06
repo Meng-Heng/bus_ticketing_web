@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Bus_seat;
 use App\Models\Station;
+use App\Models\Bus;
+use App\Models\Seat;
 
 class BusSeatDailyController extends Controller
 {
@@ -19,6 +21,7 @@ class BusSeatDailyController extends Controller
     public function create() {
         $bus_seats = array();
         $stations = array();
+        $bus = Bus::all();
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = $bus_seat->id;
         }
@@ -34,9 +37,9 @@ class BusSeatDailyController extends Controller
             'bus_seat_id'=> 'required',
             'destination' => 'required|max:255',
             'departure_date' => 'required|date_format:Y-m-d',
-            'departure_time' => 'required',
+            'departure_time' => 'required|date_format:H:i:s',
             'arrival_date' => 'required|date_format:Y-m-d',
-            'arrival_time' => 'required',
+            'arrival_time' => 'required|date_format:H:i:s',
             'is_sold' => 'required|max:1',
             'station_id'=> 'required|exists:tbl_station,id',
         ]);

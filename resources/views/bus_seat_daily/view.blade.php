@@ -55,7 +55,11 @@
                                 <div>{{ $schedule->arrival_time }}</div>
                             </td>
                             <td>
-                                <div>{{ $schedule->is_sold }}</div>
+                                @if ($schedule->is_sold == 0)
+                                    <span style="color:lime">Available</span>
+                                        @elseif ($schedule->is_active == 1)
+                                        <span style="color:red">Sold out!</span>
+                                @endif
                             </td>
                             <td>
                                 <div>{{ $schedule->station->name }}</div>

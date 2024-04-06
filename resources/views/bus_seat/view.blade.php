@@ -27,6 +27,7 @@
             <div class="panel-body">
                 <table class="table table-striped task-table">
                     <thead>
+                        <th>ID</th>
                         <th>Bus</th>
                         <th>Seat</th>
                         <th>Price</th>
@@ -35,13 +36,16 @@
                     @foreach ($tbl_bus_seat as $bus_seat)
                         <tr>
                             <td>
+                                <div>{{ $bus_seat->id }}</a></div>
+                            </td>
+                            <td>
                                 <div><a href="{{url('/bus-seat/'.$bus_seat->id)}}">{{ $bus_seat->bus->bus_plate }}</a></div>
                             </td>
                             <td>
                                 <div>{{ $bus_seat->seat->seat_number }}</div>
                             </td>
                             <td>
-                                <div>{{ $bus_seat->price->price }}</div>
+                                <div>${{ $bus_seat->price->price }}</div>
                             </td>
                             <td>
                                 <a class="btn btn-primary" href="{!! url('bus-seat/' . $bus_seat->id . '/edit') !!}">Edit</a>

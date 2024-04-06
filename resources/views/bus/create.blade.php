@@ -37,8 +37,12 @@
                 {!! Form::text('description',null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('is_active', 'Active:') !!}
-                {!! Form::text('is_active',null, array('class'=>'form-control')) !!}
+                {!! Form::select('is_active', ["false", "true"], array('class'=>'form-control')) !!}
+                <!-- {!! Form::label('is_active', 'Active:') !!}
+                {!! Form::text('is_active',null, array('class'=>'form-control')) !!} -->
                 <br>    
+                <!-- {!! Form::label('status', 'Active:') !!}
+                {!! Form::select('status', [false, true], array('class'=>'form-control')) !!} -->
                 {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
 
                 <a class="btn btn-primary" href="{!! url('/bus-list')!!}">Back</a>
