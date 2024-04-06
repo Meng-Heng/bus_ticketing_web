@@ -30,7 +30,11 @@
                                         <div>{!! $buses->description !!}</div>
                                     </td>
                                     <td>
-                                        <div>{!! $buses->is_active !!}</div>
+                                        @if ($buses->is_active == 0)
+                                        <span style="color:red">Out of Order</span>
+                                            @elseif ($buses->is_active == 1)
+                                            <span style="color:lime">OK</span>
+                                        @endif
                                     </td>
 
                                     <td><a class="btn btn-primary" href="{!! url('bus/' . $buses->id . '/edit') !!}">Edit</a></td>

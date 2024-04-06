@@ -34,9 +34,9 @@ class BusSeatDailyController extends Controller
             'bus_seat_id'=> 'required',
             'destination' => 'required|max:255',
             'departure_date' => 'required|date_format:Y-m-d',
-            'departure_time' => 'required',
+            'departure_time' => 'required|date_format:H:i:s',
             'arrival_date' => 'required|date_format:Y-m-d',
-            'arrival_time' => 'required',
+            'arrival_time' => 'required|date_format:H:i:s',
             'is_sold' => 'required|max:1',
             'station_id'=> 'required|exists:tbl_station,id',
         ]);

@@ -41,7 +41,7 @@
                 {!! Form::text('arrival_time', null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('is_sold', 'Sold out') !!}
-                {!! Form::text('is_sold', null, array('class'=>'form-control')) !!}
+                {!! Form::select('is_sold', ["false (Available)", "true (Sold out)"], null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('station_id', 'Bus Station') !!}
                 {!! Form::select('station_id', $stations, null, array('class'=>'form-control')) !!}
