@@ -1,6 +1,6 @@
 ## Database
 
-1. Create a new database called ""
-2. 
+1. Create a new database called "test_laravel_busticketing"
+2. Migrate the database before starting the project
 # bus_ticketing_web
-This is a bus ticketing website thesis project using Laravel as Back-End
+This branch focuses only the Payment side of the project
