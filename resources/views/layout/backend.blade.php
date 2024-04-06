@@ -118,7 +118,7 @@
                             <li class="breadcrumb-item active"><a href="{{url('/station')}}">Station</a></li>
                             <li class="breadcrumb-item"><a href="{{url('/schedule')}}">Schedule</a></li>
                             <li class="breadcrumb-item active"><a href="{{url('/seat')}}">Seat</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/Ticket')}}">Ticket</a></li>
+                            <li class="breadcrumb-item active"><a href="{{url('/ticket')}}">Ticket</a></li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
