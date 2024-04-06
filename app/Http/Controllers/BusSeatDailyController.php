@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Bus_seat;
 use App\Models\Station;
-use App\Models\Bus;
-use App\Models\Seat;
 
 class BusSeatDailyController extends Controller
 {
@@ -21,7 +19,6 @@ class BusSeatDailyController extends Controller
     public function create() {
         $bus_seats = array();
         $stations = array();
-        $bus = Bus::all();
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = $bus_seat->id;
         }
