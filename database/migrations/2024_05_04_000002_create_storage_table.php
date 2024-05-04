@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_review', function (Blueprint $table) {
+        Schema::create('tbl_storage', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->decimal('star');
-            $table->string('feedback', 255);
+            $table->string('luggage');
+            $table->string('measurement');
+            $table->datetime('start_date');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('storage');
     }
 };

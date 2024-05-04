@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_price', function (Blueprint $table) {
+        Schema::create('tbl_payment', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string("price");
-            $table->timestamps();
+            $table->string('method');
+            $table->datetime('time_of_payment')->current();
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('tbl_user');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('tbl_payment');
     }
 };

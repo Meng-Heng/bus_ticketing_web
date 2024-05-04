@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->biginteger('bus_id')->unsigned();
             $table->foreign('bus_id')->references('id')->on('tbl_bus');
-            $table->biginteger('seat_id')->unsigned();
-            $table->foreign('seat_id')->references('id')->on('tbl_seat');
+            $table->string("seat_number");
+            $table->string('seat_type');
+            $table->biginteger('storage_id')->unsigned();
+            $table->foreign('storage_id')->references('id')->on('tbl_storage');
             $table->biginteger('price_id')->unsigned();
             $table->foreign('price_id')->references('id')->on('tbl_price');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bus_seats');
+        Schema::dropIfExists('seats');
     }
 };
