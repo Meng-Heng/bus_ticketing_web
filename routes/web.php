@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+use Illuminate\Http\Request;
 use App\Models\Seat_type;
 use App\Http\Controllers\SeatTypeController;
 use App\Models\Bus;
@@ -43,6 +45,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+        /*
+            Using Google Translate
+        */
+
+        // Route::get('/fr', function() {
+        //     return GoogleTranslate::trans('Bye', 'es');
+        // });
+
+        // ------------------------
+
+        /*
+            Simplified request for Locale
+        */
+        // Route::get('/language/{locale?}', function ($locale = null) {
+        //     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+        //         app()->setLocale($locale);
+        //     }
+            
+        //     return view('welcome');
+        // });
+
+        // ---------------------------------
+
+Route::get('/language/{locale}', function ($locale) {
+   app()->setLocale($locale);
+   session()->put('locale', $locale);
+
+   return redirect()->back();
+});
 Route::get('/seat_type',[SeatTypeController::class,'index'])->name('seattype.index');
 
 Route::get('backend-home', function() {
