@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_user_type', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->string('type');
-            $table->text('description');
+        Schema::create('tbl_permission', function (Blueprint $table) {
+            $table->id();
+            $table->string('permission');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_user_type');
+        Schema::dropIfExists('permission');
     }
 };

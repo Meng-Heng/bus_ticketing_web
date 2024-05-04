@@ -19,13 +19,12 @@ return new class extends Migration
             $table->foreign('bus_seat_id')->references('id')->on('tbl_bus_seat');
             $table->biginteger('schedule')->unsigned();
             $table->foreign('schedule')->references('id')->on('tbl_bus_seat_daily');
-            $table->integer('carry_on');
-            $table->integer('luggage');
-            $table->biginteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->boolean('is_paid');
-            $table->biginteger('paid_by')->unsigned();
-            $table->foreign('paid_by')->references('id')->on('tbl_payment');
+            $table->biginteger('payment_id')->unsigned();
+            $table->foreign('payment_id')->references('id')->on('tbl_payment');
+            $table->biginteger('storage_id')->unsigned();
+            $table->foreign('storage_id')->references('id')->on('tbl_storage');
+            $table->biginteger('price_id')->unsigned();
+            $table->foreign('price_id')->references('id')->on('tbl_price');
             $table->timestamps();
         });
     }

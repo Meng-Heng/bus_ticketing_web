@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_station', function (Blueprint $table) {
+        Schema::create('tbl_user_permission', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("p_address");
-            $table->string("s_address")->nullable();
-            $table->string("commune")->nullable();
-            $table->string("district")->nullable();
-            $table->string("city");
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('tbl_user');
+            $table->biginteger('permission_id')->unsigned();
+            $table->foreign('permission_id')->references('id')->on('tbl_permission');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stations');
+        Schema::dropIfExists('user_permission');
     }
 };

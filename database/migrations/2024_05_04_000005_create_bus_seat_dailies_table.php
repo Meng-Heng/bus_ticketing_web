@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('tbl_bus_seat_daily', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('bus_seat_id')->unsigned();
-            $table->foreign('bus_seat_id')->references('id')->on('tbl_bus_seat');
-            $table->string('destination');
+            $table->biginteger('bus_id')->unsigned();
+            $table->foreign('bus_id')->references('id')->on('tbl_bus');
+            $table->string('start_point');
             $table->string('departure_date');
             $table->string('departure_time');
+            $table->string('destination');
             $table->string('arrival_date');
             $table->string('arrival_time');
-            $table->boolean('is_sold');
-            $table->biginteger('station_id')->unsigned();
-            $table->foreign('station_id')->references('id')->on('tbl_station');
+            $table->boolean('sold_out');
             $table->timestamps();
         });
     }

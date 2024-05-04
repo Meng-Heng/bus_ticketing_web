@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_bus', function (Blueprint $table) {
+        Schema::create('tbl_payment', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string("bus_plate")->unique();
-            $table->string("description", 255)->nullable();
-            $table->boolean("is_active");
-            $table->timestamps();
+            $table->string('method');
+            $table->datetime('time_of_payment')->current();
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('tbl_user');
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('tbl_payment');
     }
 };

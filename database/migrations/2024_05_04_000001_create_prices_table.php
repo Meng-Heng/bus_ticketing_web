@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_seat', function (Blueprint $table) {
-            $table->id();
-            $table->string("seat_number");
-            $table->biginteger('seat_type_id')->unsigned();
-            $table->foreign('seat_type_id')->references('id')->on('tbl_seat_type');
+        Schema::create('tbl_price', function (Blueprint $table) {
+            $table->id()->unique();
+            $table->string("price");
+            $table->string("currency");
+            $table->datetime("start_date");
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seats');
+        Schema::dropIfExists('tbl_price');
     }
 };

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_seat_type', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->string('name');
-            $table->text('description');
+        Schema::create('tbl_storage', function (Blueprint $table) {
+            $table->id();
+            $table->string('luggage');
+            $table->string('measurement');
+            $table->datetime('start_date');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_seat_type');
+        Schema::dropIfExists('storage');
     }
 };
