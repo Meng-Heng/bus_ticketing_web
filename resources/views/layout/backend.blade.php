@@ -112,13 +112,18 @@
                     <div class="container-fluid px-4">
                         <br>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="{{url('/bus-list')}}">Bus</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/seat-type')}}">Seat type</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/bus-seat')}}">Bus Seat</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/station')}}">Station</a></li>
+                            <li class="breadcrumb-item active"><a href="{{url('/bus')}}">Bus</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/bus-seat')}}">Bus Seat</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/price')}}">Price</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/storage')}}">Storage</a></li>
                             <li class="breadcrumb-item"><a href="{{url('/schedule')}}">Schedule</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/seat')}}">Seat</a></li>
-                            <li class="breadcrumb-item active"><a href="{{url('/ticket')}}">Ticket</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/ticket')}}">Ticket</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/user')}}">User</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/staff')}}">Staff</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/permission')}}">Permission</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/user-permission')}}">User Permission</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/review')}}">Review</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/payment')}}">Payment</a></li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">

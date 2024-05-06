@@ -18,6 +18,7 @@
                             <thead>
                                 <th>Bus Plate Number</th>
                                 <th>Description</th>
+                                <th>Total Seat</th>
                                 <th>Active status</th>
                             </thead>
                             <tbody>
@@ -30,8 +31,11 @@
                                         <div>{!! $buses->description !!}</div>
                                     </td>
                                     <td>
+                                        <div>{!! $buses->total_seat !!}</div>
+                                    </td>
+                                    <td>
                                         @if ($buses->is_active == 0)
-                                        <span style="color:red">Out of Order</span>
+                                        <span style="color:red">Maintenance</span>
                                             @elseif ($buses->is_active == 1)
                                             <span style="color:lime">OK</span>
                                         @endif

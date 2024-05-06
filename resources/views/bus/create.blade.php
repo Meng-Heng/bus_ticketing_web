@@ -28,7 +28,7 @@
                 @endif
                 <!-- It Create the new Category -->
 
-                {!! Form::open(array('url'=>'bus-list')) !!}
+                {!! Form::open(array('url'=>'bus')) !!}
                 <br>
                 {!! Form::label('bus_plate', 'Bus Plate Number:') !!}
                 {!! Form::text('bus_plate',null, array('class'=>'form-control')) !!}
@@ -36,16 +36,15 @@
                 {!! Form::label('description', 'Description:') !!}
                 {!! Form::text('description',null, array('class'=>'form-control')) !!}
                 <br>
+                {!! Form::label('total_seat', 'Total seat:') !!}
+                {!! Form::text('total_seat',null, array('class'=>'form-control')) !!}
+                <br>
                 {!! Form::label('is_active', 'Active:') !!}
                 {!! Form::select('is_active', ["false", "true"], array('class'=>'form-control')) !!}
-                <!-- {!! Form::label('is_active', 'Active:') !!}
-                {!! Form::text('is_active',null, array('class'=>'form-control')) !!} -->
-                <br>    
-                <!-- {!! Form::label('status', 'Active:') !!}
-                {!! Form::select('status', [false, true], array('class'=>'form-control')) !!} -->
+                <br>
                 {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
 
-                <a class="btn btn-primary" href="{!! url('/bus-list')!!}">Back</a>
+                <a class="btn btn-primary" href="{!! url('/bus')!!}">Back</a>
 
                 {!! Form::close() !!}
                 

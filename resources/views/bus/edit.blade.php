@@ -25,8 +25,11 @@
     {!! Form::label('description', 'Description:') !!}
     {!! Form::text('description',null, array('class'=>'form-control')) !!}
     <br>
+    {!! Form::label('total_seat', 'Total of seat:') !!}
+    {!! Form::text('total_seat',null, array('class'=>'form-control')) !!}
+    <br>
     {!! Form::label('is_active', 'Active:') !!}
-    {!! Form::text('is_active',null, array('class'=>'form-control')) !!}
+    {!! Form::select('is_active',["false", "true"], array('class'=>'form-control')) !!}
     <br>
     {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
     {!! Form::close() !!}

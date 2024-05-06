@@ -87,11 +87,11 @@ Route::get('backend-home', function() {
     Bus Delete
     Bus Details
 */
-Route::get('/bus-list', [BusController::class, 'index'])->name('bus.view');
+Route::get('/bus', [BusController::class, 'index'])->name('bus.view');
 Route::get('/bus/create', [BusController::class, 'create'])->name('bus.create');
-Route::post('/bus-list', [BusController::class, 'store'])->name('bus.store');
+Route::post('/bus', [BusController::class, 'store'])->name('bus.store');
 Route::get('/bus/{id}/edit', [BusController::class, 'edit'])->name('bus.edit');
-Route::put('/bus-list/{id}', [BusController::class, 'update'])->name('bus.update');
+Route::put('/bus/{id}', [BusController::class, 'update'])->name('bus.update');
 Route::delete('/bus/{id}', [BusController::class, 'destroy'])->name('bus.delete');
 Route::get('/bus/{id}', [BusController::class, 'show'])->name('bus.show');
 

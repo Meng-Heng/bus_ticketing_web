@@ -21,6 +21,7 @@ class BusController extends Controller
         $request->validate([
             'bus_plate' => 'required|max:50|min:6',
             'description' => 'max:255',
+            'total_seat' => 'max:5',
             'is_active' => 'required|max:50'
         ]);
     
@@ -29,6 +30,7 @@ class BusController extends Controller
         $bus = new Bus();
         $bus->bus_plate = $request->bus_plate;
         $bus->description = $request->description;
+        $bus->total_seat = $request->total_seat;
         $bus->is_active = $request->is_active;
         Session::flash('bus_created','New data is created.');
         $bus->save();
@@ -45,6 +47,7 @@ class BusController extends Controller
         $validator = Validator::make($request->all(), [
 			'bus_plate' => 'required|max:50|min:6',
             'description' => 'max:255',
+            'total_seat' => 'max:5',
             'is_active' => 'required|max:50'
 		]);
 		if ($validator->fails()) {
@@ -55,6 +58,7 @@ class BusController extends Controller
 		$bus = Bus::find($id);
 		$bus->bus_plate = $request->Input('bus_plate');
         $bus->description = $request->Input('description');
+        $bus->total_seat = $request->Input('total_seat');
         $bus->is_active = $request->Input('is_active');
 		$bus->save();
 		Session::flash('bus_updated','Bus has been updated.');
