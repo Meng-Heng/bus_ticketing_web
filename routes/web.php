@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Seat_type;
-use App\Http\Controllers\SeatTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +17,26 @@ use App\Http\Controllers\SeatTypeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return print('welcome');
-});
-Route::get('/seat_type', function () {
-    $myvar = Seat_type::findOrFail(1);
-    return print($myvar->description);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+require __DIR__.'/auth.php';
 
-Route::get('/seat_type',[SeatTypeController::class,'index'])->name('seattype.index');
+Route::resource('admin/staff', 'App\\Http\\Controllers\\Admin\StaffController');
+Route::resource('admin/posts', 'App\\Http\\Controllers\\Admin\PostController');
+Route::resource('admin/ticket', 'App\Http\Controllers\Admin\TicketController');
+Route::resource('admin/review', 'App\Http\Controllers\Admin\ReviewController');
+Route::resource('admin/payment', 'App\Http\Controllers\Admin\PaymentController');
+Route::resource('admin/storage', 'App\Http\Controllers\Admin\StorageController');
+Route::resource('admin/busseat', 'App\Http\Controllers\Admin\BusSeatController');
+Route::resource('admin/schedule', 'App\Http\Controllers\Admin\ScheduleController');
+Route::resource('admin/bus', 'App\Http\Controllers\Admin\BuController');
+Route::resource('admin/price', 'App\Http\Controllers\Admin\PriceController');
