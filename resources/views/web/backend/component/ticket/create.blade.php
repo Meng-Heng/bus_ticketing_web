@@ -1,21 +1,28 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
-    
-    @if (count($errors) > 0)
-    <!-- Form Error List -->
-    <div class="alert alert-danger">
-        <strong>Something is Wrong</strong>
-        <br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{!! $error !!}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    {{ Form::model($tbl_ticket , array('route' => array('ticket.update', $tbl_ticket->id), 'method'=>'PUT')) }}
-    <br>
-    {!! Form::label('ticket_id', 'Ticket ID') !!}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Create Seat</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{url('/ticket/create')}}">Ticket</a></li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Something is Wrong</strong>
+                    <br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                {!! Form::open(array('url'=>'ticket')) !!}
+                <br>
+                {!! Form::label('ticket_id', 'Ticket ID') !!}
                 {!! Form::text('ticket_id', null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('is_issued', 'Issued date') !!}
@@ -43,6 +50,13 @@
                 {!! Form::select('paid_by', $payments ,null, array('class'=>'form-control')) !!}
                 <br>
                 <br>
-                {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
+                {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
+
+                <a class="btn btn-primary" href="{!! url('/ticket')!!}">Back</a>
+
                 {!! Form::close() !!}
+                
+            </div>
+        </div>
+</main>
 @endsection

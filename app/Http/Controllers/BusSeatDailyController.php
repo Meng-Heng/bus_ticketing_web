@@ -13,7 +13,7 @@ class BusSeatDailyController extends Controller
 {
     public function index() {
         $daily = Bus_seat_daily::all();
-        return view('bus_seat_daily.view')->with('tbl_bus_seat_daily', $daily);
+        return view('web.backend.component.bus_seat_daily.view')->with('tbl_bus_seat_daily', $daily);
     }
 
     public function create() {

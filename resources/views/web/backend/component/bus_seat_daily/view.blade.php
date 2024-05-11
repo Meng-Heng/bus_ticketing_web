@@ -1,4 +1,4 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
 @if(Session::has('schedule_deleted'))
         <div class="alert alert-danger alert-dismissible">
@@ -14,7 +14,7 @@
                 </div>
                 @endif
         <div class="mx-4">
-            @if (count($tbl_bus_seat_daily) > 0)
+            @if (is_countable($tbl_ticket) && count($tbl_ticket) > 0)
             <a class="btn btn-primary" href="{{url('/schedule/create')}}">Create</a>
             <div class="panel panel-default">
             <div class="panel-body">
@@ -30,7 +30,7 @@
                         <th>Station</th>
                     </thead>
                     <tbody>
-                    @foreach ($tbl_bus_seat_daily as $schedule)
+                    @foreach ($tbl_ticket as $schedule)
                         <tr>
                             <td>
                                 <div><a href="{{url('/schedule/'.$schedule->id)}}">{{ $schedule->bus_seat_id }}</a></div>

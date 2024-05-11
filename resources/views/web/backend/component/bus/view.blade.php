@@ -1,4 +1,4 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
         @if(Session::has('bus_deleted'))
         <div class="alert alert-danger alert-dismissible">

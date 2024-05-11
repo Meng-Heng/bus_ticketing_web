@@ -36,14 +36,6 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return print('welcome');
 });
-Route::get('/seat_type', function () {
-    $myvar = Seat_type::findOrFail(1);
-    return print($myvar->description);
-});
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
         /*
             Using Google Translate
@@ -74,7 +66,6 @@ Route::get('/language/{locale}', function ($locale) {
 
    return redirect()->back();
 });
-Route::get('/seat_type',[SeatTypeController::class,'index'])->name('seattype.index');
 
 Route::get('backend-home', function() {
     return view('layout.backend');

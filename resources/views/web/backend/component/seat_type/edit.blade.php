@@ -1,9 +1,9 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
-    @if(Session::has('bus_updated'))
+    @if(Session::has('seat_type_updated'))
     <div class="alert alert-primary alert-dismissible">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Updated!</strong> {!! session('bus_updated') !!}
+        <strong>Updated!</strong> {!! session('seat_type_updated') !!}
     </div>
     @endif
     @if (count($errors) > 0)
@@ -18,18 +18,12 @@
         </ul>
     </div>
     @endif
-    {{ Form::model($tbl_bus , array('route' => array('bus.update', $tbl_bus->id), 'method'=>'PUT')) }}
-    {!! Form::label('bus_plate', 'Bus plate number:') !!}
-    {!! Form::text('bus_plate',null, array('class'=>'form-control')) !!}
+    {{ Form::model($tbl_seat_type , array('route' => array('seat_type.update', $tbl_seat_type->id), 'method'=>'PUT')) }}
+    {!! Form::label('name', 'Seat_type\'s name:') !!}
+    {!! Form::text('name',null, array('class'=>'form-control')) !!}
     <br>
     {!! Form::label('description', 'Description:') !!}
     {!! Form::text('description',null, array('class'=>'form-control')) !!}
-    <br>
-    {!! Form::label('total_seat', 'Total of seat:') !!}
-    {!! Form::text('total_seat',null, array('class'=>'form-control')) !!}
-    <br>
-    {!! Form::label('is_active', 'Active:') !!}
-    {!! Form::select('is_active',["false", "true"], array('class'=>'form-control')) !!}
     <br>
     {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
     {!! Form::close() !!}

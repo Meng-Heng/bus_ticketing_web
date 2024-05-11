@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Bus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,11 +11,11 @@ class BusController extends Controller
 {
     public function index() {
         $bus = Bus::all();
-        return view('bus.view')->with('tbl_bus', $bus);
+        return view('web.backend.component.bus.view')->with('tbl_bus', $bus);
     }
 
     public function create() {
-    	return view('bus.create');
+    	return view('web.backend.component.bus.create');
     }
 
     public function store(Request $request) {
@@ -34,13 +35,13 @@ class BusController extends Controller
         $bus->is_active = $request->is_active;
         Session::flash('bus_created','New data is created.');
         $bus->save();
-        return redirect('/bus-list');
+        return redirect('/bus');
     }
 
     public function edit($id)
     {
         $bus = Bus::find($id);
-        return view('bus.edit')->with('tbl_bus', $bus);
+        return redirect('bus/edit')->with('tbl_bus', $bus);
     }
 
     public function update(Request $request, $id) {
@@ -70,11 +71,11 @@ class BusController extends Controller
         $bus = Bus::find($id);
         $bus->delete();
         Session::flash('bus_deleted','Bus information '. $bus->id . ' was deleted.');
-        return redirect('bus-list');
+        return redirect('bus');
     }
 
     public function show($id) {
         $bus = Bus::findOrFail($id);
-        return view('bus.detail')->with('tbl_bus', $bus);
+        return view('web.backend.component.bus.detail')->with('tbl_bus', $bus);
     }
 }

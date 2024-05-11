@@ -15,7 +15,7 @@ class TicketController extends Controller
 {
     public function index() {
         $ticket = Ticket::all();
-        return view('ticket.view')->with('tbl_ticket', $ticket);
+        return view('web.backend.component.bus_seat_daily.view')->with('tbl_ticket', $ticket);
     }
 
     public function create() {

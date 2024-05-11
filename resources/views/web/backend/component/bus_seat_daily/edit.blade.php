@@ -1,4 +1,4 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
     @if(Session::has('bus_seat_updated'))
     <div class="alert alert-primary alert-dismissible">
