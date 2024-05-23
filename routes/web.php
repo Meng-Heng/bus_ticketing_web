@@ -30,11 +30,11 @@ use App\Models\Ticket;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', function () {
-    return print('welcome');
+    return view('web.frontend.section.home.index');
 });
 
         /*
@@ -163,3 +163,8 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
