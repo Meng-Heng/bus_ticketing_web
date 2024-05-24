@@ -1,24 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Seat_type;
-use App\Http\Controllers\SeatTypeController;
-use App\Models\Bus;
-use App\Http\Controllers\BusController;
-use App\Models\Seat;
-use App\Http\Controllers\SeatController;
-use App\Http\Controllers\UserController;
-use App\Models\User;
-use App\Controllers\UserTypeController;
-use App\Models\User_type;
-use App\Http\Controllers\StaffController;
-use App\Models\Staff;
-use App\App\Controllers\ReviewsController;
-use App\Models\Review;
-use App\Controllers\PaymentController;
-use App\Models\Payment;
-use App\Controllers\PricesController;
-use App\Models\Price;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,85 +17,51 @@ use App\Models\Price;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return print('welcome');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    /*Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
+
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::get('roles/{roleId}/delete', [App\Http\Controllers\RoleController::class, 'destroy']);
+    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
+
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);*/
 });
-Route::get('/seat_type', function () {
-    $myvar = Seat_type::findOrFail(1);
-    return print($myvar->description);
+
+require __DIR__.'/auth.php';
+
+Route::resource('admin/staff', 'App\Http\Controllers\Admin\StaffController');
+Route::resource('admin/ticket', 'App\Http\Controllers\Admin\TicketController');
+Route::resource('admin/review', 'App\Http\Controllers\Admin\ReviewController');
+Route::resource('admin/payment', 'App\Http\Controllers\Admin\PaymentController');
+Route::resource('admin/storage', 'App\Http\Controllers\Admin\StorageController');
+Route::resource('admin/busseat', 'App\Http\Controllers\Admin\BusSeatController');
+Route::resource('admin/schedule', 'App\Http\Controllers\Admin\ScheduleController');
+Route::resource('admin/bus', 'App\Http\Controllers\Admin\BuController');
+Route::resource('admin/price', 'App\Http\Controllers\Admin\PriceController');
+
+Route::group(['middleware' => ['role:super-admin|admin']], function() {
+
+    Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
+
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::get('roles/{roleId}/delete', [App\Http\Controllers\RoleController::class, 'destroy']);
+    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
+
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);
+
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/seat_type',[SeatTypeController::class,'index'])->name('seattype.index');
-
-Route::get('backend-home', function() {
-    return view('layout.backend');
-});
-
-/* 
-    Bus View
-    Bus Create
-    Bus Update
-    Bus Delete
-    Bus Details
-*/
-Route::get('/bus-list', [BusController::class, 'index'])->name('bus.view');
-Route::get('/bus/create', [BusController::class, 'create'])->name('bus.create');
-Route::post('/bus-list', [BusController::class, 'store'])->name('bus.store');
-Route::get('/bus/{id}/edit', [BusController::class, 'edit'])->name('bus.edit');
-Route::put('/bus-list/{id}', [BusController::class, 'update'])->name('bus.update');
-Route::delete('/bus/{id}', [BusController::class, 'destroy'])->name('bus.delete');
-Route::get('/bus/{id}', [BusController::class, 'show'])->name('bus.show');
-
-/* 
-    Seat type view
-    Seat type Create
-    Seat type Update
-    Seat type Delete
-    Seat type Details
-*/
-Route::get('/seat-type', [SeatTypeController::class, 'index']);
-Route::get('/seat-type/create', [SeatTypeController::class, 'create']);
-Route::post('/seat-type', [SeatTypeController::class, 'store']);
-Route::get('/seat-type/{id}/edit', [SeatTypeController::class, 'edit'])->name('seat_type.edit');
-Route::put('/seat-type/{id}', [SeatTypeController::class, 'update'])->name('seat_type.update');
-Route::delete('/seat-type/{id}', [SeatTypeController::class, 'destroy'])->name('seat_type.delete');
-Route::get('/seat-type/{id}', [SeatTypeController::class, 'show'])->name('seat_type.show');
-
-/* 
-    Seat view
-    Seat Create
-    Seat Update
-    Seat Delete
-    Seat Details
-*/
-Route::get('/seat', [SeatController::class, 'index']);
-Route::get('/seat/create', [SeatController::class, 'create']);
-Route::post('/seat', [SeatController::class, 'store']);
-Route::get('/seat/{id}/edit', [SeatController::class, 'edit'])->name('seat.edit');
-Route::put('/seat/{id}', [SeatController::class, 'update'])->name('seat.update');
-Route::delete('/seat/{id}', [SeatController::class, 'destroy'])->name('seat.delete');
-Route::get('/seat/{id}', [SeatController::class, 'show'])->name('seat.detail');
-
-
-
-
-Route::resource('/users', UserController::class);
-Route::resource('/user-type', UserTypeController::class);
-// Route::resource('/staff', StaffController::class);
-Route::resource('/reviews', ReviewController::class);
-Route::resource('/prices', PriceController::class);
-Route::get('/staff', [StaffController::class, 'index']);
-
-
-
-Route::get('/payments', [PaymentController::class, 'index']);
-Route::get('/payments/create', [PaymentController::class, 'create']);
-Route::post('/payments', [PaymentController::class, 'store']);
-Route::get('/payments/{payment}', [PaymentController::class, 'show']);
-Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit']);
-Route::put('/payments/{payment}', [PaymentController::class, 'update']);
-Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);

@@ -2,14 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
-    use HasFactory;
-    protected $table = "tbl_price";
-    protected $fillable = [
-        'price'
-    ];
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'prices';
+
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['price', 'currency', 'start_date'];
+
+    
 }

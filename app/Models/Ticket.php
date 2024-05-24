@@ -2,26 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    use HasFactory;
-    protected $table = "tbl_ticket";
-    protected $fillable = [
-        'ticket_id','bus_seat_id','schedule','carry_on','luggage','user_id','is_paid','paid_by'
-    ];
-    public function bus_seat() {
-        return $this->belongsTo(Bus_seat::class);
-    }
-    public function bus_seat_daily() {
-        return $this->belongsTo(Bus_seat_daily::class);
-    }
-    public function user() {
-        return $this->belongsTo(Users::class);
-    }
-    public function payment() {
-        return $this->belongsTo(Payment::class);
-    }
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'tickets';
+
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['ticket_id', 'issued_date', 'schedule_id', 'bus_seat_id', 'user_id', 'payment_id', 'storage_id', 'price_id'];
+
+    
 }

@@ -2,28 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
-    use HasFactory;
-    protected $table = 'tbl_staff';
-    protected $fillable = [
-        'staff_id',
-        'fname',
-        'lname',
-        'gender',
-        'position',
-        'date_of_birth',
-        'place_of_birth',
-        'id_card',
-        'residency',
-        'contact',
-        'is_active',
-        'user_id'
-    ];
-    public function user() {
-        return $this->belongsTo(Users::class);
-    }
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'staff';
+
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['fname', 'lname', 'user_id', 'picture', 'hometown', 'identification', 'residency', 'contact', 'is_active', 'position'];
+
+    
 }

@@ -4,92 +4,92 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:view user', ['only' => ['index']]);
+        $this->middleware('permission:create user', ['only' => ['create','store']]);
+        $this->middleware('permission:update user', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete user', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
-        $user = User::all();
-        return view('user.index', compact('user'));
-        /*return view('user.index', ['users' => $users]);*/
-        /*return view('user.index')->withUsers($users);*/
+        $users = User::get();
+        return view('role-permission.user.index', ['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('user.create');
+        $roles = Role::pluck('name','name')->all();
+        return view('role-permission.user.create', ['roles' => $roles]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required'],
-            'user_type_id' => ['required'],
-            'gender' => ['required'],
-            'date_of_birth' => ['required'],
-            'phone' => ['required'],
-            'hometown' => ['required'],
-            'id_card' => ['required'],
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|max:20',
+            'roles' => 'required'
         ]);
-        $user = User::create($validateData);
-        return redirect()->route('user.index')->with('success','User created successfully');
+
+        $user = User::create([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                    ]);
+
+        $user->syncRoles($request->roles);
+
+        return redirect('/users')->with('status','User created successfully with roles');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        return view('user.show', compact('user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        $roles = Role::pluck('name','name')->all();
+        $userRoles = $user->roles->pluck('name','name')->all();
+        return view('role-permission.user.edit', [
+            'user' => $user,
+            'roles' => $roles,
+            'userRoles' => $userRoles
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
-        $validateData = $request->validate([
-            'name' => ['required'],
-            'email' => ['required|email|unique:users,email'.$user->id],
-            'password' => ['required'],
-            'user_type_id' => ['required'],
-            'gender' => ['required'],
-            'date_of_birth' => ['required'],
-            'phone' => ['required'],
-            'hometown' => ['required'],
-            'id_card' => ['required'],
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'roles' => 'required'
         ]);
-        $user->update($validateData);
-        return redirect()->route('user.index')->with('success', 'User updated successfully');
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if(!empty($request->password)){
+            $data += [
+                'password' => Hash::make($request->password),
+            ];
+        }
+
+        $user->update($data);
+        $user->syncRoles($request->roles);
+
+        return redirect('/users')->with('status','User Updated Successfully with roles');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
+    public function destroy($userId)
     {
+        $user = User::findOrFail($userId);
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'User deleted successfully');
+
+        return redirect('/users')->with('status','User Delete Successfully');
     }
 }

@@ -2,19 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory;
-    protected $table = "tbl_payment"; 
-    protected $fillable = [
-        "method"
-        /*'payment_id',
-        'booking_id',
-        'amount_paid',
-        'payment_date',
-        'user_id'*/
-    ];
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'payments';
+
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['payment_method', 'payment_datetime', 'user_id', 'review_id'];
+
+    
 }
