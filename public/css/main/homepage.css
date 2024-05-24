@@ -1,0 +1,77 @@
+body {
+    font-family: Roboto;
+    font-weight: bold;
+  }
+
+@media (min-width: 65rem) /* min 1025 px */{
+    .flex {
+        margin: 10px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .img-fluid {
+        width: 20% !important;
+        margin: 20px;
+    }
+    .img-fluid-info {
+        width: 100%;
+    }
+    .img-fluid-info-greet {
+        width: 50%;
+    }
+
+    .form-box {
+        padding: 20px;
+        margin: 20px;
+        border-radius: 50px;
+        box-shadow: 3px 3px 8px 6px rgb(190, 178, 178);
+    }
+
+    .nav-fa {
+        width: 50px;
+        padding: 0px 50px;
+    }
+}
+
+@media (min-width: 50rem) and (max-width: 64rem)/* min 801 px */{
+    .flex {
+        margin: 20px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .img-fluid {
+        width: 40%;
+        margin: 20px;
+    }
+}
+
+@media (min-width: 30rem) and (max-width: 49rem) /* min 480 px */{
+    .flex {
+        margin: 20px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-fluid {
+        width: 80%;
+        margin: 20px;
+    }
+}
