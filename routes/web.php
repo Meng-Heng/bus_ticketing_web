@@ -68,7 +68,7 @@ Route::get('/language/{locale}', function ($locale) {
 });
 
 Route::get('backend-home', function() {
-    return view('layout.backend');
+    return view('web.backend.layout.admin');
 });
 
 /* 
