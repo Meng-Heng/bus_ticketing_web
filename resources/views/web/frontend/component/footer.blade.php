@@ -1,8 +1,8 @@
-<footer class="text-center bg-body-tertiary">
+<footer class="text-center footer">
   <!-- Grid container -->
-  <div class="container pt-4">
+  <div class="container p-2">
     <!-- Section: Social media -->
-    <section class="mb-4">
+    <section class="mt-4">
       <!-- Facebook -->
       <a
         data-mdb-ripple-init
@@ -10,7 +10,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-facebook-f"></i
+        ><i class="fab fa-facebook-f text-white"></i
       ></a>
 
       <!-- Twitter -->
@@ -20,7 +20,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-twitter"></i
+        ><i class="fab fa-twitter text-white"></i
       ></a>
 
       <!-- Google -->
@@ -30,7 +30,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-telegram"></i
+        ><i class="fab fa-telegram text-white"></i
       ></a>
 
       <!-- Instagram -->
@@ -40,7 +40,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-instagram"></i
+        ><i class="fab fa-instagram text-white"></i
       ></a>
     </section>
     <!-- Section: Social media -->

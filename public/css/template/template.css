@@ -3,3 +3,10 @@
     src: url(../../font/Roboto-Bold.ttf);
 } 
 
+.footer {
+   background-color: #0077C0 !important;
+}
+
+.footer .container a i {
+    width: 200px;
+}

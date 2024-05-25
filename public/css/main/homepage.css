@@ -1,9 +1,63 @@
 body {
     font-family: Roboto;
     font-weight: bold;
-  }
+    background-color: white;
+}
 
-@media (min-width: 65rem) /* min 1025 px */{
+@media (min-width: 65rem)
+/* min 1025 px */
+    {
+    .nav-fa {
+        width: 100%;
+        padding: 0px 50px;
+        color: darkgray;
+    }
+
+    .nav-fa:hover {
+        color: black;
+        /* Show text */
+    }
+
+    .nav-contact {
+        background-color: #0077C0;
+        width: 120px;
+        border-radius: 30px;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .header-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-wrapper h1,
+    h2 {
+        margin: 20px;
+    }
+
+    .header-banner {
+        width: 60%;
+        margin-top: 10px;
+    }
+
+    .header-banner img {
+        width: 100%;
+        border-radius: 100px;
+    }
+    /* Ticket box */
+
+    .form-box {
+        width: 70%;
+        padding: 20px;
+        margin: 30px;
+        border-radius: 30px;
+        box-shadow: 3px 3px 8px 6px rgb(190, 178, 178);
+    }
+
+    /* Popular destinations */
     .flex {
         margin: 10px;
     }
@@ -19,27 +73,85 @@ body {
         width: 20% !important;
         margin: 20px;
     }
+
     .img-fluid-info {
         width: 100%;
     }
+
     .img-fluid-info-greet {
         width: 50%;
     }
 
-    .form-box {
-        padding: 20px;
-        margin: 20px;
-        border-radius: 50px;
-        box-shadow: 3px 3px 8px 6px rgb(190, 178, 178);
+    /* Newsletter */
+    .subscription {
+        background-color: #FAFAFA;
     }
 
-    .nav-fa {
-        width: 50px;
-        padding: 0px 50px;
+    .subscription-wrapper {
+        padding: 70px;
+        width: 100%;
+        margin: 40px;
+    }
+
+    h3,
+    .h3 {
+        font-size: 30px;
+    }
+
+    .subscription.bg-white .form-control {
+        border: 1px solid #ebebeb !important;
+    }
+
+    .subscription-wrapper .form-control {
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 45px;
+    }
+
+    .subscription-wrapper .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        outline: 0;
+        box-shadow: none;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        border: 0;
+        color: #fff;
+    }
+
+    .btn {
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        text-transform: capitalize;
+        padding: 18px 45px;
+        border-radius: 45px;
+        font-weight: 500;
+        border: 1px solid;
+        position: relative;
+        transition: .3s ease-in;
+        overflow: hidden;
+    }
+
+    .btn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 102%;
+        height: 100%;
+        background: linear-gradient(45deg, #00a8f4 0%, #02d1a1 100%);
+        z-index: -1;
+        transition: ease 0.3s;
     }
 }
 
-@media (min-width: 50rem) and (max-width: 64rem)/* min 801 px */{
+@media (min-width: 50rem) and (max-width: 64rem)
+/* min 801 px */
+    {
     .flex {
         margin: 20px;
     }
@@ -57,7 +169,9 @@ body {
     }
 }
 
-@media (min-width: 30rem) and (max-width: 49rem) /* min 480 px */{
+@media (min-width: 30rem) and (max-width: 49rem)
+/* min 480 px */
+    {
     .flex {
         margin: 20px;
     }
