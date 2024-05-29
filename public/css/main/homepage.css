@@ -1,6 +1,5 @@
 body {
-    font-family: Roboto;
-    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: white;
 }
 
@@ -49,14 +48,20 @@ body {
     }
     /* Ticket box */
 
-    .form-box {
+    .ticket-box  {
         width: 70%;
         padding: 20px;
         margin: 30px;
         border-radius: 30px;
         box-shadow: 3px 3px 8px 6px rgb(190, 178, 178);
     }
+    #ticket-box {
+        align-items: center;
+    }
 
+    .origin {
+        border: 0px;
+    }
     /* Popular destinations */
     .flex {
         margin: 10px;
