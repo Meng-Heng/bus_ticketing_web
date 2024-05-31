@@ -141,3 +141,7 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+
+Route::get('aba', function() {
+    return view('web.utils.payment.index');
+});
