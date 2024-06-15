@@ -15,4 +15,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-./Providers/PayWayApiCheckout.php
+/app/Providers/PayWayApicheckout.php
