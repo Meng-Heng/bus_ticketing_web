@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_bus_seat_daily', function (Blueprint $table) {
+        Schema::create('tbl_schedule', function (Blueprint $table) {
             $table->id();
             $table->biginteger('bus_id')->unsigned();
             $table->foreign('bus_id')->references('id')->on('tbl_bus');
-            $table->string('start_point');
+            $table->string('origin');
             $table->string('departure_date');
             $table->string('departure_time');
             $table->string('destination');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bus_seat_dailies');
+        Schema::dropIfExists('schedules');
     }
 };

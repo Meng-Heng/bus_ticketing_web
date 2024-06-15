@@ -17,22 +17,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = "tbl_user";
     protected $fillable = [
-        'name',
+        'username',
+        'picture',
+        'pwd',
         'email',
-        'password',
-        'user_type_id',
-        'gender',
-        'date_of_birth',
-        'phone',
+        'contact',
         'hometown',
-        'id_card',
+        'identification',
         'is_active'
     ];
-
-    public function user_type() {
-        return $this->belongsTo(User_type::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,7 +35,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'pwd',
         'remember_token',
     ];
 
@@ -51,6 +46,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'pwd' => 'hashed',
     ];
 }

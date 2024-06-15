@@ -10,9 +10,8 @@ class Price extends Model
     use HasFactory;
     protected $table = "tbl_price";
     protected $fillable = [
-        'price'
+        'price',
+        'currency',
+        'start_date'
     ];
-    // public function bus_seats() {
-    //     return $this->hasMany(Price::class, 'id');
-    // }
 }

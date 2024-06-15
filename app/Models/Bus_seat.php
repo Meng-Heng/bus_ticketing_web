@@ -13,13 +13,13 @@ class Bus_seat extends Model
     use HasFactory;
     protected $table = 'tbl_bus_seat';
     protected $fillable = [
-        'bus_id','seat_id','price_id'
+        'bus_id','seat_number','seat_type','storage_id','price_id','status'
     ];
     public function bus() {
         return $this->belongsTo(Bus::class);
     }
-    public function seat() {
-        return $this->belongsTo(Seat::class);
+    public function storage() {
+        return $this->belongsTo(Storage::class);
     }
     public function price() {
         return $this->belongsTo(Price::class);

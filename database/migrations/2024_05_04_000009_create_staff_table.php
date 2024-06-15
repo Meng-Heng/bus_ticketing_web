@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->binary('picture');
-            $table->string('hometown')->nullable();
-            $table->string('id_card');
-            $table->string('residency')->nullable();
-            $table->string('contact');
-            $table->string('position');
-            $table->boolean('is_active');
             $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('tbl_user');
+            $table->binary('picture');
+            $table->string('hometown')->nullable();
+            $table->string('identification');
+            $table->string('residency')->nullable();
+            $table->string('contact');
+            $table->boolean('is_active');
+            $table->string('position');
             $table->timestamps();
         });
     }

@@ -10,9 +10,9 @@ class Review extends Model
     use HasFactory;
     protected $table = 'tbl_review';
     protected $fillable = [
-        'user_id','star','feedback'
+        'star','feedback','posted_time','payment_id','user_id'
     ];
     public function user() {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 }

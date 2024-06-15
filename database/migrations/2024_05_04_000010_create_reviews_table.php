@@ -16,10 +16,10 @@ return new class extends Migration
             $table->decimal('star');
             $table->string('feedback', 255);
             $table->datetime('posted_time');
-            $table->biginteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('tbl_user');
             $table->biginteger('payment_id')->unsigned();
             $table->foreign('payment_id')->references('id')->on('tbl_payment');
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('tbl_user');
         });
     }
 

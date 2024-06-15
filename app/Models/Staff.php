@@ -10,9 +10,9 @@ class Staff extends Model
     use HasFactory;
     protected $table = 'tbl_staff';
     protected $fillable = [
-        'staff_id','fname','lname','gender','position','date_of_birth','place_of_birth','id_card','residency','contact','is_active','user_id'
+        'fname','lname','user_id','picture','hometown','identification','residency','contact','is_active','position'
     ];
     public function user() {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 }
