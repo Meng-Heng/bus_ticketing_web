@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset('css/template/header.css')}}" rel="stylesheet" />
     <link href="{{asset('css/template/template.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/template/calendar.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main/homepage.css')}}" rel="stylesheet" />
     <!-- Font Awesome -->
     <link
@@ -26,30 +25,26 @@
     <title>Bus4U</title>
 </head>
 <body>
-    @include('web.frontend.component.navigation')
+        @include('web.frontend.component.navigation')
 
-    @include('web.frontend.component.header')
+        @include('web.frontend.component.header')
 
-    @include('web.frontend.section.home.ticket')
+        @include('web.frontend.section.home.ticket')
 
-    @include('web.frontend.section.home.popular') 
+        @include('web.frontend.section.home.popular') 
 
-    @include('web.frontend.section.home.promo')
+        @include('web.frontend.section.home.promo')
 
-    @include('web.frontend.section.home.info')
+        @include('web.frontend.section.home.info')
 
-    @include('web.frontend.section.home.subscribe')
+        @include('web.frontend.section.home.subscribe')
 
-    @include('web.frontend.component.footer')
+        @include('web.frontend.component.footer')
     <script>
         // Initialization for ES Users
-        import { Dropdown, Collapse, initMDB } from "mdb-ui-kit";
-
-        initMDB({ Dropdown, Collapse });
     </script>
-    
-    <script type="text/javascript" src=".."></script>
-    <script src="{{ asset('css/all.js')}}" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{asset ('js/calendar.js')}}"></script>
+    <script src="{{ asset('js/all.js')}}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js')}}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{asset ('js/ticket-form.js')}}"></script>
 </body>
 </html>

@@ -18,9 +18,9 @@
     <!-- Left element -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Logo -->
-      <a class="navbar-brand nav-logo mt-2 mt-lg-0" href="{{ url('/home') }}">
+      <a class="navbar-brand nav-logo mx-4" href="{{ url('/home') }}">
         <img
-          class="mx-5"
+          class="mx-2"
           src="{{ asset('images/logo/logo.png')}}"
           height="40"
           alt="Bus4U Logo"
@@ -35,9 +35,11 @@
       <!-- Navigation menu -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-globe nav-fa"></i>
-          </a>
+          </i class="nav-link fas fa-globe nav-fa">
+            <!-- <select class="language-select"> -->
+               @include('web.utils.partials.language_switcher')
+            <!-- </select> -->
+          </i>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
@@ -57,7 +59,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-5" href="#">Contact
+      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">Contact
       </a>
     </div>
     <!-- Right elements -->

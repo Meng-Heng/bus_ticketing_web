@@ -1,10 +1,38 @@
+/* 
+    Template styles to applied on reuse components
+*/
+
 @font-face {
     font-family: Roboto;
     src: url(../../font/Roboto-Bold.ttf);
 } 
 
+.nav-fa {
+    width: 100%;
+    padding: 0px 50px;
+    color: darkgray;
+}
+
+.nav-fa:hover {
+    color: black;
+    /* Show text */
+}
+.language-select{
+    border: none;
+}
+.nav-contact {
+    background-color: #0077C0;
+    width: 120px;
+    border-radius: 30px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
 .footer {
    background-color: #0077C0 !important;
+   bottom: 0;
+   width: 100%;
 }
 
 .footer .container a i {

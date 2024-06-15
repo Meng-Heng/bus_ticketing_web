@@ -1,3 +1,7 @@
+/* 
+    Homepage styles
+*/
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: white;
@@ -6,62 +10,103 @@ body {
 @media (min-width: 65rem)
 /* min 1025 px */
     {
-    .nav-fa {
-        width: 100%;
-        padding: 0px 50px;
-        color: darkgray;
-    }
-
-    .nav-fa:hover {
-        color: black;
-        /* Show text */
-    }
-
-    .nav-contact {
-        background-color: #0077C0;
-        width: 120px;
-        border-radius: 30px;
-        color: white;
-        padding: 10px;
-        text-align: center;
-    }
-
     .header-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 20px;
     }
 
-    .header-wrapper h1,
-    h2 {
-        margin: 20px;
+    .header-wrapper h1, h2 {
+        line-height: 2rem;
+        letter-spacing: 2px;
     }
 
     .header-banner {
-        width: 60%;
-        margin-top: 10px;
+        width: 65%;
+        margin-top: 20px;
     }
 
     .header-banner img {
         width: 100%;
         border-radius: 100px;
     }
+
     /* Ticket box */
-
-    .ticket-box  {
-        width: 70%;
-        padding: 20px;
-        margin: 30px;
-        border-radius: 30px;
-        box-shadow: 3px 3px 8px 6px rgb(190, 178, 178);
-    }
-    #ticket-box {
+    .ticket-container {
+        display: flex;
+        justify-content: center;
         align-items: center;
+        margin-top: 30px;
     }
 
-    .origin {
-        border: 0px;
+    .card {
+        border-radius: 50px !important;
+        box-shadow: 3px 3px 7px 5px rgba(0, 0, 0, 0.2) !important;
     }
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      label {
+        width: 100px;
+        text-align: right;
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+      
+      .sublabel {
+        color: gray;
+      }
+      
+      select,
+      input[type="date"] {
+        padding: 10px;
+        font-size: 14px;
+      }
+      
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #0077C0;
+        border: none;
+        cursor: pointer;
+      }
+      
+      input[type="date"] {
+        position: relative;
+      }
+      
+      input[type="date"]:before {
+        content: attr(placeholder);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        color: rgba(0, 0, 0, 0.65);
+        pointer-events: none;
+        line-height: 1.5;
+        padding: 10px 0.5rem 0 0.5rem;
+      }
+      
+      input[type="date"]:focus:before,
+      input[type="date"]:not([value=""]):before {
+        display: none;
+      }
+      
+      .custom-bg {
+        background-color: #ffffff;
+      }
+      
+      #origin::after {
+        content:arrow icon image;
+      }
+
     /* Popular destinations */
     .flex {
         margin: 10px;
