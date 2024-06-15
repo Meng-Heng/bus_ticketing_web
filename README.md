@@ -1,3 +1,6 @@
+This branch has been merged into staging!
+No major activity will be present here.
+
 ## Database
 
 1. Create a new database called "test_laravel_busticketing"
