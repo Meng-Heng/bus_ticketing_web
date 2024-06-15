@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('tbl_payment', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('method');
-            $table->datetime('time_of_payment')->current();
+            $table->string('payment_method');
+            $table->datetime('payment_datetime')->current();
             $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('tbl_user');
+            $table->biginteger('review_id')->unsigned();
         });
     }
 

@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bus extends Model
+class Permission extends Model
 {
     use HasFactory;
-    protected $table = "tbl_bus";
+    protected $table = 'tbl_permission';
     protected $fillable = [
-        'bus_plate',
-        'total_seat',
-        'description',
-        'is_active'
+        'permission','description'
     ];
 }
