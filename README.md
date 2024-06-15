@@ -5,3 +5,7 @@
 
 # bus_ticketing_web
 This is a separate branch only for multi-language purposes.
+
+
+## Color
+- https://colorhunt.co/palette/fafafac7eeff0077c01d242b 

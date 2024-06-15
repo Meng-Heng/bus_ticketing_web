@@ -1,0 +1,57 @@
+/*
+    Bus Schedule styles
+*/
+
+@media (min-width: 65rem) {
+    /* min 1025 px */
+div .card {
+    align-items: center;
+}
+
+.card-schedule {
+    width: 50%;
+    margin: 20px;
+    background-color: #1D242B !important;
+}
+.schedule-arrow-right {
+    margin: auto;
+}
+.container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.schedule-row {
+    margin: 10px;
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.schedule-status {
+    
+    }
+
+.origin-time, .destination-time {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.ticket-price {
+    font-weight: bold;
+    font-size: 20px;
+    color: darkred;
+}
+
+}
+
+@media (min-width: 50rem) and (max-width: 64rem)
+/* min 801 px */
+{
+
+}
+
+@media (min-width: 30rem) and (max-width: 49rem)
+/* min 480 px */
+{
+
+}

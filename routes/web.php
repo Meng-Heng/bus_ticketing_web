@@ -18,6 +18,7 @@ use App\Http\Controllers\BusSeatDailyController;
 use App\Models\Bus_seat_daily;
 use App\Http\Controllers\TicketController;
 use App\Models\Ticket;
+use App\Http\Controllers\FrontEnd\ScheduleFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,16 @@ use App\Models\Ticket;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', function () {
-    return print('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/', function () {
+//     return view('web.frontend.section.home.index')->name;
+// });
+
+Route::get('/', [ScheduleFormController::class, 'index']);
+Route::get('/available', [ScheduleFormController::class, 'find_time']);
 
         /*
             Using Google Translate
@@ -68,7 +73,7 @@ Route::get('/language/{locale}', function ($locale) {
 });
 
 Route::get('backend-home', function() {
-    return view('layout.backend');
+    return view('web.backend.layout.admin');
 });
 
 /* 
@@ -163,3 +168,8 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
