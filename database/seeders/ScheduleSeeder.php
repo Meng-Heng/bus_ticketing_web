@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\Schedule;
+use App\Models\Bus;
+
+class ScheduleSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Schedule::factory(10)->create()->each(function($schedule) {
+            Bus::factory(3)->create('bus_id', $bus->id);
+        });
+    }
+}

@@ -12,7 +12,7 @@
                             required>
                                 <option value="" disabled selected>City or Province</option>
                             @foreach($schedule as $schedules)
-                                <option value="{{$schedules->start_point}}">{{ $schedules->start_point }}</option>
+                                <option value="{{$schedules->start_point}}">{{ $schedules->origin }}</option>
                             @endforeach
                         </select>
                     </div>
