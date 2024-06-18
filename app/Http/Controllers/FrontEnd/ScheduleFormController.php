@@ -4,23 +4,23 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Bus_seat_daily;
+use App\Models\Schedule;
 use DB;
 
 class ScheduleFormController extends Controller
 {
     public function index() {
-        $schedule = Bus_seat_daily::all();
+        $schedule = Schedule::all();
         return view('web.frontend.section.home.index', ['schedule' => $schedule]);
     }
 
     public function find_time(Request $request) {
-        $schedule = Bus_seat_daily::all();
+        $schedule = Schedule::all();
         $origin = $request->input('origin');
         $origin_date = $request->input('departure-date');
         $arrived = $request->input('arrival');
 
-        $result = Bus_seat_daily::where('start_point', 'like' , "%$origin%")
+        $result = Schedule::where('origin', 'like' , "%$origin%")
                                 ->where('departure_date', 'like' ,"%$origin_date%")
                                 ->where('destination', 'like' , "%$arrived%")->get();
         
