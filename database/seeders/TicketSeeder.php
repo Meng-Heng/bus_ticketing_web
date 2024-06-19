@@ -4,16 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Factory\BusSeatFactory;
-use Illuminate\Support\Facades\DB;
+use App\Models\Ticket;
 
-class BusSeatSeeder extends Seeder
+class TicketSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-       
+        Ticket::factory()->create();
     }
 }
