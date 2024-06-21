@@ -9,10 +9,18 @@ div .card {
 }
 
 .card-schedule {
-    width: 50%;
-    margin: 20px;
-    background-color: #1D242B !important;
+    margin: 50px;
+    padding: 20px;
+    background-color: #f7f3f3 !important;
+    font-size: 20px;
+    border-radius: 15px;
+    font-weight: bold;
 }
+
+.card-schedule-date {
+    display: flex;
+}
+
 .schedule-arrow-right {
     margin: auto;
 }
@@ -22,9 +30,11 @@ div .card {
     align-items: center;
 }
 .schedule-row {
-    margin: 10px;
-    padding: 20px;
-    border-bottom: 1px solid black;
+    margin: 20px;
+    padding: 50px;
+    border-bottom: 2px solid #C7EEFF;
+    border-radius: 15px;
+    background-color: #f7f3f3;
 }
 
 .schedule-status {
@@ -40,6 +50,11 @@ div .card {
     font-weight: bold;
     font-size: 20px;
     color: darkred;
+}
+
+.buy-ticket {
+    width: 50%;
+    padding: 200px;
 }
 
 }

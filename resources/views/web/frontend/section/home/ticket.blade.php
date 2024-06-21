@@ -3,7 +3,6 @@
             <div class="row">
                 <div class="pb-3 h3 text-left">Where are you heading?</div>
             </div>
-            <!-- {{ Form::open(array('id'=>"bus-form"))}} -->
             <form action="{{ url('available') }}" id="bus-form">
                 <div class="row">   
                     <div class="form-group col-md align-items-start flex-column">
@@ -11,8 +10,8 @@
                         <select placeholder="City or Province" class="form-control" id="origin" name="origin"
                             required>
                                 <option value="" disabled selected>City or Province</option>
-                            @foreach($schedule as $schedules)
-                                <option value="{{$schedules->start_point}}">{{ $schedules->origin }}</option>
+                            @foreach($location as $locations)
+                                <option value="{{$locations}}">{{ $locations }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -21,8 +20,8 @@
                         <select placeholder="City or Province" class="form-control" id="arrival" name="arrival"
                             required>
                             <option value="" disabled selected>City or Province</option>
-                            @foreach($schedule as $schedules)
-                                <option value="{{$schedules->destination}}">{{ $schedules->destination }}</option>
+                            @foreach($location as $locations)
+                                <option value="{{$locations}}">{{ $locations }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,10 +42,8 @@
                 <div class="row">
                     <div class="col-auto mt-2 align-items-end">
                         <button class="btn btn-primary" data-toggle="modal" data-target=#demoModal>Search Ticket</button>
-                       <!--  {{ Form::submit('Search Ticket', array('class' => "btn btn-primary", 'data-toggle'=>"modal", 'data-target'=>"#demoModal")) }} -->
                     </div>
                 </div>
-            <!-- {{ Form::close() }} -->
             </form>
         </div>
     </div>

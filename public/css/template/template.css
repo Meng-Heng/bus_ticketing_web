@@ -6,6 +6,30 @@
     font-family: Roboto;
     src: url(../../font/Roboto-Bold.ttf);
 } 
+.navbar-nav .nav-dropdown {
+    display: inline-block;
+    position: relative;
+}
+.navbar-nav .nav-dropdown .dropdown-menu {
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+.navbar-nav .nav-dropdown .dropdown-menu li {
+    display: block;
+    margin: 20px;
+}
+
+.navbar-nav .nav-dropdown .dropdown-menu li a:hover {
+    text-decoration: underline;
+}
+
+.navbar-nav .nav-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 
 .nav-fa {
     width: 100%;

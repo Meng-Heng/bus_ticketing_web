@@ -3,8 +3,13 @@
 */
 
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: Roboto;
     background-color: white;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(../../font/Roboto-Bold.ttf);
 }
 
 @media (min-width: 65rem)
