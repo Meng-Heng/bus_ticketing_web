@@ -12,7 +12,7 @@
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-primary ms-2">New and High maintenance!</span></h5>
+                  <h5><span class="badge bg-primary ms-2">{{__("New and High maintenance!")}}</span></h5>
                 </div>
               </div>
               <div class="hover-overlay">
@@ -24,11 +24,14 @@
           </div>
           <div class="card-body">
             <a href="" class="text-reset">
-              <h4 class="card-title mb-3">Family-size package</h4>
+              <h4 class="card-title mb-3">{{__("Family-size package")}}</h4>
             </a>
             <a href="" class="text-reset">
-              <p>Travel across Cambodia...</p>
+              <p>{{ __("Travel across Cambodia with your family members of 6 with comfortable seats, and 
+                trustworthy driver. This is a trail offer for October of 2024 ONLY!") }}
+              </p>
             </a>
+            <button class="btn btn-primary family-size-btn">{{__("Get this offer now!")}}</button>
           </div>
         </div>
       </div>
@@ -42,7 +45,7 @@
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-success ms-2">Sufficient Storage</span></h5>
+                  <h5><span class="badge bg-success ms-2">{{__("Sufficient Storage")}}</span></h5>
                 </div>
               </div>
               <div class="hover-overlay">
@@ -54,10 +57,11 @@
           </div>
           <div class="card-body">
             <a href="" class="text-reset">
-              <h4 class="card-title mb-3">Neatly packed and spacious</h4>
+              <h4 class="card-title mb-3">{{__("Neatly packed and spacious")}}</h4>
             </a>
             <a href="" class="text-reset">
-              <p>Information...</p>
+              <p>{{__("Put all your trust into our care for your luggage as you travel at ease to your destination. We don't ruffle your luggage or provide an unsanitized space.")}}
+              </p>
             </a>
           </div>
         </div>
@@ -71,7 +75,7 @@
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-danger ms-2">Midnight with us!</span></h5>
+                  <h5><span class="badge bg-danger ms-2">{{__("Midnight with us!")}}</span></h5>
                 </div>
               </div>
               <div class="hover-overlay">
@@ -82,11 +86,15 @@
           </div>
           <div class="card-body">
             <a href="" class="text-reset">
-              <h4 class="card-title mb-3">Spend a full night</h4>
+              <h4 class="card-title mb-3">{{__("Spend a full night")}}</h4>
             </a>
             <a href="" class="text-reset">
-              <p>Information...</p>
+              <p>{{__("This is where you will be spending your night if you decide to travel to your destination during sleeping hours.")}}
+              </p>
             </a>
+            <button class="btn btn-danger midnight-bus-btn">
+              {{__("Get a Midnight bus ticket!")}}
+            </button>
             <!-- <h6 class="mb-3">
               <s>$61.99</s><strong class="ms-2 text-danger">$50.99</strong>
             </h6> -->

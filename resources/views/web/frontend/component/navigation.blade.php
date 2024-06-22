@@ -58,7 +58,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">Contact
+      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">{{__("Contact")}}
       </a>
     </div>
     <!-- Right elements -->
