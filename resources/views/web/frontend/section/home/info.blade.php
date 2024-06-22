@@ -1,5 +1,5 @@
-<div class="text-center container mb-5">
-<h2 class="mt-5"><strong>SERVICE AND FEEDBACK</strong></h2>
+<div class="text-center container mt-3 mb-5">
+<h2 class="mt-4 mb-5"><strong>SERVICE AND FEEDBACK</strong></h2>
 <div class="card mb-5 rounded-10">
   <div class="row g-0">
     <div class="col-md-4">

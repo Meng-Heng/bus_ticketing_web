@@ -28,13 +28,30 @@ body {
     }
 
     .header-banner {
-        width: 65%;
+        width: 50%;
         margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-banner img {
         width: 100%;
+        border-radius: 105px;
+    }
+    
+    .image-banner {
+        z-index: 1;
+        width: 40%;
+    }
+
+    .image-banner img {
+        position: absolute;
+        width: 25%;
+        left: 38%;
+        top: 35%;
         border-radius: 100px;
+        padding: 20px;
     }
 
     /* Ticket box */
