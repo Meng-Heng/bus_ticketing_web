@@ -1,6 +1,6 @@
 <section style="background-color: #FAFAFA;">
   <div class="text-center container py-3">
-    <h2 class="mt-3 mb-5"><strong>LATEST DEALS!</strong></h2>
+    <h2 class="mt-4 mb-5"><strong>LATEST DEALS!</strong></h2>
 
     <div class="row mt-12">
       <div class="col-lg-4 col-md-12 mb-4">
