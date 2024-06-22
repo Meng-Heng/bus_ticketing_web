@@ -18,7 +18,7 @@
     <!-- Left element -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Logo -->
-      <a class="navbar-brand nav-logo mx-4" href="{{ url('/home') }}">
+      <a class="navbar-brand nav-logo mx-4" href="{{ url('/') }}">
         <img
           class="mx-2"
           src="{{ asset('images/logo/logo.png')}}"
@@ -34,20 +34,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navigation menu -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
-        <li class="nav-item">
-          </i class="nav-link fas fa-globe nav-fa">
-            <!-- <select class="language-select"> -->
-               @include('web.utils.partials.language_switcher')
-            <!-- </select> -->
-          </i>
+        <li class="nav-item nav-dropdown open">
+          <a data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+            <i class="nav-link fas fa-globe nav-fa"></i>
+          </a>
+              @include('web.utils.partials.language_switcher')
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/ticket-history">
             <i class="fas fa-qrcode nav-fa"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/login">
             <i class="fas fa-user nav-fa"></i>
           </a>
         </li>
@@ -59,7 +58,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">Contact
+      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">{{__("Contact")}}
       </a>
     </div>
     <!-- Right elements -->

@@ -7,7 +7,7 @@
       <a
         data-mdb-ripple-init
         class="btn btn-link btn-floating btn-lg text-body m-1"
-        href="#!"
+        href="https://web.facebook.com/CamboLink21Express"
         role="button"
         data-mdb-ripple-color="dark"
         ><i class="fab fa-facebook-f text-white"></i
@@ -17,7 +17,7 @@
       <a
         data-mdb-ripple-init
         class="btn btn-link btn-floating btn-lg text-body m-1"
-        href="#!"
+        href="https://x.com"
         role="button"
         data-mdb-ripple-color="dark"
         ><i class="fab fa-twitter text-white"></i
@@ -27,7 +27,7 @@
       <a
         data-mdb-ripple-init
         class="btn btn-link btn-floating btn-lg text-body m-1"
-        href="#!"
+        href="https://t.me/MengHeng_HAV"
         role="button"
         data-mdb-ripple-color="dark"
         ><i class="fab fa-telegram text-white"></i
@@ -37,7 +37,7 @@
       <a
         data-mdb-ripple-init
         class="btn btn-link btn-floating btn-lg text-body m-1"
-        href="#!"
+        href="https://instagram.com"
         role="button"
         data-mdb-ripple-color="dark"
         ><i class="fab fa-instagram text-white"></i

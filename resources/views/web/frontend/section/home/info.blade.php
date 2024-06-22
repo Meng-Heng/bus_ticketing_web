@@ -11,11 +11,10 @@
     </div>
     <div class="col-md-8" style="">
       <div class="card-body">
-        <h3 class="card-title text-left">Diverse Communities</h3>
+        <h3 class="card-title text-left">{{__("Diverse Communities")}}</h3>
+        <br>
         <p class="card-text text-left">
-          If you are looking for a stress-free vehicle to get you to your destination 
-          without anxiously staying on guard for potential threat, Bus4U is here to fulfill
-          your dream!
+        {{ __("Don't feel pressured to speak Khmer or communicate anything! We know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.")}}
         </p>
       </div>
     </div>
@@ -25,11 +24,10 @@
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body">
-        <h3 class="card-title text-left">Snack 24/7</h3>
+        <h3 class="card-title text-left">{{__("Snack 24/7")}}</h3>
+        <br>
         <p class="card-text text-left">
-          If you are looking for a stress-free vehicle to get you to your destination 
-          without anxiously staying on guard for potential threat, Bus4U is here to fulfill
-          your dream!
+          {{ __("Grab your snack or meal onboard with you! If not, buy from our station. We allow our passengers to bring food with them, as long as they remember to clean up after themselves. Make sure that your food is already packed and ready to eat.")}}
         </p>
       </div>
     </div>
@@ -53,11 +51,9 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h3 class="card-title text-left">Amenities</h3>
+        <h3 class="card-title text-left">{{__("Amenities")}}</h3>
         <p class="card-text text-left">
-          If you are looking for a stress-free vehicle to get you to your destination 
-          without anxiously staying on guard for potential threat, Bus4U is here to fulfill
-          your dream!
+          {{ __("We care about your health so if you forgot to bring your water we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.")}}
         </p>
       </div>
     </div>
