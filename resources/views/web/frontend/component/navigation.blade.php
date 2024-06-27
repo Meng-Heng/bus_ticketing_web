@@ -18,7 +18,7 @@
     <!-- Left element -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Logo -->
-      <a class="navbar-brand nav-logo mx-4" href="{{ url('/') }}">
+      <a class="navbar-brand nav-logo me-auto" href="{{ url('/') }}">
         <img
           class="mx-2"
           src="{{ asset('images/logo/logo.png')}}"
@@ -31,12 +31,12 @@
     </div>
     <!-- Left element -->
     
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse mx-4">
       <!-- Navigation menu -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
         <li class="nav-item nav-dropdown open">
-          <a data-toggle="dropdown" data-close-others="false" aria-expanded="true">
-            <i class="nav-link fas fa-globe nav-fa"></i>
+          <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+            <i class="fas fa-globe nav-fa"></i>
           </a>
               @include('web.utils.partials.language_switcher')
         </li>

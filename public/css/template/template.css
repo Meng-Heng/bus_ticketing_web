@@ -6,6 +6,11 @@
     font-family: Roboto;
     src: url(../../font/Roboto-Bold.ttf);
 } 
+
+.navbar-brand {
+    margin: 0px;
+}
+
 .navbar-nav .nav-dropdown {
     display: inline-block;
     position: relative;
@@ -30,11 +35,10 @@
     display: block;
 }
 
-
 .nav-fa {
     width: 100%;
     padding: 0px 50px;
-    color: darkgray;
+    color: rgb(161, 157, 157);
 }
 
 .nav-fa:hover {
@@ -52,6 +56,7 @@
     padding: 10px;
     text-align: center;
 }
+
 
 .footer {
    background-color: #0077C0 !important;

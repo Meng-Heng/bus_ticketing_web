@@ -26,16 +26,16 @@
       <div class="card-body">
         <h3 class="card-title text-left">{{__("Snack 24/7")}}</h3>
         <br>
-        <p class="card-text text-left">
+        <p class="card-text text-left mx-10">
           {{ __("Grab your snack or meal onboard with you! If not, buy from our station. We allow our passengers to bring food with them, as long as they remember to clean up after themselves. Make sure that your food is already packed and ready to eat.")}}
         </p>
       </div>
     </div>
     <div class="col-md-4">
       <img
-        src="{{ asset('images/background/home/info-foreigner.jpg')}}"
+        src="{{ asset('images/background/home/pack-food.jpg')}}"
         alt="Content Community"
-        class="img-fluid-info rounded-start"
+        class="img-fluid-info rounded-end"
       />
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="row g-0">
     <div class="col-md-4">
       <img
-        src="{{ asset('images/background/home/info-foreigner.jpg')}}"
+        src="{{ asset('images/background/home/water-bottle-500.jpg')}}"
         alt="Content Community"
         class="img-fluid-info rounded-start"
       />
