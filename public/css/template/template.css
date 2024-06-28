@@ -1,0 +1,69 @@
+/* 
+    Template styles to applied on reuse components
+*/
+
+@font-face {
+    font-family: Roboto;
+    src: url(../../font/Roboto-Bold.ttf);
+} 
+
+.navbar-brand {
+    margin: 0px;
+}
+
+.navbar-nav .nav-dropdown {
+    display: inline-block;
+    position: relative;
+}
+.navbar-nav .nav-dropdown .dropdown-menu {
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+.navbar-nav .nav-dropdown .dropdown-menu li {
+    display: block;
+    margin: 20px;
+}
+
+.navbar-nav .nav-dropdown .dropdown-menu li a:hover {
+    text-decoration: underline;
+}
+
+.navbar-nav .nav-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-fa {
+    width: 100%;
+    padding: 0px 50px;
+    color: rgb(161, 157, 157);
+}
+
+.nav-fa:hover {
+    color: black;
+    /* Show text */
+}
+.language-select{
+    border: none;
+}
+.nav-contact {
+    background-color: #0077C0;
+    width: 120px;
+    border-radius: 30px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.footer {
+   background-color: #0077C0 !important;
+   bottom: 0;
+   width: 100%;
+}
+
+.footer .container a i {
+    width: 200px;
+}
