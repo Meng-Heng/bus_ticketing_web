@@ -15,4 +15,13 @@ class Bus extends Model
         'description',
         'is_active'
     ];
+
+    public function bus() {
+        return $this->hasMany(Bus_seat::class);
+    }
+
+    public function bus_schedule() {
+        return $this->hasMany(Schedule::class);
+    }
+    
 }

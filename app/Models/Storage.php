@@ -14,4 +14,11 @@ class Storage extends Model
         'measurement',
         'start_date'
     ];
+
+    public function bus_seat() {
+        return $this->hasMany(Bus_seat::class);
+    }
+    public function ticket() {
+        return $this->hasMany(Ticket::class);
+    }
 }
