@@ -50,4 +50,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'pwd' => 'hashed',
     ];
+
+    public function payment() {
+        return $this->hasMany(Payment::class);
+    }
+    public function staff() {
+        return $this->hasMany(Staff::class);
+    }
+    public function user_permission() {
+        return $this->hasMany(UserPermission::class);
+    }
 }

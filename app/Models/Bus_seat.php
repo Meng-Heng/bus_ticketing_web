@@ -24,4 +24,7 @@ class Bus_seat extends Model
     public function price() {
         return $this->belongsTo(Price::class);
     }
+    public function ticket() {
+        return $this->hasOne(Ticket::class);
+    }
 }
