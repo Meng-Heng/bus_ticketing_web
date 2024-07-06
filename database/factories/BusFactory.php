@@ -18,11 +18,10 @@ class BusFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->unique->numberBetween(1, 10), // Assuming you have 10 
             'bus_plate' => $this->faker->unique()->bothify('#######'), 
-            'total_seat' => $this->faker->numberBetween(2,11,39), // Random price between 11 and 39
+            'total_seat' => '11', 
             'description' => $this->faker->text(),
-            'is_active' => $this->faker->numberBetween(1,0,1),
+            'is_active' => '1',
             'created_at' => now(),
             'updated_at' => now(),
         ];

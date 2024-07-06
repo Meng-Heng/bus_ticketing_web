@@ -1,15 +1,17 @@
+
+
 <div class="ticket-container mb-5">
         <div class="card custom-bg w-75 p-4 d-flex">
             <div class="row">
                 <div class="pb-3 h3 text-left">{{ __("Where are you heading?") }}</div>
             </div>
-            <form action="{{ url('available') }}" id="bus-form">
+            <form action="{{ route('available.schedule') }}" id="bus-form">
                 <div class="row">   
                     <div class="form-group col-md align-items-start flex-column">
                         <label for="origin" class="d-inline-flex">{{ __("From") }}</label>
                         <select placeholder="City or Province" class="form-control" id="origin" name="origin"
                             required>
-                                <option value="" disabled selected>City or Province</option>
+                                <option value="" disabled selected>{{__("City or Province")}}</option>
                             @foreach($location as $locations)
                                 <option value="{{$locations}}">{{ $locations }}</option>
                             @endforeach
@@ -19,7 +21,7 @@
                         <label for="arrival" class="d-inline-flex">{{__("To")}}</label>
                         <select placeholder="City or Province" class="form-control" id="arrival" name="arrival"
                             required>
-                            <option value="" disabled selected>City or Province</option>
+                            <option value="" disabled selected>{{__("City or Province")}}</option>
                             @foreach($location as $locations)
                                 <option value="{{$locations}}">{{ $locations }}</option>
                             @endforeach

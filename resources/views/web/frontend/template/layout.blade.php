@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset('css/template/header.css')}}" rel="stylesheet" />
     <link href="{{asset('css/template/template.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/main/schedule.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/main/homepage.css')}}" rel="stylesheet" />
+
+    @yield('schedule-style')
+
     <!-- Font Awesome -->
     <link
     href="{{ asset('css/all.min.css')}}"
@@ -25,18 +28,24 @@
     <title>Bus4U</title>
 </head>
 <body>
-        @include('web.frontend.component.navigation')
+    <!-- Navbar -->
+      @include('web.frontend.component.navigation')
+    <!-- Navbar -->
 
-        @include('web.frontend.component.schedule_card')
+      @yield('content')
 
-		@include('web.frontend.section.schedule.available_time')
+    <!-- Footer -->
+      @include('web.frontend.component.footer')
+    <!-- Footer -->
 
-        @include('web.frontend.component.footer')
     <script>
         // Initialization for ES Users
     </script>
     <script src="{{ asset('js/all.js')}}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/script.js')}}" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{asset ('js/ticket-form.js')}}"></script>
-</body>
+   
+    @yield('schedule-script')
+
+  </body>
 </html>

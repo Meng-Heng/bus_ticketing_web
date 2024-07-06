@@ -25,7 +25,6 @@
   </div>
 </div>
 @foreach ($result as $schedule)
-
 <div class="container">
 	<div class="row schedule-row">
 		<div class="col origin-schedule">
@@ -75,15 +74,16 @@
 			</div>
 		</div>
 		<div class="col schedule-status">
-			
 			<div class="row">
-				<button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" data-mdb-modal-init data-mdb-target="#exampleModal">POPUP</button>
-			{{ Form::submit('BUY NOW', array('class' => "btn btn-primary buy-ticket")) }}
+				<button type="button" class="btn btn-primary btn-xs load-ajax-modal" 
+   role="button" data-toggle="modal" data-target="#exampleModal" id="seat-btn" action="{{route('available.seat', $schedule->id)}}">BUY NOW</button>
 			</div>
 		</div>
 	</div>
 </div>
 @endforeach
+
+@include('web.frontend.page.schedule.section.schedule')
 
 @if ($result->hasPages())
     <div class="pagination-wrapper center">
