@@ -10,6 +10,7 @@
     "Depart Date": "Depart Date",
     "Return Date": "Return Date",
     "Search Ticket": "Search Ticket",
+    "City or Province": "City or Province",
 
     "Popular Destination": "Popular Destination",
 
@@ -36,4 +37,6 @@
     "We'll alert you for discount information": "We'll alert you for discount information",
     "Your Email": "Your Email",
     "SUBSCRIBE NOW": "SUBSCRIBE NOW"
+
+
 }

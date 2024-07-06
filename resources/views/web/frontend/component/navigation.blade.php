@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -65,4 +64,3 @@
   </div>
   <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->

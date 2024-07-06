@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset('css/template/header.css')}}" rel="stylesheet" />
     <link href="{{asset('css/template/template.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/main/homepage.css')}}" rel="stylesheet" />
     <!-- Font Awesome -->
     <link
     href="{{ asset('css/all.min.css')}}"
@@ -27,19 +26,8 @@
 <body>
         @include('web.frontend.component.navigation')
 
-        @include('web.frontend.component.header')
-
-        @include('web.frontend.section.home.ticket')
-
-        @include('web.frontend.section.home.popular') 
-
-        @include('web.frontend.section.home.promo')
-
-        @include('web.frontend.section.home.info')
-
-        @include('web.frontend.section.home.subscribe')
-
         @include('web.frontend.component.footer')
+
     <script>
         // Initialization for ES Users
     </script>

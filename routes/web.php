@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
-use App\Models\Seat_type;
 use App\Http\Controllers\SeatTypeController;
 use App\Models\Bus;
 use App\Http\Controllers\BusController;
@@ -31,16 +30,14 @@ use App\Http\Controllers\FrontEnd\ScheduleFormController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', function () {
-//     return view('web.frontend.section.home.index')->name;
-// });
-
+// Bus schedule and seat
 Route::get('/', [ScheduleFormController::class, 'index']);
-Route::get('/available', [ScheduleFormController::class, 'find_time']);
+Route::get('/available', [ScheduleFormController::class, 'schedule'])->name('available.schedule');
+Route::get('/available/{id}', [ScheduleFormController::class, 'schedule'])->name('available.seat');
+
+// Payment and Ticket
+Route::post('/')->name('');
+
 
         /*
             Using Google Translate
@@ -168,8 +165,3 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
