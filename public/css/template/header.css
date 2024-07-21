@@ -2,10 +2,6 @@
     Header styles
 */
 
-body {
-  font-family: Roboto;
-}
-
 @media (max-width: 991px) {
   .navbar-scroll {
     background-color: #fff;

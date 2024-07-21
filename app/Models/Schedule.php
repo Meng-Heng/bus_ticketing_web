@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bus_seat;
 
 class Schedule extends Model
 {
@@ -18,5 +19,8 @@ class Schedule extends Model
     public function ticket() {
         return $this->hasMany(Ticket::class);
     }
-    
+
+    public function schedule_to_seat() {
+        return $this->hasMany(Bus_seat::class, Bus::class);
+    }
 }

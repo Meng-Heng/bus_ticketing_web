@@ -40,14 +40,6 @@ returnDate = document.getElementById("return-date");
 //     // Populate the Origin and Destination
 
 // })
-$('#contactModal').on('click' , function(e){
-    e.preventDefault();
-   $('#demoModal').modal();
- });
-
-document.getElementById('modalPopup').addEventListener('click', function() {
-    document.getElementById('demoModal').modal();
-})
 
 // Validate data when submit
 function submitForm(e) {

@@ -26,10 +26,10 @@
 </div>
 @foreach ($result as $schedule)
 <div class="container">
-	<div class="row schedule-row">
+	<div class="row schedule-row" id="bus_schedule" method="GET">
 		<div class="col origin-schedule">
 			<div class="row origin-time">
-			Departure: {{ $schedule->departure_time }}
+				Departure: {{ $schedule->departure_time }}
 			</div>
 			<div class="row origin-start-point">
 			{{ $schedule->origin }}
@@ -75,18 +75,90 @@
 		</div>
 		<div class="col schedule-status">
 			<div class="row">
-				<button type="button" class="btn btn-primary btn-xs load-ajax-modal" 
-   role="button" data-toggle="modal" data-target="#exampleModal" id="seat-btn" action="{{route('available.seat', $schedule->id)}}">BUY NOW</button>
+				<button type="button" data-id="{{ $schedule->id }}" class="btn btn-primary btn-xs load-ajax-modal scheduleBtn" role="button" id="myScheduleId">BUY NOW</button>
 			</div>
 		</div>
 	</div>
 </div>
 @endforeach
 
-@include('web.frontend.page.schedule.section.schedule')
-
 @if ($result->hasPages())
     <div class="pagination-wrapper center">
          {{ $result->links() }}
     </div>
 @endif
+
+@include('web.frontend.page.schedule.section.schedule') 
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		$('#myScheduleId').on('click', async (e) => {
+			try {
+			e.preventDefault();
+				var id = $(e.target).data('id')
+				$('#exampleModal').modal('show')
+					axios.get('available/{schedule_id}', {
+						param: {
+							schedule_id: id
+						}
+					}).then((response) => {
+						console.log(response);
+					})
+				console.log(id)
+			} catch (error) {
+				console.log(error)
+			}
+		})
+	})
+
+	// $(document).ready(function () {
+	// 	$('#myScheduleId').on('click', () => {
+	// 		try {
+	// 			var id = $('.scheduleBtn').$(this).data('id')
+	// 			$('#exampleModal').modal('show')
+	// 			$.get('available/'+id, function(data){
+	// 				$('#exampleModal .modal-body').html(data);
+	// 			});
+	// 			console.log(id)
+	// 		} catch (error) {
+	// 			console.log(error)
+	// 		}
+	// 	})
+	// })
+
+	// myId = document.getElementById('myScheduleId')
+	// $(document).ready(function () {
+	// 	$('#myScheduleId').on('click', () => {
+	// 		try {
+	// 		const res = axios.get('/testing2',{
+	// 			params: {
+	// 				id_schedule: myId
+	// 			}
+	// 		})
+	// 		console.log(id_schedule)
+	// 		} catch (error) {
+	// 			console.log(error)
+	// 		}
+	// 	})
+	// })
+		// $('#exampleModal'.modal('show'))
+		// var scheduleId = $('#bus_schedule').value();
+
+		// scheduleId.on('click','.scheduleBtn', function() {
+
+		// 	var data = scheduleId.data();
+		// 	console.log(data);
+		// 	$('#scheduleForm').attr('action','/available/'+data)
+		// 	$('#exampleModal'.modal('show'))
+		// })
+		// // $seat_count = Bus::whereHas('bus_schedule', function ($q) use ($schedule_id) {
+        // //     $q->where('id', $schedule_id);
+        // // })->first()->total_seat;
+
+		// query1 = select bus_id where id = scheduleId
+		// Get ID of the row on schedule id from view (with axios await and async + get) JS --> post to one route/{id}
+		// Use that id to fetch all data within that id
+		// Loop the data we want back to the modal using JS
+
+</script>

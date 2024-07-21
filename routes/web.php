@@ -3,20 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
+use App\Http\Controllers\FrontEnd\HomeFormController;
 use App\Http\Controllers\SeatTypeController;
-use App\Models\Bus;
 use App\Http\Controllers\BusController;
-use App\Models\Seat;
 use App\Http\Controllers\SeatController;
-use App\Models\Station;
 use App\Http\Controllers\StationController;
-use App\Models\Bus_seat;
 use App\Http\Controllers\BusSeatController;
-use App\Models\Price;
 use App\Http\Controllers\BusSeatDailyController;
-use App\Models\Bus_seat_daily;
 use App\Http\Controllers\TicketController;
-use App\Models\Ticket;
 use App\Http\Controllers\FrontEnd\ScheduleFormController;
 
 /*
@@ -30,46 +24,56 @@ use App\Http\Controllers\FrontEnd\ScheduleFormController;
 |
 */
 
+Route::get('/', [HomeFormController::class, 'index']);
+
 // Bus schedule and seat
-Route::get('/', [ScheduleFormController::class, 'index']);
-Route::get('/available', [ScheduleFormController::class, 'schedule'])->name('available.schedule');
-Route::get('/available/{id}', [ScheduleFormController::class, 'schedule'])->name('available.seat');
+// Route::get('/available', [ScheduleFormController::class, 'schedule'])->name('available.schedule');
+// Route::get('/available/{id}', function() {
+//     return view('web.seat');
+// });
+Route::resource('/available', ScheduleFormController::class);
+Route::get('/available/{schedule_id}', [ScheduleFormController::class, 'seat']);
 
+Route::get('/testing1/{id_schedule}', function (Request $request, $id_schedule) {
+    return $id_schedule;
+});
+Route::get('/testing2', function (Request $request) {
+    return $request->id_schedule;
+});
 // Payment and Ticket
-Route::post('/')->name('');
 
 
-        /*
+/*
             Using Google Translate
         */
 
-        // Route::get('/fr', function() {
-        //     return GoogleTranslate::trans('Bye', 'es');
-        // });
+// Route::get('/fr', function() {
+//     return GoogleTranslate::trans('Bye', 'es');
+// });
 
-        // ------------------------
+// ------------------------
 
-        /*
+/*
             Simplified request for Locale
         */
-        // Route::get('/language/{locale?}', function ($locale = null) {
-        //     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
-        //         app()->setLocale($locale);
-        //     }
-            
-        //     return view('welcome');
-        // });
+// Route::get('/language/{locale?}', function ($locale = null) {
+//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+//         app()->setLocale($locale);
+//     }
 
-        // ---------------------------------
+//     return view('welcome');
+// });
+
+// ---------------------------------
 
 Route::get('/language/{locale}', function ($locale) {
-   app()->setLocale($locale);
-   session()->put('locale', $locale);
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
 
-   return redirect()->back();
+    return redirect()->back();
 });
 
-Route::get('backend-home', function() {
+Route::get('backend-home', function () {
     return view('web.backend.layout.admin');
 });
 
@@ -165,3 +169,13 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+
+// Route::get('/', [ScheduleFormController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('home');
+
+// Route::view('profile', 'profile')
+//     ->middleware(['auth'])
+//     ->name('profile');
+
+// require __DIR__.'/auth.php';

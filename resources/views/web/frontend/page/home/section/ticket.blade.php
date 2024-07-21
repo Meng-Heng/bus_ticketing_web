@@ -1,11 +1,9 @@
-
-
 <div class="ticket-container mb-5">
         <div class="card custom-bg w-75 p-4 d-flex">
             <div class="row">
                 <div class="pb-3 h3 text-left">{{ __("Where are you heading?") }}</div>
             </div>
-            <form action="{{ route('available.schedule') }}" id="bus-form">
+            <form action="/available" id="bus-form">
                 <div class="row">   
                     <div class="form-group col-md align-items-start flex-column">
                         <label for="origin" class="d-inline-flex">{{ __("From") }}</label>
