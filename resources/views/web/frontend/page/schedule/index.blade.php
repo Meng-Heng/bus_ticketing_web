@@ -12,7 +12,4 @@
 
 @section('schedule-script')
     <script type="text/javascript" src="{{asset ('js/seat.js')}}"></script>
-        <!-- Modal -->
-    <script type="text/javascript" src="{{asset ('js/jquery-3.5.1.slim.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset ('js/bootstrap-4.5.2.min.js')}}"></script>
 @endsection

@@ -10,7 +10,6 @@
     <li class="row row--0">
         <ol class="seats" type="Z">
             <li class="seat">
-                <input type="checkbox" id="Driver" disabled />
                 <label for="Driver"><i class="fa-solid fa-user"></i></label>
             </li>
             <li class="seat">
@@ -20,30 +19,20 @@
             <li class="seat">
             </li>
             <li class="seat">
-                <labe><i class="fa-solid fa-door-open"></i></label>
+                <label><i class="fa-solid fa-door-open"></i></label>
             </li>
         </ol>
     </li>
+    @foreach($seat_count as $seats_count)
     <li class="row row--1">
+        @for($i=0; $i<count($seats_count); $i++)
         <ol class="seats" type="A">
             <li class="seat">
                 <input type="checkbox" id="A1" />
-                <label for="A1">A1</label>
-            </li>
-            <li class="seat">
-                <input type="checkbox" id="A2" />
-                <label for="A2">A2</label>
-            </li>
-            <li class="seat">
-            </li>
-            <li class="seat">
-                <input type="checkbox" id="A4" />
-                <label for="A4">A4</label>
-            </li>
-            <li class="seat">
-                <input type="checkbox" id="A5" />
-                <label for="A5">A5</label>
+                <label for="A1">A1: {{$i}}</label>
             </li>
         </ol>
+        @endfor
     </li>
+    @endforeach
 </ol>

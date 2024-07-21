@@ -45,9 +45,15 @@
           </a>
         </li>
         <li class="nav-item">
+          @if (Auth::check())
+          <a class="nav-link" href="/sign-out">
+            <i class="fas fa-user nav-fa"></i>
+          </a>  
+          @else
           <a class="nav-link" href="/login">
             <i class="fas fa-user nav-fa"></i>
-          </a>
+          </a>  
+          @endif
         </li>
       </ul>
       <!-- Navigation menu -->

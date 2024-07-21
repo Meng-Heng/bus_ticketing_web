@@ -1,5 +1,4 @@
-
-                        <table class="table table-responsive">
+<table class="table table-responsive" action="/employee" method="POST">
                             <tr class="row">
                                 <td class="col">
                                     <p>{{__("Bus' Plate Number ")}}</p>
@@ -64,4 +63,7 @@
                                     <p><b>??</b></p>
                                 </td>
                             </tr>
-                        </table>
+                            <div>
+                                <td><button  type="submit" class="btn btn-primary">{{__("Proceed")}}</button></td>
+                            </div>
+</table>

@@ -3,14 +3,25 @@
 */
 
 body {
-    font-family: Roboto;
+    font-family: Forum, Khmer, Chinese !important;
     background-color: white;
 }
 
 @font-face {
-    font-family: Roboto;
-    src: url(../../font/Roboto-Bold.ttf);
+    font-family: Forum;
+    src: url(../../font/Forum-Regular.ttf);
 }
+
+@font-face {
+    font-family: Khmer;
+    src: url(../../font/Khmer-Regular.ttf);
+} 
+
+@font-face {
+    font-family: Chinese;
+    src: url(../../font/XiaoWei-Regular.ttf);
+} 
+
 
 @media (min-width: 65rem)
 /* min 1025 px */
