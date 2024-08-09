@@ -46,8 +46,7 @@
         </li>
         <li class="nav-item">
           @if (Auth::check())
-          <a class="nav-link" href="/sign-out">
-            <i class="fas fa-user nav-fa"></i>
+          <div>{{ Auth::user()->name }}<a class="nav-link" href="{{ route('logout') }}"></div>
           </a>  
           @else
           <a class="nav-link" href="/login">
@@ -63,7 +62,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">{{__("Contact")}}
+      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="">{{__("Contact")}}
       </a>
     </div>
     <!-- Right elements -->

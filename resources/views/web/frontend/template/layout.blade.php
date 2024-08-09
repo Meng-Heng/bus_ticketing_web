@@ -8,8 +8,6 @@
     <link href="{{asset('css/template/template.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main/homepage.css')}}" rel="stylesheet" />
 
-    @yield('schedule-style')
-
     <!-- MDB templates and home page -->
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet"/>
 
@@ -20,6 +18,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
+    @yield('schedule-style')
     <title>Bus4U</title>
 </head>
 <body>

@@ -10,6 +10,7 @@ use App\Models\Price;
 use App\Models\Bus_seat;
 use App\Models\Storage;
 use DB;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ScheduleFormController extends Controller
 {
@@ -20,6 +21,7 @@ class ScheduleFormController extends Controller
         $origin = $request->input('origin');
         $origin_date = $request->input('departure-date');
         $arrived = $request->input('arrival');
+        $price = Price::all()->last();
 
         $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$origin_date%")
@@ -36,7 +38,8 @@ class ScheduleFormController extends Controller
                 'result' => $result,
                 'origin' => $origin,
                 'arrived' => $arrived,
-                'origin_date' => $origin_date
+                'origin_date' => $origin_date,
+                'price' => $price
             ]);
         }
     }
@@ -45,11 +48,7 @@ class ScheduleFormController extends Controller
      */
     public function create(Request $request, $id)
     {
-        $schedule_id = $request->input($id);
         
-        // $seat_count = Bus::whereHas('bus_schedule', function ($q) use ($schedule_id) {
-        //     $q->where('id', $schedule_id);
-        // })->first()->total_seat;
     }
 
     /**
@@ -70,10 +69,36 @@ class ScheduleFormController extends Controller
 
     public function schedule(Request $request)
     {
-
     }
-    public function seat(Request $request, $id)
+    public function seat($id)
     {
-        
+        try {
+            $schedule = Schedule::find($id);
+            if(!$schedule){
+                return response()->json(['error' => 'Schedule not found'], 404);
+            }
+            $seat = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
+                $q->where('id', $schedule->id);
+            })->first();
+
+            if(!$seat) {
+                return response()->json(['error' => 'Schedule not found'], 404);
+            }
+
+            $storage = Storage::all()->last();
+            $price = Price::all()->last();
+            
+            $data = [
+                'schedule' => $schedule,
+                'seat' => $seat->total_seat,
+                'bus_plate' => $seat->bus_plate,
+                'storage' => $storage,
+                'price' => $price
+            ];
+
+            return response()->json($data);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

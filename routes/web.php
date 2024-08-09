@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\BusSeatDailyController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\FrontEnd\ScheduleFormController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,22 +26,13 @@ use App\Http\Controllers\FrontEnd\ScheduleFormController;
 |
 */
 
+// Home
 Route::get('/', [HomeFormController::class, 'index']);
 
 // Bus schedule and seat
-// Route::get('/available', [ScheduleFormController::class, 'schedule'])->name('available.schedule');
-// Route::get('/available/{id}', function() {
-//     return view('web.seat');
-// });
-Route::resource('/available', ScheduleFormController::class);
-Route::get('/available/{schedule_id}', [ScheduleFormController::class, 'seat']);
+Route::get('/available', [ScheduleFormController::class, 'index']);
+Route::get('/available/{schedule_id}', [ScheduleFormController::class, 'seat'])->name('schedule.seat');
 
-Route::get('/testing1/{id_schedule}', function (Request $request, $id_schedule) {
-    return $id_schedule;
-});
-Route::get('/testing2', function (Request $request) {
-    return $request->id_schedule;
-});
 // Payment and Ticket
 
 
@@ -169,13 +162,3 @@ Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket
 Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
 Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
-
-// Route::get('/', [ScheduleFormController::class, 'index'])
-//     ->middleware(['auth', 'verified'])
-//     ->name('home');
-
-// Route::view('profile', 'profile')
-//     ->middleware(['auth'])
-//     ->name('profile');
-
-// require __DIR__.'/auth.php';

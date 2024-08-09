@@ -4,52 +4,64 @@
 
 @media (min-width: 65rem) {
     /* min 1025 px */
-div .card {
-    align-items: center;
+.schedule-card div {
+    margin: 0;
+    height: 50px;
 }
-
-.card-schedule {
-    margin: 50px;
-    padding: 20px;
-    background-color: #f7f3f3 !important;
-    font-size: 20px;
-    border-radius: 15px;
-    font-weight: bold;
-}
-
-.card-schedule-date {
-    display: flex;
-}
-
 .schedule-arrow-right {
-    margin: auto;
+    margin-top: 10px;
+    height: 50%;
+    width: 100%;
 }
 .container {
     width: 100%;
     justify-content: center;
     align-items: center;
 }
-.schedule-row {
-    margin: 20px;
+
+.schedule-row .schedule-card {
     padding: 50px;
-    border-bottom: 2px solid #C7EEFF;
-    border-radius: 15px;
-    background-color: #f7f3f3;
 }
 
-.schedule-status {
-    
-    }
+.schedule-row {
+    margin: 30px;
+    padding: 20px 50px;
+    border-bottom: 2px solid #1D242B;
+    border-radius: 15px;
+    background-color: #FAFAFA;
+}
 
 .origin-time, .destination-time {
     font-weight: bold;
     font-size: 20px;
 }
 
+.right-arrow-icon {
+    margin-left: 50px;
+}
+
+.schedule-info a {
+    padding: 10px;
+    text-decoration: none;
+    color: gray;
+}
+
+.schedule-info a:hover {
+    color: #0077C0;
+}
+
+.schedule-info div {
+    margin: 15px;
+}
+
+.schedule-logo {
+    align-items: end;
+}
+
 .ticket-price {
     font-weight: bold;
     font-size: 20px;
-    color: darkred;
+    color: rgb(255, 0, 0);
 }
 
 .buy-ticket {
@@ -57,6 +69,9 @@ div .card {
     padding: 200px;
 }
 
+button.scheduleBtn {
+    background-color: #0077C0;
+}
 }
 
 @media (min-width: 50rem) and (max-width: 64rem)
