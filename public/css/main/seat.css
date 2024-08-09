@@ -49,15 +49,41 @@
   height: 10%;
 }
 
-.seat-form {
+/* Seat */
+.seat-status {
   width: 100%;
   padding: 20px;
 }
+.status-box {
+  margin-left: 10%;
+}
+.available-seat {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
 
+.box {
+  width: 20px;
+  height: 20px;
+}
+.box-status .red{
+  background-color: #a7131f;
+}
+.box-status .green{
+  background-color: #bada55;
+}
+.box-status .gray{
+  background-color: #545454;
+}
+.front-bus {
+  text-align: center;
+}
+/* Bus Info */
 .bus-info {
   width: 100%;
-  padding: 0;
-  margin: 0;
+  margin: 5%;
 }
 
 tr.row {
@@ -154,20 +180,27 @@ ol {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .seat {
-  display: flex;
+  display: grid;
+  width: 30px;
+  margin: 5px;
   flex: 0 0 14.28571428571429%;
   padding: 2px;
   position: relative;
 }
 
-.seat:nth-child(3) {
+.seat:nth-child(2) {
   margin-right: 14.28571428571429%;
 }
 
+.last-seat-row:nth-child(2) {
+  margin-right: 0;
+}
+
+/* Seat Selection */
 .seat input[type=checkbox] {
   position: absolute;
   opacity: 0;

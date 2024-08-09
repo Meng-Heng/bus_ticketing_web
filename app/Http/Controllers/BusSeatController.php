@@ -7,14 +7,13 @@ use App\Models\Bus_seat;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Bus;
-use App\Models\Seat;
 use App\Models\Price;
 
 class BusSeatController extends Controller
 {
     public function index() {
         $bus_seat = Bus_seat::all();
-        return view('bus_seat.view')->with('tbl_bus_seat', $bus_seat);
+        return redirect('/seat')->with('tbl_bus_seat', $bus_seat);
     }
 
     public function create() {
@@ -24,7 +23,7 @@ class BusSeatController extends Controller
         foreach (Bus::all() as $bus) {
             $buses[$bus->id] = $bus->bus_plate;
         }
-        foreach (Seat::all() as $seat) {
+        foreach (Bus_seat::all() as $seat) {
             $seats[$seat->id] = $seat->seat_number;
         }
         foreach (Price::all() as $price) {
@@ -56,7 +55,7 @@ class BusSeatController extends Controller
         foreach (Bus::all() as $bus) {
             $buses[$bus->id] = $bus->bus_plate;
         }
-        foreach (Seat::all() as $seat) {
+        foreach (Bus_seat::all() as $seat) {
             $seats[$seat->id] = $seat->seat_number;
         }
         foreach (Price::all() as $price) {
