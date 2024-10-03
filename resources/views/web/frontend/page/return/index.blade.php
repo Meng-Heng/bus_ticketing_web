@@ -8,20 +8,17 @@
 @endsection
 
 @section('content')
-    @include('web.frontend.page.schedule.section.available_time')
+    @include('web.frontend.page.return.section.available_time')
 
-    @include('web.frontend.page.schedule.section.schedule') 
+    @include('web.frontend.page.return.section.schedule') 
 
-    @include('web.frontend.page.schedule.section.editSchedule') 
-
-    @include('web.frontend.page.station.index') 
-
-    @include('web.frontend.page.station.trip') 
+    @include('web.frontend.page.return.section.editSchedule') 
 @endsection
 
 @section('schedule-script')
     <script type="text/javascript" src="{{asset ('js/seat.js')}}"></script>
     <script type="text/javascript" src="{{asset ('js/editableSchedule.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/seat.js')}}"></script>
     <!-- Bus Schedule Scrips -->   
     <script type="text/javascript">
     // Onclick with the button on every schedule row when the document is ready
@@ -228,48 +225,6 @@
                 } catch (error) {
                     console.error('MengHeng\'s Error: ', error)
                 }
-            })
-        })
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#stationBtn').on('click', () => {
-                $('#stationModal').modal('show')
-            })
-        })
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#station_btn').on('click', () => {
-                $('#stationModal').modal('show')
-            })
-        })
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('#tripBtn').on('click', () => {
-                $('#tripModal').modal('show')
-            })
-        })
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('#openStation').on('click', () => {
-                $('#tripModal').modal('hide')
-                $('#stationModal').modal('show')
-            })
-        })
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('#openBusStation').on('click', () => {
-                $('#tripModal').modal('hide')
-                $('#stationModal').modal('show')
             })
         })
     </script>

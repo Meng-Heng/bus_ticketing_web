@@ -1,0 +1,112 @@
+div.container {
+  max-width: wrap;
+  max-height: wrap;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.upcomming {
+  font-size: 45px;
+  text-transform: uppercase;
+  border-left: 14px solid rgba(255, 235, 59, 0.78);
+  padding-left: 12px;
+  margin: 18px 8px;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.item-right {
+  width: 25%;
+  height: 100%;
+}
+
+.item-right img {
+  position: relative;
+  top: -50;
+}
+
+.container .item-right .up-border {
+  top: -8px;
+  right: -35px;
+}
+.container .item-right .down-border {
+  bottom: -30px;
+  right: -35px;
+}
+.container .item-right .num {
+  font-size: 24px;
+  text-align: center;
+  color: #111
+}
+.container .item-right .day, .container .item-left .event {
+  color: #555;
+  font-size: 20px;
+}
+.container .item-right .day {
+  text-align: center;
+  font-size: 25px;
+}
+.container .item-left {
+  width: 71%;
+  padding: 34px 0px 19px 46px;
+  border-left: 3px dotted #999;
+} 
+.container .item-left .title {
+  color: #111;
+  font-size: 34px;
+  margin-bottom: 12px
+}
+.container .item-left .sce {
+  margin-top: 5px;
+  display: block
+}
+.container .item-left .sce .icon, .container .item-left .sce p,
+.container .item-left .loc .icon, .container .item-left .loc p{
+    float: left;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 10px;
+}
+.container .item-left .sce .icon, .container .item-left .loc .icon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #666
+}
+.container .item-left .loc {display: block}
+.fix {clear: both}
+.container .item .tickets, .booked, .cancel{
+    color: #fff;
+    padding: 6px 14px;
+    float: right;
+    margin-top: 10px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer
+}
+.container .item .tickets {background: #777}
+.container .item .booked {background: #3D71E9}
+.container .item .cancel {background: #DF5454}
+.linethrough {text-decoration: line-through}
+@media only screen and (max-width: 1150px) {
+  .container .item {
+    width: 100%;
+    margin-right: 20px
+  }
+  div.container {
+    margin: 0 20px auto
+  }
+}

@@ -44,14 +44,17 @@
             <i class="fas fa-qrcode nav-fa"></i>
           </a>
         </li>
-        <li class="nav-item">
-          @if (Auth::check())
-          <div>{{ Auth::user()->name }}<a class="nav-link" href="{{ route('logout') }}"></div>
-          </a>  
-          @else
-          <a class="nav-link" href="/login">
+        <li class="nav-item nav-dropdown open">
+          @if(Auth::user())
+          <a id="openProfile" href="/profile/{{Auth::user()->id }}/edit" class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+            <i class="fas fa-user nav-fa"></i>
+          @else 
+          <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
             <i class="fas fa-user nav-fa"></i>
           </a>  
+          <ul class="dropdown dropdown-menu">
+            <li><a href="{{route('register')}}">Register</li>
+          </ul>
           @endif
         </li>
       </ul>
@@ -62,7 +65,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="">{{__("Contact")}}
+      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="">{{__("Reviews")}}
       </a>
     </div>
     <!-- Right elements -->

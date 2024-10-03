@@ -1,0 +1,350 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*--------------------
+Boarding Pass
+--------------------*/
+.boarding-pass {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background: #fff;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.boarding-pass small {
+  display: block;
+  font-size: 14px;
+  color: #A2A9B3;
+  margin-bottom: 2px;
+}
+
+.boarding-pass strong {
+  font-size: 16px;
+  display: block;
+}
+
+/*--------------------
+Header
+--------------------*/
+.boarding-pass header {
+  background: #1D242B;
+  padding: 12px 20px;
+  height: fit-content;
+}
+
+.boarding-pass .logo {
+  border-radius: 5px;
+}
+
+.boarding-pass .flight {
+  float: right;
+  color: #fff;
+  text-align: right;
+}
+
+.boarding-pass .flight small {
+  font-size: 20px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.boarding-pass .flight strong {
+  font-size: 20px;
+}
+
+/*--------------------
+Cities
+--------------------*/
+.boarding-pass .cities {
+  position: relative;
+  clear: both;
+}
+
+.boarding-pass .city {
+  padding: 20px 18px;
+  float: left;
+}
+
+.boarding-pass .city:nth-child(2) {
+  float: right;
+}
+
+.boarding-pass .city strong {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.boarding-pass .city small {
+  margin-bottom: 0px;
+  margin-left: 3px;
+}
+
+.boarding-pass .airplane {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  top: 57%;
+  left: 30%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  40% {
+    left: 50%;
+    opacity: 1;
+  }
+  100% {
+    left: 70%;
+    opacity: 0;
+  }
+}
+
+/*--------------------
+Infos
+--------------------*/
+.boarding-pass .infos {
+  display: flex;
+  border-top: 1px solid #1D242B;
+}
+
+.boarding-pass .infos .places,
+.boarding-pass .infos .times {
+  width: 50%;
+  padding: 10px 0;
+  clear: both;
+}
+
+.boarding-pass .infos .times strong {
+  transform: scale(0.9);
+  transform-origin: left bottom;
+}
+
+.boarding-pass .infos .places {
+  background: #ECECEC;
+  border-right: 1px solid #1D242B;
+}
+
+.boarding-pass .infos .places small {
+  color: #97A1AD;
+  font-size: 14px;
+}
+
+.boarding-pass .infos .places strong {
+  color: #0077C0;
+  font-size: 16px;
+}
+
+.boarding-pass .infos .box {
+  padding: 10px 20px 10px;
+  width: 50%;
+  float: left;
+}
+
+.boarding-pass .infos .box small {
+  font-size: 14px;
+}
+
+/*--------------------
+Strap
+--------------------*/
+.boarding-pass .strap {
+  clear: both;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid #1D242B;
+}
+
+.strap .passenger{
+  display: grid;
+  column-gap: 10px;
+}
+
+.item-1 {
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.boarding-pass .strap .box {
+  padding: 20px 20px 20px 20px;
+}
+
+.boarding-pass .strap .box div {
+  margin-bottom: 15px;
+}
+
+.boarding-pass .strap .box div small {
+  font-size: 14px;
+}
+
+.boarding-pass .strap .box div strong {
+  font-size: 16px;
+}
+
+.boarding-pass .strap sup {
+  font-size: 8px;
+  position: relative;
+  top: -5px;
+}
+
+.box-2 {
+  position: relative;
+  top: 100px;
+}
+
+.qrcode {
+  width: 30%;
+  display: none;
+}
+
+/*
+  Payment
+*/
+
+.container .card {
+  width: 100%;
+  height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #fff;
+  border-radius: 0px !important;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+  margin: 20px;
+}
+
+.btn.btn-primary {
+  background-color: #ddd;
+  color: black;
+  box-shadow: none;
+  border: none;
+  font-size: 20px;
+}
+
+.btn.btn-primary:focus {
+  box-shadow: none;
+}
+
+.container .card .img-box {
+  width: 50px;
+  height: 50px;
+}
+
+.container .card img {
+  width: 100%;
+  object-fit: fill;
+}
+
+.container .card .number {
+  font-size: 24px;
+}
+
+.container .card-body .btn.btn-primary .fab.fa-cc-paypal {
+  font-size: 32px;
+  color: #3333f7;
+}
+
+.fab.fa-cc-amex {
+  color: #1c6acf;
+  font-size: 32px;
+}
+
+.fab.fa-cc-mastercard {
+  font-size: 32px;
+  color: red;
+}
+
+.fab.fa-cc-discover {
+  font-size: 32px;
+  color: orange;
+}
+
+.c-green {
+  color: green;
+}
+
+
+.btn.btn-primary.payment {
+  background-color: #1c6acf;
+  color: white;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+
+.form__div {
+  height: 50px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-control {
+  width: 100%;
+  height: 45px;
+  font-size: 14px;
+  border: 1px solid #DADCE0;
+  border-radius: 0;
+  outline: none;
+  padding: 2px;
+  background: none;
+  z-index: 1;
+  box-shadow: none;
+}
+
+.form__label {
+  position: absolute;
+  left: 16px;
+  top: 10px;
+  background-color: #fff;
+  color: #80868B;
+  font-size: 16px;
+  transition: .3s;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.form-control:focus+.form__label {
+  top: -8px;
+  left: 12px;
+  color: #1A73E8;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.form-control:not(:placeholder-shown).form-control:not(:focus)+.form__label {
+  top: -8px;
+  left: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.form-control:focus {
+  border: 1.5px solid #1A73E8;
+  box-shadow: none;
+}

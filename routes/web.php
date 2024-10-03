@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
@@ -11,9 +10,11 @@ use App\Http\Controllers\SeatController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\BusSeatDailyController;
+use App\Http\Controllers\FrontEnd\PaymentController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\FrontEnd\ScheduleFormController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontEnd\ProfileController;
+use App\Http\Controllers\FrontEnd\BusTicketingController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,30 @@ use App\Http\Controllers\ProfileController;
 
 // Home
 Route::get('/', [HomeFormController::class, 'index']);
+Route::get('register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [UserController::class, 'registerUser'])->name('register.user');
+Route::get('login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('login', [UserController::class, 'loginUser'])->name('login.user');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 // Bus schedule and seat
-Route::get('/available', [ScheduleFormController::class, 'index']);
-Route::get('/available/{schedule_id}', [ScheduleFormController::class, 'seat'])->name('schedule.seat');
+Route::get('/available', [BusTicketingController::class, 'index'])->name('schedule');
+Route::get('/available/{schedule_id}', [BusTicketingController::class, 'seat'])->name('schedule.seat');
+Route::get('/return-date', [BusTicketingController::class, 'scheduleReturn'])->name('schedule.return');
+Route::get('/return/{schedule_id}', [BusTicketingController::class, 'scheduleSeatReturn'])->name('schedule.seat.return');
 
-// Payment and Ticket
+// Ticket Confirmation
+Route::post('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
+Route::get('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule')->middleware('auth');
 
+// Payment
+
+// Your Ticket
+Route::get('/your-ticket')->middleware('auth');
+
+// Profile
+Route::get('/profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{user_id}', [ProfileController::class, 'update'])->name('profile.update');
 
 /*
             Using Google Translate

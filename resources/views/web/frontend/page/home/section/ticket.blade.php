@@ -17,8 +17,7 @@
                     </div>
                     <div class="form-group col-md align-items-start flex-column">
                         <label for="arrival" class="d-inline-flex">{{__("To")}}</label>
-                        <select placeholder="City or Province" class="form-control" id="arrival" name="arrival"
-                            required>
+                        <select placeholder="City or Province" class="form-control" id="arrival" name="arrival" required>
                             <option value="" disabled selected>{{__("City or Province")}}</option>
                             @foreach($location as $locations)
                                 <option value="{{$locations}}">{{ $locations }}</option>

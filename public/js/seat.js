@@ -1,4 +1,5 @@
 var selectedSeat = []
+var seatCount = 0;
 
 function displaySeatNumber(checkbox) {
     let seatNumber = checkbox.getAttribute('data-seat')
@@ -14,8 +15,13 @@ function displaySeatNumber(checkbox) {
 function displaySelectedSeat() {
     if(selectedSeat.length > 0) {
         document.getElementById('seat-selection-output').innerHTML = "<p style='color:red'><b>" + selectedSeat.join(', ') + "</b></p>"
+        document.getElementById('seat').value = selectedSeat
+        seatCount = selectedSeat.length
+        document.getElementById('selectedSeatCount').value = seatCount
     } else {
         document.getElementById('seat-selection-output').innerHTML = "<b>None</b>"
+        document.getElementById('seat').value = ""
+        document.getElementById('selectedSeatCount').value = ""
     }
 }
 

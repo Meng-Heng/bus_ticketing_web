@@ -4,74 +4,120 @@
 
 @media (min-width: 65rem) {
     /* min 1025 px */
-.schedule-card div {
-    margin: 0;
-    height: 50px;
-}
-.schedule-arrow-right {
-    margin-top: 10px;
-    height: 50%;
-    width: 100%;
-}
-.container {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
+    .schedule-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px;
+        padding: 20px;
+        border-bottom: 2px solid #1D242B;
+        border-radius: 15px;
+        background-color: #FAFAFA;
+    }
 
-.schedule-row .schedule-card {
-    padding: 50px;
-}
+    .schedule-row div {
+        margin: 10px;
+    }
 
-.schedule-row {
-    margin: 30px;
-    padding: 20px 50px;
-    border-bottom: 2px solid #1D242B;
-    border-radius: 15px;
-    background-color: #FAFAFA;
-}
+    .schedule-arrow-right {
+        height: 20px;
+        width: 20px;
+    }
 
-.origin-time, .destination-time {
-    font-weight: bold;
-    font-size: 20px;
-}
+    #scheduleEdit:hover, #scheduleSearch:hover {
+        cursor: pointer;
+        color: red;
+    }
 
-.right-arrow-icon {
-    margin-left: 50px;
-}
+    #scheduleSearch {
+        visibility: hidden;
+    }
 
-.schedule-info a {
-    padding: 10px;
-    text-decoration: none;
-    color: gray;
-}
+    .line {
+        height: 100px;
+        border: 1px solid black;
+    }
 
-.schedule-info a:hover {
-    color: #0077C0;
-}
+    .origin-time, .destination-time {
+        font-weight: bold;
+        font-size: 20px;
+    }
 
-.schedule-info div {
-    margin: 15px;
-}
+    .schedule-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+    }
 
-.schedule-logo {
-    align-items: end;
-}
+    .schedule-info:nth-last-child() {
+        position: relative;
+        align-items: flex-end;
+    }
 
-.ticket-price {
-    font-weight: bold;
-    font-size: 20px;
-    color: rgb(255, 0, 0);
-}
+    .schedule-info a {
+        padding: 10px;
+        text-decoration: none;
+        color: gray;
+    }
 
-.buy-ticket {
-    width: 50%;
-    padding: 200px;
-}
+    .schedule-info a:hover {
+        color: #0077C0;
+    }
 
-button.scheduleBtn {
-    background-color: #0077C0;
-}
+    .schedule-info div {
+        margin: 15px;
+    }
+
+    .schedule-logo {
+        align-items: end;
+    }
+
+    .container {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ticket-price {
+        font-weight: bold;
+        font-size: 20px;
+        color: rgb(255, 0, 0);
+    }
+
+    .buy-ticket {
+        width: 50%;
+        padding: 200px;
+    }
+
+    button.scheduleBtn {
+        background-color: #0077C0;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 0 !important;
+    }
+
+    #stationBtn, #station_btn, #tripBtn {
+        border: none;
+        background-color: transparent;
+        color: black;
+    }
+
+    #stationBtn:hover, #station_btn:hover, #tripBtn:hover {
+        color: #0077C0;
+    }
+
+    .amenities {
+        display: flex;
+        flex-direction: wrap;
+    }
+
+    .amenities div {
+        margin: 10px;
+    }
 }
 
 @media (min-width: 50rem) and (max-width: 64rem)

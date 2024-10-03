@@ -37,15 +37,15 @@
 		<div class="row schedule-info">
 			<div class="col col-2">
 				<i class="fa-solid fa-map-pin"></i>
-				<button id="stationBtn">Boarding location</button>
+					<a href="/station">Boarding location</a>
 			</div>
 			<div class="col col-2">
 				<i class="fa-solid fa-circle-info"></i>
-				<button id="tripBtn">Trip info</button>
+					<a href="">Trip info</a>
 			</div>
 			<div class="col col-2">
 				<i class="fa-solid fa-location-dot"></i>
-				<button id="station_btn">Drop off location</button>
+				<a href="/station">Drop off location</a>
 			</div>
 			<div class="col col-4">
 				<img class="schedule-logo"
