@@ -36,13 +36,13 @@ Route::post('login', [UserController::class, 'loginUser'])->name('login.user');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 // Bus schedule and seat
-Route::get('/available', [BusTicketingController::class, 'index'])->name('schedule');
-Route::get('/available/{schedule_id}', [BusTicketingController::class, 'seat'])->name('schedule.seat');
-Route::get('/return-date', [BusTicketingController::class, 'scheduleReturn'])->name('schedule.return');
-Route::get('/return/{schedule_id}', [BusTicketingController::class, 'scheduleSeatReturn'])->name('schedule.seat.return');
+Route::post('/available', [BusTicketingController::class, 'departureSchedule'])->name('schedule.departure');
+Route::get('/available/{schedule_id}', [BusTicketingController::class, 'departureSeat'])->name('departure.seat');
+Route::post('/return-date', [BusTicketingController::class, 'returnSchedule'])->name('schedule.return');
+Route::get('/return/{schedule_id}', [BusTicketingController::class, 'returnSeat'])->name('return.seat');
 
 // Ticket Confirmation
-Route::post('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
+Route::get('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
 Route::get('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule')->middleware('auth');
 
 // Payment

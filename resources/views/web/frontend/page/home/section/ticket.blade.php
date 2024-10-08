@@ -3,7 +3,9 @@
             <div class="row">
                 <div class="pb-3 h3 text-left">{{ __("Where are you heading?") }}</div>
             </div>
-            <form action="/available" id="bus-form">
+            <form action="/available" id="bus-form" method="POST">
+                {{ method_field('POST')}}
+                {{ csrf_field()}}
                 <div class="row">   
                     <div class="form-group col-md align-items-start flex-column">
                         <label for="origin" class="d-inline-flex">{{ __("From") }}</label>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="row">
                     <div class="col-auto mt-2 align-items-end">
-                        <button class="btn btn-primary" data-toggle="modal" data-target=#demoModal>{{ __("Search Ticket")}}</button>
+                        <button class="btn btn-primary">{{ __("Search Ticket")}}</button>
                     </div>
                 </div>
             </form>

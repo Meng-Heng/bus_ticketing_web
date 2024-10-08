@@ -1,6 +1,7 @@
 var selectedSeat = []
 var seatCount = 0;
 
+/* Departure & Return seats */
 function displaySeatNumber(checkbox) {
     let seatNumber = checkbox.getAttribute('data-seat')
     if(checkbox.checked) {
@@ -32,4 +33,3 @@ $(document).ready(function() {
         $('#seat-check input[type="checkbox"]').prop('checked', false)
     })
 })
-

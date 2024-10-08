@@ -18,7 +18,6 @@
 @section('schedule-script')
     <script type="text/javascript" src="{{asset ('js/seat.js')}}"></script>
     <script type="text/javascript" src="{{asset ('js/editableSchedule.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/seat.js')}}"></script>
     <!-- Bus Schedule Scrips -->   
     <script type="text/javascript">
     // Onclick with the button on every schedule row when the document is ready
@@ -27,7 +26,7 @@
                 try {
                     e.preventDefault();
                     var id = $(e.target).data('id') // get id from data-id class of the schedule button
-                    axios.get('available/'+id).then(function(response) {
+                    axios.get('return/'+id).then(function(response) {
                         // store the number of seats
                         seatCount = response.data.seat
                         // seat header
@@ -147,7 +146,7 @@
                             <input type="hidden" name="schedule" value="${response.data.schedule.id}">
                             <input type="hidden" name="storage" value="${response.data.storage.id}">
                             <input type="hidden" name="price" value="${response.data.price.id}">
-                            <input type="hidden" id="selectedSeatCount" name="seat_count" value="">
+                            <input type="hidden" id="selectedSeatCount" name="returnSeatCount" value="">
                         <table class="table table-responsive bus-info">
                             <tr class="row">
                                 <td><h1>Bus Information</h1></td>
@@ -202,7 +201,7 @@
                             </tr>
                             <tr class="row">
                                 <td class="col">
-                                    <input type="hidden" name="seat" id="seat" value="">
+                                    <input type="hidden" name="returnSeatNumber" id="seat" value="">
                                     <p>{{__("Your seat: ")}}</p>
                                 </td>
                                 <td class="col" id="seat-selection-output">
@@ -228,4 +227,21 @@
             })
         })
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.stationBtn').on('click', () => {
+                $('#stationModal').modal('show')
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.tripBtn').on('click', () => {
+                $('#tripModal').modal('show')
+            })
+        })
+    </script>
+
 @endsection

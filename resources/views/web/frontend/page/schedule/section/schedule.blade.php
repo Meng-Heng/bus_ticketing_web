@@ -5,7 +5,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">{{__("Select your seat")}}</h5>
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('ticket')}}" method="POST" id="scheduleForm">
+            <form action="{{route('schedule.return')}}" method="POST" id="scheduleForm">
                 {{ method_field('POST')}}
                 {{ csrf_field()}}
             <div class="modal-body">

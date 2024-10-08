@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editScheduleModalLabel">{{__("Select your seat")}}</h5>
+                <h5 class="modal-title" id="editScheduleModalLabel">{{__("Search again")}}</h5>
                 <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -10,7 +10,9 @@
                     <div class="row">
                         <div class="pb-3 h3 text-left">{{ __("Where are you heading?") }}</div>
                     </div>
-                    <form action="{{route('schedule')}}" id="bus-form">
+                    <form action="{{route('schedule.departure')}}" id="bus-form" method="POST">
+                        {{ method_field('POST')}}
+                        {{ csrf_field()}}
                         <div class="row">   
                             <div class="form-group col-md align-items-start flex-column">
                                 <label for="origin" class="d-inline-flex">{{ __("From") }}</label>

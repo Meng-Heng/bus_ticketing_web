@@ -150,7 +150,7 @@
                             <input type="hidden" name="schedule" value="${response.data.schedule.id}">
                             <input type="hidden" name="storage" value="${response.data.storage.id}">
                             <input type="hidden" name="price" value="${response.data.price.id}">
-                            <input type="hidden" id="selectedSeatCount" name="seat_count" value="">
+                            <input type="hidden" id="selectedSeatCount" name="departureSeatCount" value="">
                         <table class="table table-responsive bus-info">
                             <tr class="row">
                                 <td><h1>Bus Information</h1></td>
@@ -205,7 +205,7 @@
                             </tr>
                             <tr class="row">
                                 <td class="col">
-                                    <input type="hidden" name="seat" id="seat" value="">
+                                    <input type="hidden" name="departureSeatNumber" id="seat" value="">
                                     <p>{{__("Your seat: ")}}</p>
                                 </td>
                                 <td class="col" id="seat-selection-output">

@@ -7,7 +7,7 @@
       <img src="{{ asset('images/logo/logo.png')}}" height="50" class="logo bg-white">
       <div class="flight">
         <strong>Bus' License Plate</strong>
-        <strong>{{$buses->bus_plate}}</strong>
+        <strong></strong>
       </div>
     </header>
     <section class="cities">
