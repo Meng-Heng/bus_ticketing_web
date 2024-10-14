@@ -5,9 +5,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">{{__("Select your seat")}}</h5>
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <form action="{{route('ticket')}}" method="GET" id="scheduleForm">
+                <form action="{{route('ticket')}}" method="POST" id="scheduleForm">
                     {{ csrf_field()}}
-                    {{ method_field('GET')}}
+                    {{ method_field('POST')}}
                     <div class="modal-body">
                         <!-- Insert Schedule Information Later -->
                     </div>

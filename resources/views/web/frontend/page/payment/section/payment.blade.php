@@ -1,4 +1,4 @@
-<div class="payment">
+{{-- <div class="payment">
     <div class="col">
         <div class="p-3">
             <p class="mb-0 fw-bold h4">Payment Methods</p>
@@ -25,7 +25,7 @@
                                 <span class="c-green">Name of product</span>
                             </p>
                             <p class="mb-0">
-                                <span class="fw-bold">Price:</span><span class="c-green"> {{$seat_count * $prices->price}}</span>
+                                <span class="fw-bold">Price:</span><span class="c-green"> {{$departure_seat['departureSeatCount'] * $departure_data['price']->price}}</span>
                             </p>
                             <img src="{{asset('images/background/payment/bakong-qr-code.png')}}" alt="" width="20%" height="50%">
                         </div>
@@ -106,4 +106,29 @@
     </div>
     <div class="col-12">
     </div>
+</div> --}}
+
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">{{__("Scan to pay")}}</h5>
+                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="image" alt="">
+                
+            </div>
+        </div>
+    </div>
 </div>
+
+{{-- <form id="qrForm">
+    <label>Amount:</label>
+    <input type="number" id="amount" name="amount">
+    <label>Mobile Number:</label>
+    <input type="text" id="mobileNumber" name="mobileNumber">
+    <button type="button" onclick="generateQR()">Generate QR Code</button>
+</form>
+
+<div id="qrCodeOutput"></div> --}}

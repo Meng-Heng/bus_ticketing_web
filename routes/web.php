@@ -42,10 +42,12 @@ Route::post('/return-date', [BusTicketingController::class, 'returnSchedule'])->
 Route::get('/return/{schedule_id}', [BusTicketingController::class, 'returnSeat'])->name('return.seat');
 
 // Ticket Confirmation
-Route::get('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
-Route::get('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule')->middleware('auth');
+Route::post('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
+Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule')->middleware('auth');
+Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn')->middleware('auth');
 
 // Payment
+Route::get('/generate-qr', [BusTicketingController::class, 'generateKhQR'])->name('generate.qr');
 
 // Your Ticket
 Route::get('/your-ticket')->middleware('auth');

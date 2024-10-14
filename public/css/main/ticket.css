@@ -47,8 +47,16 @@ Header
 }
 
 .boarding-pass .flight {
-  float: right;
+  float: center;
   color: #fff;
+  text-align: center;
+}
+
+.flight .logo {
+  float: left;
+}
+
+.flight .bus {
   text-align: right;
 }
 

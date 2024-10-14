@@ -6,19 +6,16 @@
 @endsection
 
 @section('content')
-    <script>
-        // Check if there's a query string in the URL
-        if (window.location.search) {
-            // Redirect to the same URL without query string
-            window.location.href = window.location.pathname;
-        }
-    </script>
     <div class="container">  
         @include('web.frontend.page.payment.section.ticket')
 
         @include('web.frontend.page.payment.section.payment')
-    </div>
 
+        <div>
+            <button class="btn btn-danger" id="paymentBtn">Pay now</button>
+        </div>
+    </div>
+    
     @include('web.frontend.page.station.index')
 
     <script>
@@ -36,4 +33,9 @@
             })
         })
     </script>
+
+    @vite(['resources/js/khqr/generateQR.js', 'resources/js/khqr/showQR.js'])
+    
+    <!-- Include Bakong KhQR -->
+    <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
 @endsection
