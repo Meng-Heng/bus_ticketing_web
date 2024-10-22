@@ -43,18 +43,25 @@ Route::get('/return/{schedule_id}', [BusTicketingController::class, 'returnSeat'
 
 // Ticket Confirmation
 Route::post('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
-Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule')->middleware('auth');
-Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn')->middleware('auth');
+Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule');
+Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn');
 
 // Payment
-Route::get('/generate-qr', [BusTicketingController::class, 'generateKhQR'])->name('generate.qr');
+Route::get('/generate-qr', [BusTicketingController::class, 'generateKhQR'])->name('generate.qr')->middleware('auth');
+Route::post('/generate-qr', [BusTicketingController::class, 'paymentSuccess'])->name('after.payment')->middleware('auth');
 
 // Your Ticket
 Route::get('/your-ticket')->middleware('auth');
 
 // Profile
-Route::get('/profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/{user_id}', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::put('/profile/{user_id}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+// Fallback 404 Not Found
+// Route::fallback(function () {
+//     return response()
+//     ->view('web.utils.error.404', [], 404);
+// });
 
 /*
             Using Google Translate

@@ -209,7 +209,7 @@
                                 </td>
                             </tr>
                             <div>
-                                <td><button type="submit" class="btn btn-primary">{{__("Proceed")}}</button></td>
+                                <td><button type="submit" class="btn btn-success">{{__("Proceed")}}</button></td>
                             </div>
                         </table> 
                         `

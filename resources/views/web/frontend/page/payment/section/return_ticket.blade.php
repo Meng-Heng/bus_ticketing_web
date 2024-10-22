@@ -31,7 +31,7 @@
         <small>Seat</small>
         <strong>
             @foreach( $return_seat['returnSeatNumber'] as $seatNumber) 
-                {{ $seatNumber . ","}}
+                {{ $seatNumber . " "}}
             @endforeach
         </strong>
     </div>
@@ -106,7 +106,7 @@
     </div>
     </div>
     <div class="box box-2">
-        <a href="{{route('backtoreturn')}}" method="POST" class="btn btn-danger">Check other dates</a>
+        <a href="{{route('backtoreturn')}}" method="POST" class="btn btn-success">Check other dates</a>
     </div>
     <svg class="qrcode">
     <use xlink:href="#qrcode"></use>

@@ -116,8 +116,13 @@
                 <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="" id="image" alt="">
-                
+                {{-- <img src="" id="image" alt=""> --}}
+                <form action="{{route('after.payment')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="status" id="status" value="1">
+                    <input type="hidden" name="payment_method" id="payment_method" value="KhQR">
+                    <button type="submit">Send</button>
+                </form>
             </div>
         </div>
     </div>

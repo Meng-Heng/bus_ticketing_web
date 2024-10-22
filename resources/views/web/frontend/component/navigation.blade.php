@@ -53,7 +53,7 @@
             <i class="fas fa-user nav-fa"></i>
           </a>  
           <ul class="dropdown dropdown-menu">
-            <li><a href="{{route('register')}}">Register</li>
+            <li><a href="{{route('register')}}">{{__("Register")}}</li>
           </ul>
           @endif
         </li>

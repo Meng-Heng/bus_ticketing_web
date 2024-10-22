@@ -1,42 +1,46 @@
 {
-    "Contact": "Contact",
+    "Web App for Bus Ticketing": "Web App for Bus Ticketing",
+
+    "Reviews": "Reviews",
 
     "GET YOUR TICKET ONLINE": "GET YOUR TICKET ONLINE",
     "EASY AND SAFELY": "EASY AND SAFELY",
 
+    "Register": "Register",
+
     "Where are you heading?": "Where are you heading?",
     "From": "From",
     "To": "To",
-    "Depart Date": "Depart Date",
-    "Return Date": "Return Date",
-    "Search Ticket": "Search Ticket",
+    "Depart date": "Depart date",
+    "Return date": "Return date",
     "City or Province": "City or Province",
+    "Find available time": "Find available time",
 
-    "Popular Destination": "Popular Destination",
+    "POPULAR ATTRACTION": "POPULAR ATTRACTION",
 
-    "Latest Deals": "Latest Deals",
+    "LATEST DEALS": "LATEST DEALS",
     "New and High maintenance!": "New and High maintenance!",
     "Family-size package": "Family-size package",
-    "Travel across Cambodia with your family members of 6 with comfortable seats, and trustworthy driver. This is a trail offer for October of 2024 ONLY!": "Travel across Cambodia with your family members of 6 with comfortable seats, and trustworthy driver. This is a trail offer for October of 2024 ONLY!",
+    "Travel across Cambodia with your family members of 6 with comfortable seats, and trustworthy driver. This is a trail offer for December of 2024 ONLY!": "Travel across Cambodia with your family members of 6 with comfortable seats, and trustworthy driver. This is a trail offer for December of 2024 ONLY!",
     "Get this offer now!": "Get this offer now!",
     "Sufficient Storage": "Sufficient Storage",
     "Neatly packed and spacious": "Neatly packed and spacious",
-    "Put all your trust into our care for your luggage as you travel at ease to your destination. We don't ruffle your luggage or provide an unsanitized space.": "Put all your trust into our care for your luggage as you travel at ease to your destination. We don't ruffle your luggage or provide an unsanitized space.",
+    "Put all your trust in us to care for your luggage as you travel comfortably to your destination. We don't ruffle your luggage or store them in an unsanitized space.": "Put all your trust in us to care for your luggage as you travel comfortably to your destination. We don't ruffle your luggage or store them in an unsanitized space.",
     "Midnight with us!":"Midnight with us!",
     "Spend a full night":"Spend a full night",
-    "This is where you will be spending your night if you decide to travel to your destination during sleeping hours.": "This is where you will be spending your night if you decide to travel to your destination during sleeping hours.",
-    
-    "Service and Feedback": "Service and Feedback",
+    "Save time by travelling during the night, arrive at your destination at dawn!": "Save time by travelling during the night, arrive at your destination at dawn!",
+    "Get a Midnight bus ticket!" : "Get a Midnight bus ticket!",
+
+    "SERVICE AND EXPECTATION": "SERVICE AND EXPECTATION",
     "Diverse Communities": "Diverse Communities",
-    "Don't feel pressured to speak Khmer or communicate anything! We know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.": "Don't feel pressured to speak Khmer or communicate anything! We know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.",
+    "Familiar with Khmer language or not, we know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.": "Familiar with Khmer language or not, we know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.",
     "Snack 24/7": "Snack 24/7",
     "Grab your snack or meal onboard with you! If not, buy from our station. We allow our passengers to bring food with them, as long as they remember to clean up after themselves. Make sure that your food is already packed and ready to eat.": "Grab your snack or meal onboard with you! If not, buy from our station. We allow our passengers to bring food with them, as long as they remember to clean up after themselves. Make sure that your food is already packed and ready to eat.",
     "Amenities": "Amenities",
-    "We care about your health so if you forgot to bring your water we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.": "We care about your health so if you forgot to bring your water we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.",
+    "We care about your health so if you forgot to bring your water, we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.": "We care about your health so if you forgot to bring your water we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.",
     
     "We'll alert you for discount information": "We'll alert you for discount information",
     "Your Email": "Your Email",
-    "SUBSCRIBE NOW": "SUBSCRIBE NOW"
-
+    "Subscribe Now": "Subscribe Now"
 
 }

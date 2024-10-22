@@ -14,6 +14,7 @@
     <div class="container" id="container">
       <div class="form-container sign-up">
         <form method="POST" action="{{route('register.user')}}">
+          {{ method_field('POST')}}
           @csrf
           <h1>{{__("Create Account")}}</h1>
           <div class="social-icons">

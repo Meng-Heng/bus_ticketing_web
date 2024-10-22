@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeFormController extends Controller
 {
-    public $location = ["Phnom Penh", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Prey Veng"];
+    public $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
 
     /**
      * Display a listing of the resource.

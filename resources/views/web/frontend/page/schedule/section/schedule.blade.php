@@ -7,7 +7,7 @@
             </div>
             <form action="{{route('schedule.return')}}" method="POST" id="scheduleForm">
                 {{ method_field('POST')}}
-                {{ csrf_field()}}
+                @csrf
             <div class="modal-body">
                 <!-- Insert Schedule Information Later -->
             </div>

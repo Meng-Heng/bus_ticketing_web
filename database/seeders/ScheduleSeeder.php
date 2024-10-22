@@ -67,35 +67,32 @@ class ScheduleSeeder extends Seeder
             SQL
         */
         
-//         INSERT INTO `tbl_schedule` (`id`, `bus_id`, `origin`, `departure_date`, `departure_time`, `destination`, `arrival_date`, `arrival_time`, `sold_out`, `created_at`, `updated_at`) VALUES (NULL, '4', 'Siem Reap', '2024-06-28', '14:00:00', 'Battambang', '2024-06-28', '18:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '4', 'Battambang', '2024-06-28', '22:00:00', 'Phnom Penh', '2024-06-29', '04:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '6', 'Phnom Penh', '2024-06-28', '09:00:00', 'Kompot', '2024-06-28', '12:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '6', 'Kompot', '2024-06-28', '13:00:00', 'Kep', '2024-06-28', '15:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '6', 'Kep', '2024-06-28', '17:00:00', 'Kompot', '2024-06-28', '19:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '6', 'Kompot', '2024-06-28', '22:00:00', 'Sihanouk Ville', '2024-06-29', '01:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '8', 'Phnom Penh', '2024-06-28', '09:00:00', 'Sihanouk Ville', '2024-06-28', '12:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '8', 'Sihanouk Ville', '2024-06-28', '13:00:00', 'Kompot', '2024-06-28', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '8', 'Kompot', '2024-06-28', '17:00:00', 'Kep', '2024-06-28', '19:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '8', 'Kep', '2024-06-28', '22:00:00', 'Phnom Penh', '2024-06-29', '01:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '9', 'Phnom Penh', '2024-06-28', '10:00:00', 'Siem Reap', '2024-06-28', '15:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '9', 'Siem Reap', '2024-06-28', '17:00:00', 'Battambang', '2024-06-28', '21:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '9', 'Battambang', '2024-06-28', '22:00:00', 'Siem Reap', '2024-06-29', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '10', 'Phnom Penh', '2024-06-28', '09:00:00', 'Battambang', '2024-06-28', '14:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '10', 'Battambang', '2024-06-28', '17:00:00', 'Phnom Penh', '2024-06-29', '22:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '10', 'Phnom Penh', '2024-06-28', '23:00:00', 'Siem Reap', '2024-06-29', '04:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '11', 'Phnom Penh', '2024-06-28', '10:00:00', 'Kep', '2024-06-28', '13:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '11', 'Kep', '2024-06-28', '14:00:00', 'Kompot', '2024-06-28', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '11', 'Kompot', '2024-06-28', '17:00:00', 'Phnom Penh', '2024-06-28', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '11', 'Phnom Penh', '2024-06-28', '22:00:00', 'Kep', '2024-06-29', '01:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Phnom Penh', '2024-06-28', '09:00:00', 'Prey Veng', '2024-06-28', '12:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Prey Veng', '2024-06-28', '13:00:00', 'Phnom Penh', '2024-06-28', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Phnom Penh', '2024-06-28', '17:00:00', 'Prey Veng', '2024-06-28', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Prey Veng', '2024-06-28', '22:00:00', 'Phnom Penh', '2024-06-29', '01:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Phnom Penh', '2024-06-28', '10:00:00', 'Kompot', '2024-06-28', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Kompot', '2024-06-28', '14:00:00', 'Sihanouk Ville', '2024-06-28', '17:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Sihaknouk Ville', '2024-06-28', '18:00:00', 'Kompot', '2024-06-28', '21:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
-// (NULL, '12', 'Kompot', '2024-06-28', '22:00:00', 'Kep', '2024-06-29', '24:00:00', '0', CURRENT_DATE(), CURRENT_DATE())
+/*        INSERT INTO `tbl_schedule` (`id`, `bus_id`, `origin`, `departure_date`, `departure_time`, `destination`, `arrival_date`, `arrival_time`, `sold_out`, `created_at`, `updated_at`) VALUES (NULL, '4', 'Siem Reap', '2024-06-28', '14:00:00', 'Battambang', '2024-06-28', '18:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+INSERT INTO `tbl_schedule` 
+(`id`, `bus_id`, `origin`, `departure_date`, `departure_time`, `destination`, `arrival_date`, `arrival_time`, `sold_out`, `created_at`, `updated_at`) VALUES 
+(NULL, '6', 'Phnom Penh - DN', '2024-12-03', '07:00:00', 'Siem Reap', '2024-12-03', '12:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '6', 'Siem Reap', '2024-12-03', '13:00:00', 'Banteay Meanchey', '2024-12-03', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '6', 'Banteay Meanchey', '2024-12-03', '17:00:00', 'Battambang', '2024-12-03', '19:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '6', 'Battambang', '2024-12-03', '20:30:00', 'Phnom Penh - DN', '2024-12-04', '02:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '7', 'Phnom Penh - Chhouk Meas', '2024-12-03', '07:00:00', 'Battambang', '2024-12-03', '12:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '7', 'Battambang', '2024-12-03', '13:30:00', 'Siem Reap', '2024-12-03', '17:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '7', 'Siem Reap', '2024-12-03', '18:30:00', 'Phnom Penh - Chhouk Meas', '2024-12-04', '23:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '8', 'Phnom Penh - Chhouk Meas', '2024-12-03', '07:00:00', 'Sihanouk Ville', '2024-12-03', '10:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '8', 'Sihanouk Ville', '2024-12-03', '11:00:00', 'Kompot', '2024-12-03', '14:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '8', 'Kompot', '2024-12-03', '15:00:00', 'Kep', '2024-12-03', '17:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '8', 'Kep', '2024-12-03', '18:00:00', 'Kompot', '2024-12-03', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '8', 'Kompot', '2024-12-03', '21:00:00', 'Phnom Penh - Chhouk Meas', '2024-12-04', '01:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '9', 'Phnom Penh - Chhouk Meas', '2024-12-03', '07:00:00', 'Siem Reap', '2024-12-03', '12:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '9', 'Siem Reap', '2024-12-03', '13:00:00', 'Banteay Meanchey', '2024-12-03', '17:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '9', 'Banteay Meanchey', '2024-12-03', '18:00:00', 'Battambang', '2024-12-03', '20:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '9', 'Battambang', '2024-12-03', '21:30:00', 'Phnom Penh - Chhouk Meas', '2024-12-04', '03:30:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '10', 'Phnom Penh - DN', '2024-12-03', '07:00:00', 'Sihanouk Ville', '2024-12-03', '10:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '10', 'Sihanouk Ville', '2024-12-03', '11:00:00', 'Kompot', '2024-12-03', '14:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '10', 'Kompot', '2024-12-03', '15:00:00', 'Kep', '2024-12-03', '17:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '10', 'Kep', '2024-12-03', '18:00:00', 'Kompot', '2024-12-03', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '10', 'Kompot', '2024-12-03', '21:00:00', 'Phnom Penh - DN', '2024-12-04', '24:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
 
+*/
 
         /*
             Too random of the time and destinations

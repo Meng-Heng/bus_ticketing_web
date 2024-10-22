@@ -49,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-auto mt-2 align-items-end">
-                                <button class="btn btn-primary" data-toggle="modal">{{ __("Search Ticket")}}</button>
+                                <button class="btn green-btn text-white" data-toggle="modal">{{ __("Search Ticket")}}</button>
                             </div>
                         </div>
                     </form>

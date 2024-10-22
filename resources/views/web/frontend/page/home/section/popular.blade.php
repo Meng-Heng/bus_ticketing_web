@@ -1,5 +1,5 @@
 <div class="text-center container">
-<h2 class="mt-4 mb-5"><strong>POPULAR DESTINATION</strong></h2>
+<h2 class="mt-4 mb-5"><strong>{{__("POPULAR ATTRACTION")}}</strong></h2>
 <div class="flex flex-container">
         <img
             src="https://mediaim.expedia.com/destination/1/a41e238148ca3a6f0ab3218587f82f33.jpg"

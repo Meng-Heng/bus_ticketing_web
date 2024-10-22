@@ -15,6 +15,7 @@
     <div class="container" id="container">
         <div class="form-container auth">
         <form method="POST" action="{{route('login.user')}}">
+          {{ method_field('POST')}}
           @csrf
           <h1>{{__('Sign In')}}</h1>
           <div class="social-icons">

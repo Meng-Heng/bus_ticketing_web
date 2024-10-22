@@ -27,7 +27,7 @@ class UserController extends Controller
         ]);
 
         Auth::login($user);
-        return back('/')->with(['register', 'Register successfully!', $user]);
+        return redirect()->intended()->with(['register', 'Register successfully!', $user]);
     }
 
     public function showLoginForm() {
@@ -50,13 +50,13 @@ class UserController extends Controller
             // Redirect to the intended page or the home page
             return redirect()->back()->with('login', 'Login successfully!');
         }
-
+        
         return redirect()->back()->withErrors(['login-fail' => 'Wrong Email or Password']);
     }
 
     public function logout() {
         Session::flush();
         Auth::logout();
-        return redirect('/');
+        return redirect('/')->intended();
     }
 }
