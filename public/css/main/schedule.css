@@ -9,15 +9,18 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 20px;
         padding: 20px;
         border-bottom: 2px solid #1D242B;
         border-radius: 15px;
-        background-color: #FAFAFA;
+        background-color: white;
     }
 
     .schedule-row div {
         margin: 10px;
+    }
+
+    .top-schedule {
+        border-radius: 0px;
     }
 
     .schedule-arrow-right {
@@ -36,12 +39,18 @@
 
     .line {
         height: 100px;
-        border: 1px solid black;
+        border: 1px solid rgb(0, 0, 0);
     }
 
     .origin-time, .destination-time {
         font-weight: bold;
         font-size: 20px;
+    }
+
+    .daily-schedule {
+        margin: 20px;
+        border: 1px solid white;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     }
 
     .schedule-info {
@@ -62,12 +71,12 @@
         color: gray;
     }
 
-    .schedule-info a:hover {
-        color: #0077C0;
-    }
-
     .schedule-info div {
         margin: 15px;
+    }
+
+    .schedule-info svg {
+        color: gray;
     }
 
     .schedule-logo {
@@ -83,7 +92,7 @@
     .ticket-price {
         font-weight: bold;
         font-size: 20px;
-        color: rgb(255, 0, 0);
+        color: #88C540;
     }
 
     .buy-ticket {
@@ -92,7 +101,17 @@
     }
 
     button.scheduleBtn {
-        background-color: #0077C0;
+        background-color: #88C540;
+        color: white;
+    }
+
+    button.scheduleBtn:hover {
+        background-color: #198754;
+        color: white;
+    }
+
+    .schedule-time {
+        color: #88C540;
     }
 
     .card {
@@ -107,7 +126,7 @@
     }
 
     #stationBtn:hover, #station_btn:hover, #tripBtn:hover {
-        color: #0077C0;
+        color: #88C540;
     }
 
     .amenities {

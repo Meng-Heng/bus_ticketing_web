@@ -31,7 +31,7 @@
         <small>Seat</small>
         <strong>
                 @foreach( $departure_seat['departureSeatNumber'] as $seatNumber) 
-                        {{ $seatNumber . ","}}
+                        {{ $seatNumber . " "}}
                 @endforeach
         </strong>
     </div>
@@ -56,7 +56,7 @@
     <div class="box">
         <small>Time</small>
         <strong>{{ $departure_seat['schedule']->departure_time }}
-            @if($departure_seat['schedule']->departure_time >= "12:00:00")
+            @if($departure_seat['schedule']->departure_time > "12:00:00")
                 PM
             @else
                 AM
@@ -106,7 +106,7 @@
     </div>
     </div>
     <div class="box box-2">
-        <a href="{{route('backtoschedule')}}" class="btn btn-danger">Check other dates</a>
+        <a href="{{route('backtoschedule')}}" class="btn btn-success">Check other dates</a>
     </div>
     <svg class="qrcode">
     <use xlink:href="#qrcode"></use>

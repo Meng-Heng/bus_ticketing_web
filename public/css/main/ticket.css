@@ -151,8 +151,13 @@ Infos
 }
 
 .boarding-pass .infos .places strong {
-  color: #0077C0;
+  color: #88C540;
   font-size: 16px;
+}
+
+strong button {
+  border: none;
+  background-color: transparent;
 }
 
 .boarding-pass .infos .box {

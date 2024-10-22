@@ -14,7 +14,9 @@ class Payment extends Model
         "payment_method",
         'payment_datetime',
         'user_id',
-        'review_id'
+        'review_id',
+        'created_at',
+        'updated_at'
     ];
     public function user() {
         return $this->belongsTo(User::class);

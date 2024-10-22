@@ -18,8 +18,8 @@ class BusFactory extends Factory
     public function definition(): array
     {
         return [
-            'bus_plate' => $this->faker->unique()->bothify('#######'), 
-            'total_seat' => '11', 
+            'bus_plate' => $this->faker->unique()->bothify('1##-####'), 
+            'total_seat' => '6', 
             'description' => $this->faker->text(),
             'is_active' => '1',
             'created_at' => now(),

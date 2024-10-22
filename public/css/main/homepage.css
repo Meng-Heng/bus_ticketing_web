@@ -4,7 +4,7 @@
 
 body {
     font-family: Forum, Khmer, Chinese !important;
-    background-color: white;
+    background-color: #FAFAFA !important;
 }
 
 @font-face {
@@ -102,7 +102,7 @@ body {
       
       button[type="submit"] {
         padding: 10px 20px;
-        background-color: #0077C0;
+        background-color: #88C540;
         border: none;
         cursor: pointer;
       }
@@ -163,6 +163,14 @@ body {
         width: 50%;
     }
 
+    /* Service and Feedback */
+    .card-title {
+        font-size: 30px;
+    }
+
+    .card-text {
+        font-size: 18px;
+    }
     /* Newsletter */
     .subscription {
         background-color: #FAFAFA;
@@ -176,7 +184,7 @@ body {
 
     h3,
     .h3 {
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .subscription.bg-white .form-control {
@@ -205,7 +213,7 @@ body {
     }
 
     .btn {
-        font-size: 16px;
+        font-size: 10px;
         font-family: "Poppins", sans-serif;
         text-transform: capitalize;
         padding: 18px 45px;
