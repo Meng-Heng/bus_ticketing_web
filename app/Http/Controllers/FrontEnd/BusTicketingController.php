@@ -9,24 +9,32 @@ use App\Models\Bus;
 use App\Models\Price;
 use App\Models\User;
 use App\Models\Storage;
-use App\Models\Bus_seat;
 use App\Models\Ticket;
-use App\Models\Payment;
-use App\Models\Review;
-use ArrayObject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Services\PayWayService;
 use Carbon\Carbon;
 
 class BusTicketingController extends Controller
 {
+    // Calling a class
+    protected $payWayService;
+
+    public function __construct(PayWayService $payWayService) {
+        $this->payWayService = $payWayService;
+    }
+
+    // Populate dropdown Ticket search in Homepage
     public $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
 
+    // Get Schedule for Departure
     public function departureSchedule(Request $request)
     {
+        // Store URL Inputs for Schedule Search
         Session::put('schedule_url', $request->fullUrl());
-
+        
         $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
+        // Fetch data from Views/Blades
         $request->validate([
             'origin' => 'required',
             'arrival' => 'required|different:origin',
@@ -40,10 +48,12 @@ class BusTicketingController extends Controller
         $return_date = $request->input('return-date');
         $price = Price::all()->last();
         
+        // Search for the Schedule using the Inputed "%$origin%", "%$arrived%", and "%$origin_date%"
         $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$origin_date%")
             ->where('destination', 'like', "%$arrived%")->paginate(10)->withQueryString();
 
+        // Prepare data for Session::departure_data & Return
         $data = [
             'result' => $result,
             'origin' => $origin,
@@ -53,30 +63,39 @@ class BusTicketingController extends Controller
             'price' => $price,
         ];
 
+        // Store Departure Schedule Data to Session
         Session::put('departure_data', $data);
 
+        // Return all the required Data to Views/Blades
         return view('web.frontend.page.schedule.index', $data, ['location' => $location]);
     }
 
+    // Get Seat for Departure
     public function departureSeat($id)
     {
         try {
+            // Locate the right schedule (From DB) with the selected schedule id from Views/Blades
             $schedule = Schedule::find($id);
 
+            // Condition
             if(!$schedule){
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
+            // Counting how many Seat does the Bus have using the assigned Schedule ID in the Database?
             $seat = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
                 $q->where('id', $schedule->id);
             })->first();
             
+            // Condition
             if(!$seat) {
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
 
+            // Get the latest data from Storage & Price
             $storage = Storage::all()->last();
             $price = Price::all()->last();
             
+            // Prepare data for Session::departure_seat & Return
             $data = [
                 'schedule' => $schedule,
                 'seat' => $seat->total_seat,
@@ -85,8 +104,10 @@ class BusTicketingController extends Controller
                 'price' => $price,
             ];
 
+            // Store Departure Seat to Session
             Session::put('departure_seat', $data);
             
+            // Return all the required Data to JQuery in Views/Blades
             return response()->json($data);
             
         } catch (\Exception $e) {
@@ -94,35 +115,47 @@ class BusTicketingController extends Controller
         }
     }
 
+    // Get Schedule for Return
     public function returnSchedule(Request $request) {
         try {
             $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
+            // Fetch Departure Schedule
             $departureData = session()->get('departure_data');
 
+            // Assigned them to New Variables
             $return_date = $departureData['return_date'];
             $destination = $departureData['origin'];
             $origin = $departureData['arrived'];
             
+            // Prepare data for Session::return_seat & Return
             $data = [
                 'return_date' => $return_date,
                 'origin' => $origin,
                 'arrived' => $destination,
             ];
             
+            // Update Session::departure_seat
             $assignSeats = Session::get('departure_seat', []);
+            // Get The Amount of Selected seat & Seat labels from Interface
+            // Clean the Data & Store them to a Variable
             $departureSeatData = [
                 'departureSeatCount' => $request->input('departureSeatCount'),
                 'departureSeatNumber' => explode(',', $request->input('departureSeatNumber')),
             ];
+            // Merge Seat information with Departure Seat
             $newMerged = array_merge($assignSeats, $departureSeatData);
+            // Store Departure Seat to its Original Session
             Session::put('departure_seat', $newMerged);
 
+            // Search for the Schedule using the Inputed "%$destination%", "%$origin%", and "%$return_date%"
             $result = Schedule::where('origin', 'like', "%$destination%")
             ->where('departure_date', 'like', "%$return_date%")
             ->where('destination', 'like', "%$origin%")->paginate(10)->withQueryString();
 
+            // Store Return Schedule to Session
             Session::put('return_data', $data);
 
+            // Return all the required Data to Views/Blades
             return view('web.frontend.page.return.index', ['departureData' => $departureData, 'result' => $result, 'location' => $location]);
             
             } catch (\Exception $e) {
@@ -130,8 +163,15 @@ class BusTicketingController extends Controller
         }
     }
 
+    // Get Seat for Return
     public function returnSeat($id) {
         try {
+            /*
+                    This repeats the DepartureSeat function.
+                    Once the search for Return Schedule is correct, the seat will showup accordingly with the \
+                    seat numbers and schedule id for the assigned date/time from the Database
+            */
+
             $schedule = Schedule::find($id);
             if(!$schedule){
                 return response()->json(['error' => 'Schedule not found'], 404);
@@ -163,8 +203,10 @@ class BusTicketingController extends Controller
         }
     }
 
+    // Confirm ticket information
     public function ticketConfirmation(Request $request) {
         // Allow clean array format
+        // This section is the flow of updating the return_seat session (The same as departure_seat session)
         if(session()->has('return_data') && session()->has('return_seat')) {
             $assignSeats = Session::get('return_seat', []);
             $returnSeat = [
@@ -174,6 +216,8 @@ class BusTicketingController extends Controller
             $newMerged = array_merge($assignSeats, $returnSeat);
             Session::put('return_seat', $newMerged);
         }
+
+        // Get User information for Bus Ticket
         $user_id = Auth::user()->id;
         
         $userInfo = User::find($user_id);
@@ -188,134 +232,71 @@ class BusTicketingController extends Controller
             'users' => $userInfo,
             'current_time' => $current
         ];
+        // dd($data);  
 
-        // dd($data);        
-        
-        return view('web.frontend.page.payment.index', with($data));
-    }
+        // Calculating the total price
+        $totalDeparturePrice = $data['departure_seat']['price']->price;
+        $totalReturnPrice = $data['return_seat']['price']->price;
+        $totalDepartureSeat = $data['departure_seat']['departureSeatCount'];
+        $totalReturnSeat = $data['return_seat']['returnSeatCount'];
 
-    public function generateKhQR() {
-        $user_id = Auth::user()->id;
-        
-        $userInfo = User::find($user_id);
-        $current = Carbon::now()->format('l, F-d-Y');
-        $data = [
-            'departure_data' =>  session()->get('departure_data'),
-            'departure_seat' =>  session()->get('departure_seat'),
-            'return_data' =>  session()->get('return_data'),
-            'return_seat' =>  session()->get('return_seat'),
-            'users' => $userInfo,
-            'current_time' => $current
+        $totalAmount = ($totalDeparturePrice * $totalDepartureSeat) + ($totalReturnPrice * $totalReturnSeat);
+
+        // dd($totalAmount);
+
+        // Populating the required ABA PayWay data
+        $item = [
+            'name' => Auth::user()->username . '\'s Bus Ticket', 
+            'quantity' => $totalDepartureSeat + $totalReturnSeat,
+            'price' => $totalAmount
         ];
 
-        return view('web.frontend.page.payment.index', $data);
+        $req_time = time();
+        $merchant_id = config('payway.merchant_id');
+        $tran_id = $req_time;
+        $firstname = Auth::user()->username;
+        $phone = Auth::user()->contact;
+        $amount = $totalAmount;
+        $items = base64_encode(json_encode($item));
+        $payment_option = "";
+        $return_url = base64_encode("/confirmation");
+        $continue_success_url = '/success';
+        $currency = $data['return_seat']['price']->currency;
+        $return_params = 1;
+        // WARNING: Do not change the order of these data! 
+        // Follow this order: https://www.payway.com.kh/developers/create-transaction
+        $hash = $req_time . $merchant_id . $tran_id . $amount . $items . $firstname . $phone . $payment_option . $return_url . $continue_success_url . $currency . $return_params;
+        $hashReady = $this->payWayService->getHash($hash);
+
+        // This order does not matter. Just use the RIGHT INDEXING on the View.
+        $paywayData = [
+            'req_time' => $req_time,
+            'tran_id' => $tran_id,
+            'merchant_id' => $merchant_id,
+            'amount' => $amount,
+            'items' => $items,
+            'firstname' => $firstname,
+            'phone' => $phone,
+            'payment_option' => $payment_option,
+            'return_url' => $return_url,
+            'continue_success_url' => $continue_success_url,
+            'currency' => $currency,
+            'return_params' => $return_params,
+            'hash' => $hashReady,
+        ];
+        // dd($paywayData);
+
+        // Store Payment info to Session
+        Session::put('payment_data', $paywayData);   
+        
+        // End of PayWay data.
+
+        return view('web.frontend.page.payment.index', with($data), compact('paywayData'));
     }
 
-    public function paymentSuccess(Request $request) {
-        try {
-            // Obtain Session
-            $departure_data = session()->get('departure_data');
-            $departure_seat = session()->get('departure_seat');
-            $return_data = session()->get('return_data');
-            $return_seat = session()->get('return_seat');
-
-            $departureBus = $departure_seat['schedule']->bus_id;
-            $departure_seat_number = $departure_seat['departureSeatNumber'];
-
-            $returnBus = $return_seat['schedule']->bus_id;
-            $return_seat_number = $return_seat['returnSeatNumber'];
-
-            $selectedDepartureSeat = new ArrayObject();
-            $selectedReturnSeat = new ArrayObject();
-
-            // dd(count($return_seat_number));
-            foreach($departure_seat_number as $departureSeatNumber) {
-                $selectedDepartureSeat->append(Bus_seat::where('bus_id', $departureBus)->where('seat_number', $departureSeatNumber)->first()); 
-            }
-            
-            foreach($return_seat_number as $returnSeatNumber) {
-                $selectedReturnSeat->append(Bus_seat::where('bus_id', $returnBus)->where('seat_number', $returnSeatNumber)->first());
-            }
-            // dd($selectedDepartureSeat, $selectedReturnSeat);
-            
-            // Storage and Price
-            $storage = Storage::all()->last();
-            $price = Price::all()->last();
-            
-            // Start insertion if payment success!
-            if($request->input('status') == '1') {
-                $payment = new Payment();
-                $payment->payment_method = $request->input('payment_method');
-                $payment->payment_datetime = Carbon::now();
-                $payment->user_id = Auth::user()->id;
-                $payment->save();
-                Session::flash('payment_created','Your purchase has been successful!');
-
-                // Create departure ticket after payment success
-                for($i=0; $i<count($selectedDepartureSeat); $i++) {
-                    $ticket = new Ticket();
-                    $ticket->ticket_id =  $this->generateTicketId();
-                    $ticket->is_issued = Carbon::now();
-                    $ticket->schedule = $departure_seat['schedule']->id;
-                    $ticket->bus_seat_id = $selectedDepartureSeat[$i]->id;
-                    $ticket->payment_id = $payment->id;
-                    $ticket->storage_id = $storage->id;
-                    $ticket->price_id = $price->id;
-                    $ticket->save();
-                    Session::flash('departure_ticket_created');
-                    // Update Bus seat
-                    $bus_seat = Bus_seat::findOrFail($selectedDepartureSeat[$i]->id);
-                    $bus_seat->status = 'Sold';
-                    $bus_seat->save();
-                }
-                // Create return ticket after payment success
-                if($selectedReturnSeat) {
-                    for($i=0; $i<count($selectedReturnSeat); $i++) {
-                        $ticket = new Ticket();
-                        $ticket->ticket_id = $this->generateTicketId();
-                        $ticket->is_issued = Carbon::now();
-                        $ticket->schedule = $return_seat['schedule']->id;
-                        $ticket->bus_seat_id = $selectedReturnSeat[$i]->id;
-                        $ticket->payment_id = $payment->id;
-                        $ticket->storage_id = $storage->id;
-                        $ticket->price_id = $price->id;
-                        $ticket->save();
-                        Session::flash('departure_ticket_created');
-                        // Update Bus seat
-                        $bus_seat = Bus_seat::findOrFail($selectedReturnSeat[$i]->id);
-                        $bus_seat->status = 'Sold';
-                        $bus_seat->save();
-                    }
-                }
-                Session::flash('Your have acquired your ticket!', 'Success!');
-            } else {
-                Session::flash('payment_failing', 'Failed');
-                return route('ticket');
-            }
-            return redirect('/');
-        } catch(\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function generateTicketId()
-    {
-        // Generate current date and time in your preferred format
-        $currentDateTime = now()->format('Y-m-d H:i:s'); // Format as 'YYYYMMDDHHMMSS'
-
-        // Generate a random four-digit number
-        $randomNumber = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
-
-        // Create the ticket number using your desired format
-        $ticketId = 'TICKET:' . $currentDateTime . '-' . $randomNumber; 
-
-        return $ticketId;
-    }   
-
-    public function seatStatus($id) {
-        $myTicket = Ticket::findOrFail($id)->where('user_id');
-    }
-
+    /* 
+            Operation outside of the System.
+    */
     public function backToSchedule() {
         if(session('schedule_url')) {
             return redirect(session('schedule_url'));
@@ -329,5 +310,7 @@ class BusTicketingController extends Controller
         } 
         return redirect('/');
     }
-
+    /* 
+            End of Operation outside of the System.
+    */
 }

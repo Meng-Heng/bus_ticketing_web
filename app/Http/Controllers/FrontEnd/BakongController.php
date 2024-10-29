@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
@@ -61,5 +64,21 @@ class PaymentController extends Controller
             'qr' => $qr,
             'md5' => $md5,
         ]);
+    }
+    public function generateKhQR() {
+        $user_id = Auth::user()->id;
+        
+        $userInfo = User::find($user_id);
+        $current = Carbon::now()->format('l, F-d-Y');
+        $data = [
+            'departure_data' =>  session()->get('departure_data'),
+            'departure_seat' =>  session()->get('departure_seat'),
+            'return_data' =>  session()->get('return_data'),
+            'return_seat' =>  session()->get('return_seat'),
+            'users' => $userInfo,
+            'current_time' => $current
+        ];
+
+        return view('web.frontend.page.payment.index', $data);
     }
 }
