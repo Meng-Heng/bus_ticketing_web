@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link href="{{asset('css/template/header.css')}}" rel="stylesheet" />
     <link href="{{asset('css/template/template.css')}}" rel="stylesheet" />
@@ -11,8 +11,9 @@
     <!-- MDB templates and home page -->
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet"/>
 
-    <!-- JQuery -->
+    <!-- Ajax & Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->

@@ -11,6 +11,7 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\BusSeatDailyController;
 use App\Http\Controllers\FrontEnd\PaymentController;
+use App\Http\Controllers\FrontEnd\PayWayController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\FrontEnd\ProfileController;
 use App\Http\Controllers\FrontEnd\BusTicketingController;
@@ -47,11 +48,10 @@ Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('b
 Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn');
 
 // Payment
-Route::get('/generate-qr', [BusTicketingController::class, 'generateKhQR'])->name('generate.qr')->middleware('auth');
-Route::post('/generate-qr', [BusTicketingController::class, 'paymentSuccess'])->name('after.payment')->middleware('auth');
+Route::get('/success', [PayWayController::class, 'paymentSuccess'])->name('checkout.success')->middleware('auth');
 
 // Your Ticket
-Route::get('/your-ticket')->middleware('auth');
+Route::get('/your-ticket', [TicketController::class, 'index'])->middleware('auth');
 
 // Profile
 Route::get('/profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');

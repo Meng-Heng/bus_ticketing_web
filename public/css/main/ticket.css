@@ -11,7 +11,7 @@ Boarding Pass
 .boarding-pass {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   height: fit-content;
   background: #fff;
   margin: 20px;
@@ -31,6 +31,15 @@ Boarding Pass
 .boarding-pass strong {
   font-size: 16px;
   display: block;
+}
+
+.ticket-checkout {
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-checkout div {
+  width: 100%;
 }
 
 /*--------------------
@@ -222,142 +231,4 @@ Strap
 .qrcode {
   width: 30%;
   display: none;
-}
-
-/*
-  Payment
-*/
-
-.container .card {
-  width: 100%;
-  height: fit-content;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #fff;
-  border-radius: 0px !important;
-}
-
-.payment {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 600px;
-  margin: 20px;
-}
-
-.btn.btn-primary {
-  background-color: #ddd;
-  color: black;
-  box-shadow: none;
-  border: none;
-  font-size: 20px;
-}
-
-.btn.btn-primary:focus {
-  box-shadow: none;
-}
-
-.container .card .img-box {
-  width: 50px;
-  height: 50px;
-}
-
-.container .card img {
-  width: 100%;
-  object-fit: fill;
-}
-
-.container .card .number {
-  font-size: 24px;
-}
-
-.container .card-body .btn.btn-primary .fab.fa-cc-paypal {
-  font-size: 32px;
-  color: #3333f7;
-}
-
-.fab.fa-cc-amex {
-  color: #1c6acf;
-  font-size: 32px;
-}
-
-.fab.fa-cc-mastercard {
-  font-size: 32px;
-  color: red;
-}
-
-.fab.fa-cc-discover {
-  font-size: 32px;
-  color: orange;
-}
-
-.c-green {
-  color: green;
-}
-
-
-.btn.btn-primary.payment {
-  background-color: #1c6acf;
-  color: white;
-  border-radius: 10px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-
-.form__div {
-  height: 50px;
-  position: relative;
-  margin-bottom: 24px;
-}
-
-.form-control {
-  width: 100%;
-  height: 45px;
-  font-size: 14px;
-  border: 1px solid #DADCE0;
-  border-radius: 0;
-  outline: none;
-  padding: 2px;
-  background: none;
-  z-index: 1;
-  box-shadow: none;
-}
-
-.form__label {
-  position: absolute;
-  left: 16px;
-  top: 10px;
-  background-color: #fff;
-  color: #80868B;
-  font-size: 16px;
-  transition: .3s;
-  text-transform: uppercase;
-  width: fit-content;
-}
-
-.form-control:focus+.form__label {
-  top: -8px;
-  left: 12px;
-  color: #1A73E8;
-  font-size: 12px;
-  font-weight: 500;
-  z-index: 10;
-}
-
-.form-control:not(:placeholder-shown).form-control:not(:focus)+.form__label {
-  top: -8px;
-  left: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  z-index: 10;
-}
-
-.form-control:focus {
-  border: 1.5px solid #1A73E8;
-  box-shadow: none;
 }
