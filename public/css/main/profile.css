@@ -1,1 +1,33 @@
+.form-control:focus {
+    box-shadow: none;
+    border-color: #88C540
+}
 
+.profile-button {
+    background: #88C540;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #88C540
+}
+
+.profile-button:focus {
+    background: #88C540;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #88C540;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #88C540;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
