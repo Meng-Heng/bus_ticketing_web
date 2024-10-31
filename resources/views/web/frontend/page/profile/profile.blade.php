@@ -1,81 +1,85 @@
 @extends('web.frontend.template.layout')
 
+@section('profile-style')
+  <link href="{{asset('css/main/profile.css')}}" rel="stylesheet" />
+@endsection
+
 @section('content')
 @if(Auth::user())
-<section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="card mb-4 d-flex justify-content-center">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{Auth::user()->username}}</h5>
-              <p class="text-muted mb-1">{{Auth::user()->email}}</p>
-              <p class="text-muted mb-4">{{Auth::user()->contact}}</p>
-            </div>
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+      <div class="col-md-3 border-right">
+        {{ Form::model($tbl_user , array('route' => array('profile.update', $tbl_user->id), 'method'=>'PUT')) }}
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          
+            @if(Auth::user()->picture)
+              <img class="rounded-circle mt-5" width="150px" src="{{ asset('storage/' . $user->picture) }}">
+            @endif
+            <input type="file" name="picture" id="picture" class="form-control">
+            <span class="font-weight-bold">{{Auth::user()->username}}</span>
+            <span class="text-black-50">{{Auth::user()->email}}</span>
+            <span>{{Auth::user()->contact}}</span>
+            <!-- Display error for date_of_birth -->
+            @error('date_of_birth')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+            <!-- Display error for profile_picture -->
+            @error('profile_picture')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
           </div>
-        </div>
-        <div class="row mt-2">
-        <h5>Personal Information</h5>
-            {{ Form::model($tbl_user , array('route' => array('profile.update', $tbl_user->id), 'method'=>'PUT')) }}
-            <div class="row">
-                <div class="col-5">
-                {!! Form::label('username', 'Username:') !!}
-                {!! Form::text('username',null, array('class'=>'form-control')) !!}
-                </div>
-                <div class="col-5">
-                {!! Form::label('gender', 'Gender:') !!}
-                {!! Form::select('gender',["Unspecified","Male", "Female", "Prefer not to say"], array('class'=>'form-control')) !!}
-            </div>
-            <div class="row">
-                <div class="col-5">
-                {!! Form::label('id_card', 'Identification Number or Passport:') !!}
-                {!! Form::text('id_card',null, array('class'=>'form-control')) !!}
-                </div>
-                <div class="col">
-                {!! Form::label('date_of_birth', 'Date of Birth:') !!}
-                {!! Form::text('date_of_birth',null, array('class'=>'form-control')) !!}
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-        <h5>Contact Information</h5>
-            <div class="row">
-                <div class="col">
-                {!! Form::label('contact', 'Phone Number:') !!}
-                {!! Form::text('contact',null, array('class'=>'form-control')) !!}
-                </div>
-                <div class="col">
-                {!! Form::label('email', 'Email:') !!}
-                {!! Form::text('email',null, array('class'=>'form-control')) !!}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                {!! Form::label('hometown', 'Hometown:') !!}
-                {!! Form::text('hometown',null, array('class'=>'form-control')) !!}
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <h5>Activity</h5>
-            <div class="row">  
-                <label>Created: {{Auth::user()->created_at}}</label>
-            </div>
-            <div class="row">
-                <label>Last Updated: {{Auth::user()->created_at}}</label>
-            </div>
-            <div class="col-md">
-                
-            </div>
-        </div>
-        <div class="mt-5 text-center">
-        {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
-        {!! Form::close() !!}
-        </div>     
       </div>
-    </div>
-  </section>
+      <div class="col-md-8 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Your Profile</h4>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">Username</label>
+                    {!! Form::text('username',null, array('class'=>'form-control')) !!}
+                  </div>
+                  <div class="col-md-6"><label class="labels">Gender</label>
+                    <select name="gender" id="gender" class="form-control">
+                      <option value="">Select Gender</option>
+                      <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                      <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                      <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Other</option>
+                  </select>
+                  </div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Contact</label>
+                    {!! Form::text('contact',null, array('class'=>'form-control')) !!}
+                  </div>
+                  <div class="col-md-12"><label class="labels">Email</label>
+                    {!! Form::text('email',null, array('class'=>'form-control')) !!}
+                  </div>
+                  <div class="col-md-12"><label class="labels">Identification number</label>
+                    {!! Form::text('id_card',null, array('class'=>'form-control')) !!}
+                  </div>
+                  <div class="col-md-12"><label class="labels">Hometown</label>
+                    {!! Form::text('hometown',null, array('class'=>'form-control')) !!}
+                  </div>
+                  <div class="col-md-12"><label class="labels">Date of Birth</label>
+                    {!! Form::date('date_of_birth',null, array('class'=>'form-control')) !!}
+                  </div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-6"><label class="labels">Account created at</label>
+                    <input type="text" class="form-control" value="{{Auth::user()->created_at}}" readonly>
+                  </div>
+                  <div class="col-md-6"><label class="labels">Last updated</label>
+                    <input type="text" class="form-control" value="{{Auth::user()->updated_at}}" readonly>
+                  </div>
+              </div>
+              <div class="mt-5 text-center">
+              {!! Form::submit('Save Profile', array('class'=>'btn btn-primary profile-button')) !!}
+              {!! Form::close() !!}
+              <button class="btn btn-danger" type="button" href="{{route('logout')}}">Logout</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 @endif
 @endsection

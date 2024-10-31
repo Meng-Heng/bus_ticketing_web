@@ -10,11 +10,11 @@ use App\Http\Controllers\SeatController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\BusSeatDailyController;
-use App\Http\Controllers\FrontEnd\PaymentController;
 use App\Http\Controllers\FrontEnd\PayWayController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\FrontEnd\ProfileController;
 use App\Http\Controllers\FrontEnd\BusTicketingController;
+use App\Http\Controllers\FrontEnd\TicketController as FrontEndTicketController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -51,7 +51,7 @@ Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])-
 Route::get('/success', [PayWayController::class, 'paymentSuccess'])->name('checkout.success')->middleware('auth');
 
 // Your Ticket
-Route::get('/your-ticket', [TicketController::class, 'index'])->middleware('auth');
+Route::get('/your-ticket', [FrontEndTicketController::class, 'index'])->middleware('auth');
 
 // Profile
 Route::get('/profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');

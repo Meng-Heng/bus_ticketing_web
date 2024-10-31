@@ -39,10 +39,20 @@
           </a>
               @include('web.utils.partials.language_switcher')
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ticket-history">
+        <li class="nav-item nav-dropdown open">
+          @if(Auth::user())
+          <a id="your-ticket" class="nav-link">
             <i class="fas fa-qrcode nav-fa"></i>
           </a>
+          @else
+            <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+              <i class="fas fa-qrcode nav-fa"></i>
+            </a>  
+            <ul class="dropdown dropdown-menu">
+              <li><a href="{{route('register')}}">{{__("Register")}}</li>
+              <li><a href="{{route('login')}}">{{__("Login")}}</li>
+            </ul>
+          @endif
         </li>
         <li class="nav-item nav-dropdown open">
           @if(Auth::user())
@@ -54,6 +64,7 @@
           </a>  
           <ul class="dropdown dropdown-menu">
             <li><a href="{{route('register')}}">{{__("Register")}}</li>
+              <li><a href="{{route('login')}}">{{__("Login")}}</li>
           </ul>
           @endif
         </li>
