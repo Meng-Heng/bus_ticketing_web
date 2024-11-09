@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{ url('images/logo/logo.png') }}">
     <title>Login</title>
     <link
       rel="stylesheet"
@@ -20,7 +21,6 @@
           <h1>{{__('Sign In')}}</h1>
           <div class="social-icons">
             <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
           </div>
           <span>{{__("or use your email and password")}}</span>
           <input type="email" name="email" placeholder="Email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror"/>

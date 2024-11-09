@@ -31,3 +31,8 @@
 .labels {
     font-size: 11px
 }
+
+.logout, .edit-profile {
+    text-decoration: none;
+    color: white;
+}

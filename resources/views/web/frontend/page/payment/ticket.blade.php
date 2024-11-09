@@ -16,11 +16,11 @@
         <p class="mb-0 fw-bold h4 p-3">TOTAL: {{ $paywayData['currency'] }} {{ $paywayData['amount'] }}</p>
         <div class="row p-3">
             <div class="col">
-                <button class="btn text-white w-100" type="button" id="checkout_button" style="background-color: #005B7B">ABA (KhQR)</button>
+                <button class="btn text-white w-100" type="button" id="checkout_button" style="background-color: #005B7B">ABA</button>
             </div>
-            <div class="col">
-                <button class="btn text-white w-100" type="button" id="woori_checkout" style="background-color: #0067AC;">Woori (KhQR)</button>
-            </div>
+            {{-- <div class="col">
+                <button class="btn text-white w-100" type="button" id="woori_checkout" style="background-color: #0067AC;">Woori QR</button>
+            </div> --}}
         </div>
     </div>
 </div>

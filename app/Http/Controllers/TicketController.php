@@ -9,13 +9,13 @@ use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Payment;
 use App\Models\Bus_seat;
-use App\Models\Bus_seat_daily;
+use App\Models\Schedule;
 
 class TicketController extends Controller
 {
     public function index() {
-        $ticket = Ticket::all();
-        return view('web.backend.component.bus_seat_daily.view')->with('tbl_ticket', $ticket);
+        $ticket = Ticket::paginate(15);
+        return view('web.backend.component.ticket.view')->with('tbl_ticket', $ticket);
     }
 
     public function create() {
@@ -32,7 +32,7 @@ class TicketController extends Controller
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = [$bus_seat->id];
         }
-        foreach (Bus_seat_daily::all() as $schedule) {
+        foreach (Schedule::all() as $schedule) {
             $schedules[$schedule->id] = [$schedule->destination, $schedule->departure_date, $schedule->departure_date, $schedule->arrival_date, $schedule->arrival_time];
         }
 
@@ -80,7 +80,7 @@ class TicketController extends Controller
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = $bus_seat->id;
         }
-        foreach (Bus_seat_daily::all() as $schedule) {
+        foreach (Schedule::all() as $schedule) {
             $schedules[$schedule->id] = [$schedule->destination, $schedule->departure_date, $schedule->departure_date, $schedule->arrival_date, $schedule->arrival_time];
         }
         $ticket = Ticket::findOrFail($id);

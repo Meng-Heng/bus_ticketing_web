@@ -150,8 +150,11 @@ body {
         justify-content: center;
     }
 
+    .flex-container .img-fluid {
+        width: 20%;
+    }
+
     .img-fluid {
-        width: 20% !important;
         margin: 20px;
     }
 

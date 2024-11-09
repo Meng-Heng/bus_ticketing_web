@@ -128,8 +128,8 @@ class PayWayController extends Controller
         // Generate current date and time in your preferred format
         $currentDateTime = now()->format('Y-m-d H:i:s'); // Format as 'YYYYMMDDHHMMSS'
 
-        // Generate a random four-digit number
-        $randomNumber = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        // Generate a random four-digit number --> compatible with uft8_general_ci
+        $randomNumber = mb_convert_encoding(str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT), 'UTF-8');
 
         // Create the ticket number using your desired format
         $ticketId = 'TICKET:' . $currentDateTime . '-' . $randomNumber; 

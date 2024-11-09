@@ -148,10 +148,10 @@ class BusTicketingController extends Controller
             Session::put('departure_seat', $newMerged);
 
             // Search for the Schedule using the Inputed "%$destination%", "%$origin%", and "%$return_date%"
-            $result = Schedule::where('origin', 'like', "%$destination%")
+            $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$return_date%")
-            ->where('destination', 'like', "%$origin%")->paginate(10)->withQueryString();
-
+            ->where('destination', 'like', "%$destination%")->paginate(10)->withQueryString();
+            // dd($data, $result, $destination, "Origin $origin", $departureData);
             // Store Return Schedule to Session
             Session::put('return_data', $data);
 
@@ -258,7 +258,7 @@ class BusTicketingController extends Controller
         $phone = Auth::user()->contact;
         $amount = $totalAmount;
         $items = base64_encode(json_encode($item));
-        $payment_option = "";
+        $payment_option = 'cards';
         $return_url = base64_encode("/confirmation");
         $continue_success_url = '/success';
         $currency = $data['return_seat']['price']->currency;

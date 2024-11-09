@@ -32,6 +32,9 @@
     {{-- Profile Styles --}}
     @yield('profile-style')
 
+    {{-- Profile Styles --}}
+    @yield('review-style')
+
     <!-- Include Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <title>Bus4U</title>
@@ -75,7 +78,7 @@
         $('#your-ticket').on('click', async (e) => {
             e.preventDefault()
             axios.get('your-ticket').then(function(response) {
-              console.log(response.data)
+              console.log(response.data + " and " + response.data.ticket_id)
               let ticketData = response.data
               let ticketContent = 
               `
