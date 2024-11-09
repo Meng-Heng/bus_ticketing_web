@@ -6,14 +6,12 @@
 
 @section('content')
     <div class="container">  
-        @include('web.frontend.page.payment.section.ticket')
+        @include('web.frontend.page.payment.ticket')
 
-        @include('web.frontend.page.payment.section.checkout')
-
-        @include('web.frontend.page.payment.section.payment')
+        @include('web.frontend.page.payment.checkout')
+        
     </div>
-    
-    {{-- PayWay Scripts --}}
+    {{-- Checkout Scripts --}}
     <script src="https://checkout.payway.com.kh/plugins/checkout2-0.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -26,12 +24,13 @@
                 }
             });
         });
+
         $(document).ready(function () {
             $('#woori_checkout').on('click', ()=> {
                 let khqr_payment = `
-                    <div class="row">
-                        <img src="{{asset('images/background/payment/woori_usd.JPG')}}" alt="Woori KhQR" ">
-                        <img src="{{asset('images/background/payment/woori_khr.JPG')}}" alt="Woori KhQR" ">
+                    <div class="col">
+                        <img src="{{asset('images/background/payment/woori_usd.JPG')}}" alt="Woori KhQR" style="width:45%; margin:10px">
+                        <img src="{{asset('images/background/payment/woori_khr.JPG')}}" alt="Woori KhQR" style="width:45%; margin:10px">
                     </div>
                         `
                     $('#wooriModal .modal-body').html(
@@ -43,7 +42,7 @@
                 })
             });
     </script>
-    {{-- End PayWay Scripts --}}
+    {{-- End Checkout Scripts --}}
 
     {{-- Station Modal --}}
     @include('web.frontend.page.station.index')
@@ -64,10 +63,5 @@
         })
     </script>
     {{-- End Station Modal --}}
-    
-    <!-- Include Bakong KhQR -->
-    {{-- @vite(['resources/js/khqr/generateQR.js', 'resources/js/khqr/showQR.js']) --}}
-    <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
-    {{-- End Bakong KhQr --}}
 
 @endsection

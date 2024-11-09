@@ -69,13 +69,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	@endforeach
 
-@if ($result->hasPages())
-    <div class="pagination-wrapper center">
-         {{ $result->links() }}
-    </div>
-@endif
+	@if ($result->hasPages())
+		<div class="pagination-wrapper center">
+			{{ $result->links() }}
+		</div>
+	@endif
 
+@else
+	<p>No schedule<p>
 @endif

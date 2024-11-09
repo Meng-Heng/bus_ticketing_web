@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Seat;
 use App\Models\Bus_seat;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 
 class SeatController extends Controller

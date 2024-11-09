@@ -7,6 +7,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    
+    <link rel="icon" href="{{ url('images/logo/logo.png') }}">
     <link rel="stylesheet" href="{{asset('css/template/auth.css')}}" />
     <title>Authentication</title>
   </head>
@@ -19,7 +21,6 @@
           <h1>{{__("Create Account")}}</h1>
           <div class="social-icons">
             <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
           </div>
           <span>{{__("Your information")}}</span>
           <input type="text" name="username" placeholder="Username" value="{{old('username')}}" class="form-control @error('username') is-invalid @enderror"/>

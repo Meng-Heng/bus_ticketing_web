@@ -56,7 +56,7 @@
         </li>
         <li class="nav-item nav-dropdown open">
           @if(Auth::user())
-          <a id="openProfile" href="/profile/{{Auth::user()->id }}/edit" class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+          <a id="openProfile" href="{{url('profile/'.Auth::user()->id)}}" class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
             <i class="fas fa-user nav-fa"></i>
           @else 
           <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
@@ -76,7 +76,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="">{{__("Reviews")}}
+      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="/review">{{__("Reviews")}}
       </a>
     </div>
     <!-- Right elements -->
