@@ -16,10 +16,7 @@ class Review extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
-    public function payment(): BelongsTo {
-        return $this->belongsTo(Payment::class);
-    }
-    public function review() {
-        return $this->hasMany(Review::class);
+    public function payment(): HasOne {
+        return $this->hasOne(Payment::class);
     }
 }

@@ -3,22 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
-use App\Models\Seat_type;
+use App\Http\Controllers\FrontEnd\HomeFormController;
 use App\Http\Controllers\SeatTypeController;
-use App\Models\Bus;
 use App\Http\Controllers\BusController;
-use App\Models\Seat;
 use App\Http\Controllers\SeatController;
-use App\Models\Station;
 use App\Http\Controllers\StationController;
-use App\Models\Bus_seat;
 use App\Http\Controllers\BusSeatController;
-use App\Models\Price;
 use App\Http\Controllers\BusSeatDailyController;
-use App\Models\Bus_seat_daily;
+use App\Http\Controllers\FrontEnd\PayWayController;
 use App\Http\Controllers\TicketController;
-use App\Models\Ticket;
-use App\Http\Controllers\FrontEnd\ScheduleFormController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\FrontEnd\ProfileController;
+use App\Http\Controllers\FrontEnd\BusTicketingController;
+use App\Http\Controllers\FrontEnd\ReviewController;
+use App\Http\Controllers\FrontEnd\TicketController as FrontEndTicketController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StaffController;
+use App\Notifications\InvoicePaid;
+use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,51 +33,111 @@ use App\Http\Controllers\FrontEnd\ScheduleFormController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Home
+Route::get('/', [HomeFormController::class, 'index']);
+Route::get('register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [UserController::class, 'registerUser'])->name('register.user');
+Route::get('login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('login', [UserController::class, 'loginUser'])->name('login.user');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+// Bus schedule and seat
+Route::post('/available', [BusTicketingController::class, 'departureSchedule'])->name('schedule.departure');
+Route::get('/available/{schedule_id}', [BusTicketingController::class, 'departureSeat'])->name('departure.seat');
+Route::post('/return-date', [BusTicketingController::class, 'returnSchedule'])->name('schedule.return');
+Route::get('/return/{schedule_id}', [BusTicketingController::class, 'returnSeat'])->name('return.seat');
+
+// Ticket Confirmation
+Route::post('/confirmation', [BusTicketingController::class, 'ticketConfirmation'])->name('ticket')->middleware('auth');
+Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule');
+Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn');
+
+// Frontend After-Payment
+Route::get('/success', [PayWayController::class, 'paymentSuccess'])->name('checkout.success')->middleware('auth');
+
+// Your Ticket
+Route::get('/your-ticket', [FrontEndTicketController::class, 'index'])->middleware('auth');
+
+// Profile
+Route::get('profile/{user_id}', [ProfileController::class, 'index'])->name('profile.index')->middleware('auth');
+Route::get('profile/{user_id}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::put('profile/{user_id}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+// Review
+Route::get('review', [ReviewController::class, 'index'])->name('review')->middleware('auth');
+Route::post('review', [ReviewController::class, 'store'])->name('review.store')->middleware('auth');
+
+// Telegram
+// Route::get('/notify-invoice/{invoice}', [TelegramController::class, 'sendInvoiceNotification'])->name('woori.payment')->middleware('auth');
+Route::post('paid', function() {
+    Notification::route('telegram', env('TELEGRAM_CHAT_ID'))
+    ->notify(new InvoicePaid);
+});
+
+Route::get('/_t', function () {
+    // Response is an array of updates.
+    $updates = \NotificationChannels\Telegram\TelegramUpdates::create()
+        // (Optional). Get's the latest update. NOTE: All previous updates will be forgotten using this method.
+        // ->latest()
+
+        // (Optional). Limit to 2 updates (By default, updates starting with the earliest unconfirmed update are returned).
+        ->limit(2)
+
+        // (Optional). Add more params to the request.
+        ->options([
+            'timeout' => 0,
+        ])
+        ->get();
+
+    dd($updates);
+})->name('test');
+
+// Fallback 404 Not Found
+// Route::fallback(function () {
+//     return response()
+//     ->view('web.utils.error.404', [], 404);
 // });
 
-// Route::get('/', function () {
-//     return view('web.frontend.section.home.index')->name;
-// });
-
-Route::get('/', [ScheduleFormController::class, 'index']);
-Route::get('/available', [ScheduleFormController::class, 'find_time']);
-
-        /*
+/*
             Using Google Translate
         */
 
-        // Route::get('/fr', function() {
-        //     return GoogleTranslate::trans('Bye', 'es');
-        // });
+// Route::get('/fr', function() {
+//     return GoogleTranslate::trans('Bye', 'es');
+// });
 
-        // ------------------------
+// ------------------------
 
-        /*
+/*
             Simplified request for Locale
         */
-        // Route::get('/language/{locale?}', function ($locale = null) {
-        //     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
-        //         app()->setLocale($locale);
-        //     }
-            
-        //     return view('welcome');
-        // });
+// Route::get('/language/{locale?}', function ($locale = null) {
+//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+//         app()->setLocale($locale);
+//     }
 
-        // ---------------------------------
+//     return view('welcome');
+// });
+
+// ---------------------------------
 
 Route::get('/language/{locale}', function ($locale) {
-   app()->setLocale($locale);
-   session()->put('locale', $locale);
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
 
-   return redirect()->back();
+    return redirect()->back();
 });
 
-Route::get('backend-home', function() {
-    return view('web.backend.layout.admin');
-});
+// Admin
 
+// Route::middleware(['auth', 'permission:admin,tor'])->group(function () {
+//     Route::get('/admin/backend-home', function() {
+//         return view('web.backend.layout.admin');
+//     });
+//     Route::get('/admin/users', [BusController::class, 'index']);
+//     // Add other admin routes here
+// });
+Route::get('/admin', [TicketController::class, 'index']);
 /* 
     Bus View
     Bus Create
@@ -90,21 +152,6 @@ Route::get('/bus/{id}/edit', [BusController::class, 'edit'])->name('bus.edit');
 Route::put('/bus/{id}', [BusController::class, 'update'])->name('bus.update');
 Route::delete('/bus/{id}', [BusController::class, 'destroy'])->name('bus.delete');
 Route::get('/bus/{id}', [BusController::class, 'show'])->name('bus.show');
-
-/* 
-    Seat type view
-    Seat type Create
-    Seat type Update
-    Seat type Delete
-    Seat type Details
-*/
-Route::get('/seat-type', [SeatTypeController::class, 'index']);
-Route::get('/seat-type/create', [SeatTypeController::class, 'create']);
-Route::post('/seat-type', [SeatTypeController::class, 'store']);
-Route::get('/seat-type/{id}/edit', [SeatTypeController::class, 'edit'])->name('seat_type.edit');
-Route::put('/seat-type/{id}', [SeatTypeController::class, 'update'])->name('seat_type.update');
-Route::delete('/seat-type/{id}', [SeatTypeController::class, 'destroy'])->name('seat_type.delete');
-Route::get('/seat-type/{id}', [SeatTypeController::class, 'show'])->name('seat_type.show');
 
 /* 
     Seat view
@@ -122,21 +169,6 @@ Route::delete('/seat/{id}', [SeatController::class, 'destroy'])->name('seat.dele
 Route::get('/seat/{id}', [SeatController::class, 'show'])->name('seat.detail');
 
 /*
-    Station view
-    Station Create
-    Station Update
-    Station Delete
-    Station Details
-*/
-Route::get('/station', [StationController::class, 'index'])->name('station.list');
-Route::get('/station/create', [StationController::class, 'create'])->name('station.create');
-Route::post('/station', [StationController::class, 'store'])->name('station.store');
-Route::get('/station/{id}/edit', [StationController::class, 'edit'])->name('station.edit');
-Route::put('/station/{id}', [StationController::class, 'update'])->name('station.update');
-Route::delete('/station/{id}', [StationController::class, 'destroy'])->name('station.delete');
-Route::get('/station/{id}', [StationController::class, 'show'])->name('station.view');
-
-/*
     Bus Seat 
 */
 Route::get('/bus-seat', [BusSeatController::class, 'index'])->name('bus_seat.list');
@@ -148,7 +180,7 @@ Route::delete('/bus-seat/{id}', [BusSeatController::class, 'destroy'])->name('bu
 Route::get('/bus-seat/{id}', [BusSeatController::class, 'show'])->name('bus_seat.view');
 
 /*
-    Bus Seat Daily 
+    Bus schedule
 */
 Route::get('/schedule', [BusSeatDailyController::class, 'index'])->name('schedule.list');
 Route::get('/schedule/create', [BusSeatDailyController::class, 'create'])->name('schedule.create');
@@ -161,15 +193,34 @@ Route::get('/schedule/{id}', [BusSeatDailyController::class, 'show'])->name('sch
 /*
     Ticket
 */
-Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.list');
-Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
-Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
-Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket.edit');
-Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
-Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
-Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+Route::prefix('dashboard/')->group(function () { 
+    Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.list');
+    Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
+    Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
+    Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket.edit');
+    Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
+    Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
+    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+});
 
+/*
+    Payment
+*/
 
-Auth::routes();
+Route::prefix('dashboard/')->group(function () {
+    Route::get('payment', [PaymentController::class, 'index'])->name('payment.list');
+    Route::get('payment/{id}/edit', [PaymentController::class, 'edit'])->name('payment.edit');
+    Route::put('payment/{id}', [PaymentController::class, 'update'])->name('payment.update');
+    Route::get('payment/{id}', [PaymentController::class, 'show'])->name('payment.view');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*
+    Staff
+*/
+Route::get('/staff', [StaffController::class, 'index'])->name('staff.list');
+Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
+Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
+Route::get('/staff/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
+Route::put('/staff/{id}', [StaffController::class, 'update'])->name('staff.update');
+Route::delete('/staff/{id}', [StaffController::class, 'destroy'])->name('staff.delete');
+Route::get('/staff/{id}', [StaffController::class, 'show'])->name('staff.view');

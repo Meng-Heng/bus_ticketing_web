@@ -16,7 +16,7 @@ class Bus extends Model
         'is_active'
     ];
 
-    public function bus() {
+    public function seat() {
         return $this->hasMany(Bus_seat::class);
     }
 

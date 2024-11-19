@@ -12,7 +12,7 @@ use App\Models\Station;
 class BusSeatDailyController extends Controller
 {
     public function index() {
-        $daily = Bus_seat_daily::all();
+        $daily = Bus_seat::all();
         return view('web.backend.component.bus_seat_daily.view')->with('tbl_bus_seat_daily', $daily);
     }
 
@@ -21,9 +21,6 @@ class BusSeatDailyController extends Controller
         $stations = array();
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = $bus_seat->id;
-        }
-        foreach (Station::all() as $station) {
-            $stations[$station->id] = $station->name;
         }
 
         return view('bus_seat_daily.create', compact('bus_seats', 'stations'));
@@ -40,7 +37,7 @@ class BusSeatDailyController extends Controller
             'is_sold' => 'required|max:1',
             'station_id'=> 'required|exists:tbl_station,id',
         ]);
-        $schedule = new Bus_seat_daily();
+        $schedule = new Bus_seat();
         $schedule->bus_seat_id = $request->bus_seat_id;
         $schedule->destination = $request->destination;
         $schedule->departure_date = $request->departure_date;
@@ -60,10 +57,7 @@ class BusSeatDailyController extends Controller
         foreach (Bus_seat::all() as $bus_seat) {
             $bus_seats[$bus_seat->id] = $bus_seat->id;
         }
-        foreach (Station::all() as $station) {
-            $stations[$station->id] = $station->name;
-        }
-        $schedule = Bus_seat_daily::findorFail($id);
+        $schedule = Bus_seat::findorFail($id);
         return view('bus_seat_daily.edit', compact('bus_seats','stations'))->with('tbl_bus_seat_daily', $schedule);
     }
 
@@ -78,7 +72,7 @@ class BusSeatDailyController extends Controller
             'is_sold' => 'required|max:1',
             'station_id'=> 'required|exists:tbl_station,id',
         ]);
-        $schedule = Bus_seat_daily::findOrFail($id);
+        $schedule = Bus_seat::findOrFail($id);
         $schedule->bus_seat_id = $request->bus_seat_id;
         $schedule->destination = $request->destination;
         $schedule->departure_date = $request->departure_date;
@@ -93,12 +87,12 @@ class BusSeatDailyController extends Controller
     }
 
     public function show($id) {
-        $schedule = Bus_seat_daily::findOrFail($id);
+        $schedule = Bus_seat::findOrFail($id);
         return view('bus_seat_daily.detail')->with('tbl_bus_seat_daily', $schedule);
     }
 
     public function destroy($id) {
-        $schedule = Bus_seat_daily::findOrFail($id);
+        $schedule = Bus_seat::findOrFail($id);
         $schedule->delete();
         Session::flash('schedule_deleted', 'Deleted Successfully!');
         return redirect('schedule');

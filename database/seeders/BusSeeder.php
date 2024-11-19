@@ -13,6 +13,6 @@ class BusSeeder extends Seeder
      */
     public function run(): void
     {
-        Bus::factory()->count(10)->create();
+        Bus::factory()->count(5)->create();
     }
 }

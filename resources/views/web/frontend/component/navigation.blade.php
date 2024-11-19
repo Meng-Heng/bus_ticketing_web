@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -40,15 +39,34 @@
           </a>
               @include('web.utils.partials.language_switcher')
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ticket-history">
+        <li class="nav-item nav-dropdown open">
+          @if(Auth::user())
+          <a id="your-ticket" class="nav-link">
             <i class="fas fa-qrcode nav-fa"></i>
           </a>
+          @else
+            <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+              <i class="fas fa-qrcode nav-fa"></i>
+            </a>  
+            <ul class="dropdown dropdown-menu">
+              <li><a href="{{route('register')}}">{{__("Register")}}</li>
+              <li><a href="{{route('login')}}">{{__("Login")}}</li>
+            </ul>
+          @endif
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">
+        <li class="nav-item nav-dropdown open">
+          @if(Auth::user())
+          <a id="openProfile" href="{{url('profile/'.Auth::user()->id)}}" class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
             <i class="fas fa-user nav-fa"></i>
-          </a>
+          @else 
+          <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
+            <i class="fas fa-user nav-fa"></i>
+          </a>  
+          <ul class="dropdown dropdown-menu">
+            <li><a href="{{route('register')}}">{{__("Register")}}</li>
+              <li><a href="{{route('login')}}">{{__("Login")}}</li>
+          </ul>
+          @endif
         </li>
       </ul>
       <!-- Navigation menu -->
@@ -58,11 +76,10 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Contact -->
-      <a class="nav-contact mx-4" id="contactModal" data-target="demoModal" data-toggle="modal" href="">{{__("Contact")}}
+      <a class="nav-contact mx-4" id="contactModal" data-target="contactModal" data-toggle="modal" href="/review">{{__("Reviews")}}
       </a>
     </div>
     <!-- Right elements -->
   </div>
   <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->

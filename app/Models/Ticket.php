@@ -16,7 +16,7 @@ class Ticket extends Model
         return $this->belongsTo(Bus_seat::class);
     }
     public function schedule() {
-        return $this->belongsTo(Schedule::class);
+        return $this->belongsTo(Schedule::class, 'schedule');
     }
     public function payment() {
         return $this->belongsTo(Payment::class);

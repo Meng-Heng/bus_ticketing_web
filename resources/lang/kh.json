@@ -1,5 +1,49 @@
 {
-    "Contact": "ទំនាក់ទំនង",
+    "Web App for Bus Ticketing": "ប្រព័ន្ធគ្រប់គ្រងការលក់សំបុត្រឡានក្រុងតាមគេហទំព័រ",
+
+    "Reviews": "មតិយោបល់",
+    
     "GET YOUR TICKET ONLINE": "ទិញសំបុត្រ និងធ្វើដំណើរ",
-    "EASY AND SAFELY": "ដោយទំនុកចិត្ត"
+    "EASY AND SAFELY": "ដោយទំនុកចិត្ត",
+
+    "Register" : "ចុះឈ្មោះ",
+    "Login" : "ចូល",
+
+    "Where are you heading?" : "តើអ្នកកំពុងធ្វើដំណើរទៅណា?",
+    "From": "ចេញពី",
+    "To": "ទៅដល់",
+    "Depart date": "ថ្ងៃខែចេញដំណើរ",
+    "Return date": "ថ្ងៃខែវិលត្រលប់",
+    "City or Province": "ទីក្រុង ឬខេត្ត",
+    "Find available time" : "ស្វែងរកពេលវេលាធ្វើដំណើរ",
+
+    "Phnom Penh" : "ភ្នំពេញ",
+    "Siem Reap" : "សៀមរាប",
+
+    "POPULAR ATTRACTION" : "គោលដៅពេញនិយម",
+
+    "LATEST DEALS" : "ការផ្តល់ជូនថ្មី", 
+    "New and High maintenance!": " ការថែទាំល្អ! ",
+    "Family-size package": " កញ្ចប់ទំហំគ្រួសារ",
+    "Travel across Cambodia with your family members of 6 with comfortable seats, and trustworthy driver. This is a trail offer for December of 2024 ONLY!": " ធ្វើ​ដំណើរ​ទូទាំង​ប្រទេស​កម្ពុជា​ជាមួយ​សមាជិក​គ្រួសារ​របស់​អ្នក​ចំនួន 6 នាក់​ជាមួយ​កៅអី​ដ៏​ផាសុខភាព និង​ជាមួយ​អ្នក​បើក​បរ​ដែល​គួរ​ឱ្យ​ទុក​ចិត្ត។ ​​ការ​ផ្ដល់​ជូន​នេះគឺ​សម្រាប់​តែ​ខែ ធ្នូ ឆ្នាំ 2024 ប៉ុណ្ណោះ!" ,
+    "Get this offer now!":" ទទួលយកការផ្តល់ជូនឥឡូវនេះ!",
+    "Sufficient Storage": " ការផ្ទុកអីវ៉ាន់គ្រប់គ្រាន់ ",
+    "Neatly packed and spacious": "កន្លែងផ្ទុកឥវ៉ាន់ស្អាត និងទូលាយ ",
+    "Put all your trust in us to care for your luggage as you travel comfortably to your destination. We don't ruffle your luggage or store them in an unsanitized space.":" ទុកចិត្តលើយើងខ្ញុំក្នុងការថែទាំអីវ៉ាន់របស់លោកអ្នក, លោកអ្នកអាចធ្វើដំណើរបានដោយស្ងប់ចិត្ត។ សូមជៀទុកចិត្តលើអនាម័យ និងការទុកដាក់ពីខាងយើងខ្ញុំ។",
+    "Midnight with us!": "ធ្វើដំណើរឆ្លងរាត្រី!",
+    "Spend a full night":"ចំណាយពេលពេញមួយយប់ ",
+    "Save time by travelling during the night, arrive at your destination at dawn!": "ធ្វើដំណើរពេលអធ្រាត្រ, ដល់គោលដៅពេលព្រលឹម!",
+    "Get a Midnight bus ticket!" : "ទិញសំបុត្រធ្វើដំណើរឆ្លងរាត្រីឥឡូវនេះ!",
+
+    "SERVICE AND EXPECTATION": "សេវាកម្ម និងការរំពឹងទុក",
+    "Diverse Communities": "សហគមន៍ចម្រុះ ",
+    "Familiar with Khmer language or not, we know how to make your trip smooth from the moment you buy a ticket to arriving at your destination. Many locals and foreigners show appreciation and positive feedback after using our service.": " មិនសំខាន់ថាអាចប្រាស្រ័យទាក់ទងគ្នាជាភាសាខ្មែរឬអត់, យើងខ្ញុំឱ្យការធ្វើដំណើររបស់លោកអ្នកប្រកបទៅដោយរលូនចាប់ពីពេលដែលទិញសំបុត្ររហូតដល់គោលដៅ។ ប្រជាជនក្នុងស្រុក និងបរទេសជាច្រើនបង្ហាញការពេញចិត្ត និងមតិវិជ្ជមានបន្ទាប់ពីប្រើប្រាស់សេវាកម្មរបស់យើងខ្ញុំ។",
+    "Snack 24/7": "អាហារសម្រន់ 24/7 ",
+    "Grab your snack or meal onboard with you! If not, buy from our station. We allow our passengers to bring food with them, as long as they remember to clean up after themselves. Make sure that your food is already packed and ready to eat.": " លោកអ្នកយកអាហារឡើងឡានក្រុងបាន! ស្ថានីយខាងយើងខ្ញុំក៏មានលក់ម្ហូបអាហារសម្រាប់ធ្វើដំណើរផងដែរ។ ខាងយើងខ្ញុំអនុញ្ញាតឱ្យអ្នកដំណើរយកអាហារដែលខ្ចប់រួចមកជាមួយ ដោយទំនួលខុសត្រូវលើសម្រាមរៀងៗខ្លួន។ ",
+    "Amenities": "បរិក្ខារ ",
+    "We care about your health so if you forgot to bring your water, we provide a 500ml bottle of water. That is the most we can give, but feel free to grab some water bottles if we stop at a gas station or a local market.": "យើងខ្ញុំយកចិត្តទុកដាក់ចំពោះសុខភាពរបស់លោកអ្នក, ប្រសិនបើលោកអ្នកភ្លេចយកទឹកមកជាមួយ នោះយើងផ្តល់ជូនដបទឹកចំណុះ 500ml ។ លោកអ្នកអាចទិញភេសជ្ជៈបន្ថែម រាល់ពេលឡានក្រុងឈប់នៅស្ថានីយ៍ប្រេងឥន្ធនៈ ឬផ្សារក្នុងស្រុកណាមួយនៅពេលធ្វើដំណើរ។ ",
+    
+    "We'll alert you for discount information": "យើងនឹងជូនដំណឹងដល់អ្នកសម្រាប់ការបញ្ចុះតម្លៃ",
+    "Your Email": "អ៊ីមែល​របស់​អ្នក",
+    "Subscribe Now": "ចុះឈ្មោះឥឡូវនេះ"
 }

@@ -4,59 +4,139 @@
 
 @media (min-width: 65rem) {
     /* min 1025 px */
-div .card {
-    align-items: center;
-}
-
-.card-schedule {
-    margin: 50px;
-    padding: 20px;
-    background-color: #f7f3f3 !important;
-    font-size: 20px;
-    border-radius: 15px;
-    font-weight: bold;
-}
-
-.card-schedule-date {
-    display: flex;
-}
-
-.schedule-arrow-right {
-    margin: auto;
-}
-.container {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.schedule-row {
-    margin: 20px;
-    padding: 50px;
-    border-bottom: 2px solid #C7EEFF;
-    border-radius: 15px;
-    background-color: #f7f3f3;
-}
-
-.schedule-status {
-    
+    .schedule-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 2px solid #1D242B;
+        border-radius: 15px;
+        background-color: white;
     }
 
-.origin-time, .destination-time {
-    font-weight: bold;
-    font-size: 20px;
-}
+    .schedule-row div {
+        margin: 10px;
+    }
 
-.ticket-price {
-    font-weight: bold;
-    font-size: 20px;
-    color: darkred;
-}
+    .top-schedule {
+        border-radius: 0px;
+    }
 
-.buy-ticket {
-    width: 50%;
-    padding: 200px;
-}
+    .schedule-arrow-right {
+        height: 20px;
+        width: 20px;
+    }
 
+    #scheduleEdit:hover, #scheduleSearch:hover {
+        cursor: pointer;
+        color: red;
+    }
+
+    #scheduleSearch {
+        visibility: hidden;
+    }
+
+    .line {
+        height: 100px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .origin-time, .destination-time {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .daily-schedule {
+        margin: 20px;
+        border: 1px solid white;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
+
+    .schedule-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .schedule-info:nth-last-child() {
+        position: relative;
+        align-items: flex-end;
+    }
+
+    .schedule-info a {
+        padding: 10px;
+        text-decoration: none;
+        color: gray;
+    }
+
+    .schedule-info div {
+        margin: 15px;
+    }
+
+    .schedule-info svg {
+        color: gray;
+    }
+
+    .schedule-logo {
+        align-items: end;
+    }
+
+    .container {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ticket-price {
+        font-weight: bold;
+        font-size: 20px;
+        color: #88C540;
+    }
+
+    .buy-ticket {
+        width: 50%;
+        padding: 200px;
+    }
+
+    button.scheduleBtn {
+        background-color: #88C540;
+        color: white;
+    }
+
+    button.scheduleBtn:hover {
+        background-color: #198754;
+        color: white;
+    }
+
+    .schedule-time {
+        color: #88C540;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 0 !important;
+    }
+
+    #stationBtn, #station_btn, #tripBtn {
+        border: none;
+        background-color: transparent;
+        color: black;
+    }
+
+    #stationBtn:hover, #station_btn:hover, #tripBtn:hover {
+        color: #88C540;
+    }
+
+    .amenities {
+        display: flex;
+        flex-direction: wrap;
+    }
+
+    .amenities div {
+        margin: 10px;
+    }
 }
 
 @media (min-width: 50rem) and (max-width: 64rem)

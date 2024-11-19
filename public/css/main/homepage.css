@@ -3,14 +3,25 @@
 */
 
 body {
-    font-family: Roboto;
-    background-color: white;
+    font-family: Forum, Khmer, Chinese !important;
+    background-color: #FAFAFA !important;
 }
 
 @font-face {
-    font-family: Roboto;
-    src: url(../../font/Roboto-Bold.ttf);
+    font-family: Forum;
+    src: url(../../font/Forum-Regular.ttf);
 }
+
+@font-face {
+    font-family: Khmer;
+    src: url(../../font/Khmer-Regular.ttf);
+} 
+
+@font-face {
+    font-family: Chinese;
+    src: url(../../font/XiaoWei-Regular.ttf);
+} 
+
 
 @media (min-width: 65rem)
 /* min 1025 px */
@@ -75,7 +86,6 @@ body {
       
       label {
         width: 100px;
-        text-align: right;
         margin-right: 5px;
         margin-left: 5px;
       }
@@ -92,7 +102,7 @@ body {
       
       button[type="submit"] {
         padding: 10px 20px;
-        background-color: #0077C0;
+        background-color: #88C540;
         border: none;
         cursor: pointer;
       }
@@ -140,8 +150,11 @@ body {
         justify-content: center;
     }
 
+    .flex-container .img-fluid {
+        width: 20%;
+    }
+
     .img-fluid {
-        width: 20% !important;
         margin: 20px;
     }
 
@@ -153,6 +166,14 @@ body {
         width: 50%;
     }
 
+    /* Service and Feedback */
+    .card-title {
+        font-size: 30px;
+    }
+
+    .card-text {
+        font-size: 18px;
+    }
     /* Newsletter */
     .subscription {
         background-color: #FAFAFA;
@@ -166,7 +187,7 @@ body {
 
     h3,
     .h3 {
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .subscription.bg-white .form-control {
@@ -195,7 +216,7 @@ body {
     }
 
     .btn {
-        font-size: 16px;
+        font-size: 10px;
         font-family: "Poppins", sans-serif;
         text-transform: capitalize;
         padding: 18px 45px;

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(StorageSeeder::class);
 
         // Bus Seeder
-        // $this->call(BusSeeder::class);
+        $this->call(BusSeeder::class);
 
         // Bus Seat Seeder
         // $this->call(SeatSeeder::class);
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(StaffSeeder::class);
 
         // Ticket Seeder
-        $this->call(TicketSeeder::class);
+        // $this->call(TicketSeeder::class);
 
         // Payment Seeder
         // $this->call(PaymentSeeder::class);

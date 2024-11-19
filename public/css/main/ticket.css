@@ -1,0 +1,234 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*--------------------
+Boarding Pass
+--------------------*/
+.boarding-pass {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: fit-content;
+  background: #fff;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.boarding-pass small {
+  display: block;
+  font-size: 14px;
+  color: #A2A9B3;
+  margin-bottom: 2px;
+}
+
+.boarding-pass strong {
+  font-size: 16px;
+  display: block;
+}
+
+.ticket-checkout {
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-checkout div {
+  width: 100%;
+}
+
+/*--------------------
+Header
+--------------------*/
+.boarding-pass header {
+  background: #1D242B;
+  padding: 12px 20px;
+  height: fit-content;
+}
+
+.boarding-pass .logo {
+  border-radius: 5px;
+}
+
+.boarding-pass .flight {
+  float: center;
+  color: #fff;
+  text-align: center;
+}
+
+.flight .logo {
+  float: left;
+}
+
+.flight .bus {
+  text-align: right;
+}
+
+.boarding-pass .flight small {
+  font-size: 20px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.boarding-pass .flight strong {
+  font-size: 20px;
+}
+
+/*--------------------
+Cities
+--------------------*/
+.boarding-pass .cities {
+  position: relative;
+  clear: both;
+}
+
+.boarding-pass .city {
+  padding: 20px 18px;
+  float: left;
+}
+
+.boarding-pass .city:nth-child(2) {
+  float: right;
+}
+
+.boarding-pass .city strong {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.boarding-pass .city small {
+  margin-bottom: 0px;
+  margin-left: 3px;
+}
+
+.boarding-pass .airplane {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  top: 57%;
+  left: 30%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  40% {
+    left: 50%;
+    opacity: 1;
+  }
+  100% {
+    left: 70%;
+    opacity: 0;
+  }
+}
+
+/*--------------------
+Infos
+--------------------*/
+.boarding-pass .infos {
+  display: flex;
+  border-top: 1px solid #1D242B;
+}
+
+.boarding-pass .infos .places,
+.boarding-pass .infos .times {
+  width: 50%;
+  padding: 10px 0;
+  clear: both;
+}
+
+.boarding-pass .infos .times strong {
+  transform: scale(0.9);
+  transform-origin: left bottom;
+}
+
+.boarding-pass .infos .places {
+  background: #ECECEC;
+  border-right: 1px solid #1D242B;
+}
+
+.boarding-pass .infos .places small {
+  color: #97A1AD;
+  font-size: 14px;
+}
+
+.boarding-pass .infos .places strong {
+  color: #88C540;
+  font-size: 16px;
+}
+
+strong button {
+  border: none;
+  background-color: transparent;
+}
+
+.boarding-pass .infos .box {
+  padding: 10px 20px 10px;
+  width: 50%;
+  float: left;
+}
+
+.boarding-pass .infos .box small {
+  font-size: 14px;
+}
+
+/*--------------------
+Strap
+--------------------*/
+.boarding-pass .strap {
+  clear: both;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid #1D242B;
+}
+
+.strap .passenger{
+  display: grid;
+  column-gap: 10px;
+}
+
+.item-1 {
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.boarding-pass .strap .box {
+  padding: 20px 20px 20px 20px;
+}
+
+.boarding-pass .strap .box div {
+  margin-bottom: 15px;
+}
+
+.boarding-pass .strap .box div small {
+  font-size: 14px;
+}
+
+.boarding-pass .strap .box div strong {
+  font-size: 16px;
+}
+
+.boarding-pass .strap sup {
+  font-size: 8px;
+  position: relative;
+  top: -5px;
+}
+
+.box-2 {
+  position: relative;
+  top: 100px;
+}
+
+.qrcode {
+  width: 30%;
+  display: none;
+}

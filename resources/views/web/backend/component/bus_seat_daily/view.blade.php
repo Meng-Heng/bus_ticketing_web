@@ -36,11 +36,11 @@
                                 <div><a href="{{url('/schedule/'.$schedule->id)}}">{{ $schedule->bus_seat_id }}</a></div>
                                 <!-- referring to the function in the model? -->
                                 <div>{{ $schedule->bus_seat->bus->bus_plate}}</div>
-                                <div>{{ $schedule->bus_seat->seat->seat_number}}</div>
+                                {{-- <div>{{ $schedule->bus_seat->seat->seat_number}}</div> --}}
                                 <div>${{ $schedule->bus_seat->price->price}}</div>
                             </td>
                             <td>
-                                <div>{{ $schedule->destination }}</div>
+                                <div>{{ $schedule->schedule->destination }}</div>
                             </td>
                             <td>
                                 <div>{{ $schedule->departure_date }}</div>
@@ -60,10 +60,6 @@
                                         @elseif ($schedule->is_active == 1)
                                         <span style="color:red">Sold out!</span>
                                 @endif
-                            </td>
-                            <td>
-                                <div>{{ $schedule->station->name }}</div>
-                                <div>{{ $schedule->station->city}}</div>
                             </td>
                             <td>
                                 <a class="btn btn-primary" href="{!! url('schedule/' . $schedule->id . '/edit') !!}">Edit</a>
