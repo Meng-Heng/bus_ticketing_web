@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
+use App\Models\Schedule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -34,20 +35,10 @@ class TicketController extends Controller
             });
         })
         ->get();
-
         if(empty($ticket_schedule)) {
-            return Session::flash('Not found', 'Ticket Not Found! Please contact us on our Social Media');
+            return Session::flash('not_found', 'Ticket Not Found! Please contact us on our Social Media');
         }
 
         return response()->json($ticket_schedule);
-    }
-
-    public function convert_to_utf8($data) {
-        if (is_array($data)) {
-            return array_map('convert_to_utf8', $data);
-        } elseif (is_string($data)) {
-            return mb_convert_encoding($data, 'UTF-8', 'UTF-8');
-        }
-        return $data;
     }
 }

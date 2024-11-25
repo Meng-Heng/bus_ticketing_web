@@ -34,5 +34,9 @@ return [
     'telegram-bot-api' => [
         'token' => env('TELEGRAM_BOT_TOKEN', '7232510110:AAGxGis2PHIyUxbSv3awWg2iyGjlyXFLxS8')
     ],
+    'recaptcha' => [
+        'key' => env('RECAPTCHA_SITE_KEY'),
+        'secret' => env('RECAPTCHA_SITE_SECRET')
+    ]
 
 ];

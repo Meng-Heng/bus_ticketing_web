@@ -78,15 +78,33 @@
         $('#your-ticket').on('click', async (e) => {
             e.preventDefault()
             axios.get('your-ticket').then(function(response) {
-              console.log(response.data + " and " + response.data.ticket_id)
-              let ticketData = response.data
-              let ticketContent = 
-              `
-              <div class="ticket-box">
-              `
-              for(let i=0; i<ticketData.length; i++) {
-                ticketContent += `
-                  <div class="ticket">
+              console.log(response.data + " and " + response.data.id)
+              let ticketData = response.data;
+
+              // Foreach ticketData to get ticket-departure-date as a set
+              let uniqueDates = [...new Set(ticketData.map(ticket => ticket.schedule.departure_date))]; 
+              console.log(uniqueDates)
+              let selectedDate = 'Show All'; // Set default selected date
+              
+              // Generate the dropdown dynamically
+              function generateDropdown() {
+                let ticketSelect = `<table class="table"><tr><td>Departure Date</td><td>
+                <select id="departure-date-filter">`;
+                ticketSelect += `<option value="Show All" ${selectedDate === "Show All" ? 'selected' : ''}>Show All</option>`;
+                uniqueDates.forEach(date => {
+                  ticketSelect += `<option value="${date}" ${date === selectedDate ? 'selected' : ''}>${date}</option>`;
+                }); // Get Unique Dates by foreach (date)
+                ticketSelect += `</select></td></tr></table>`;
+                return ticketSelect;
+              }
+              
+              // Generate Tickets by getting the Filtered Date (Selected Date)
+              function renderTickets(filteredData) {
+                let ticketContent = `<div><button id="download-receipt-image" class="btn btn-primary">Download Receipt</button></div><div class="ticket-box">`;
+                filteredData.forEach((ticket, index) => {
+                  ticketContent += `
+                    <h2>${index + 1}</h2> 
+                    <div class="ticket">
                       <div class="ticket-stub-gap"></div>
                       <div class="ticket-stub">
                           <h3>Ticket</h3>
@@ -104,37 +122,37 @@
                               </svg>
                           </div>
                           <div class="ticket-body__title">
-                            <h1 class="alfa">${ticketData[i].id}</h1>
-                              <h1 class="alfa">${ticketData[i].ticket_id}</h1>
-                              <h2>${ticketData[i].is_issued}</h2>
-                              <h3>Bus Plate Number: ${ticketData[i].bus_seat.bus.bus_plate}</h3>
-                              <h3>Seat Number: ${ticketData[i].bus_seat.seat_number}</h3>
+                            <h1 class="alfa">${ticket.id}</h1>
+                              <h1 class="alfa">${ticket.ticket_id}</h1>
+                              <h2>${ticket.is_issued}</h2>
+                              <h3>Bus Plate Number: ${ticket.bus_seat.bus.bus_plate}</h3>
+                              <h3>Seat Number: ${ticket.bus_seat.seat_number}</h3>
                           </div>
                           <div class="ticket-body__events">
                               <ul>
-                                <li>Name: ${ticketData[i].payment.user.username}</li>  
-                                 <li>Contact: ${ticketData[i].payment.user.contact}</li> 
-                                <li>Fare: ${ticketData[i].price.currency} ${ticketData[i].price.price}</li>
-                                  <li>Storage: ${ticketData[i].storage.luggage} ${ticketData[i].storage.measurement}</li>
-                                  <li>Paid on: ${ticketData[i].payment.payment_datetime} via ${ticketData[i].payment.payment_method}</li>
+                                <li>Name: ${ticket.payment.user.username}</li>  
+                                 <li>Contact: ${ticket.payment.user.contact}</li> 
+                                <li>Fare: ${ticket.price.currency} ${ticket.price.price}</li>
+                                  <li>Storage: ${ticket.storage.luggage} ${ticket.storage.measurement}</li>
+                                  <li>Paid on: ${ticket.payment.payment_datetime} via ${ticket.payment.payment_method}</li>
                                   <li></li>
                               </ul>
                           </div>
                           <div class="ticket-body__date">
                               <div class="box-date">
                                   <p>Departure time</p>
-                                  <h2 class="alfa">${ticketData[i].schedule.departure_date}</h2>
-                                  <h3>${ticketData[i].schedule.departure_time}</h3>
+                                  <h2 class="alfa">${ticket.schedule.departure_date}</h2>
+                                  <h3>${ticket.schedule.departure_time}</h3>
                               </div>
                               <div class="box-venue">
-                                  <h3>${ticketData[i].schedule.origin}</h3>
+                                  <h3>${ticket.schedule.origin}</h3>
                                   <h2 class="alfa">To</h2>
-                                  <h3>${ticketData[i].schedule.destination}</h3>
+                                  <h3>${ticket.schedule.destination}</h3>
                               </div>
                               <div class="box-date">
                                 <p>Arrival time</p>
-                                <h2 class="alfa">${ticketData[i].schedule.arrival_date}</h2>
-                                <h3>${ticketData[i].schedule.arrival_time}</h3>
+                                <h2 class="alfa">${ticket.schedule.arrival_date}</h2>
+                                <h3>${ticket.schedule.arrival_time}</h3>
                               </div>
                           </div>
                       </div>
@@ -146,21 +164,39 @@
                           </div>
                       </div>
                   </div>
-                `
+                  <hr style="width:100%; border:1px solid black">
+                  `;
+                });
+                ticketContent += `</div>`;
+                $('#ticketModal .modal-body').html(generateDropdown() + ticketContent);
               }
-                
-              
-              ticketContent +=  `</div>`
-              $('#ticketModal .modal-body').html(
-              `
-                ${ticketContent}
-              `
-              )
-            })
-            $('#ticketModal').modal('show')
-        })
-      })
+
+              // Step 2: Initial render with all tickets and dropdown functionality
+              renderTickets(ticketData.filter(ticket => ticket.schedule.departure_date === selectedDate));
+
+              // Attach change event listener to the dropdown
+              $('#ticketModal').on('change', '#departure-date-filter', function() {
+                selectedDate = $(this).val(); // Update selected date
+                const filteredTickets = selectedDate === "Show All" ? ticketData : ticketData.filter(ticket => ticket.schedule.departure_date === selectedDate);
+
+                renderTickets(filteredTickets);
+              })
+
+              $(document).on('click', '#download-receipt-image', function() {
+                html2canvas(document.querySelector('.ticket-box')).then(canvas => {
+                  const link = document.createElement('a');
+                  link.href = canvas.toDataURL('image/png');
+                  link.download = 'TicketReceipt.png';
+                  link.click();
+                });
+              });
+            });
+            $('#ticketModal').modal('show');
+        });
+      });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   </body>
 </html>
+

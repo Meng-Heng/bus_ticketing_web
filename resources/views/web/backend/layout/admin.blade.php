@@ -94,7 +94,11 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
+                        @if(Auth::user())
                         {{Auth::user()->username}}
+                        @else
+                        
+                        @endif
                     </div>
                 </nav>
             </div>

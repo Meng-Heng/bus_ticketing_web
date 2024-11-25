@@ -36,7 +36,6 @@ class PayWayController extends Controller
 
             $selectedDepartureSeat = new ArrayObject();
             $selectedReturnSeat = new ArrayObject();
-
             // dd(count($return_seat_number));
             foreach($departure_seat_number as $departureSeatNumber) {
                 $selectedDepartureSeat->append(Bus_seat::where('bus_id', $departureBus)->where('seat_number', $departureSeatNumber)->first()); 
@@ -67,7 +66,7 @@ class PayWayController extends Controller
                     $ticket = new Ticket();
                     $ticket->ticket_id =  $this->generateTicketId();
                     $ticket->is_issued = Carbon::now();
-                    $ticket->schedule = $departure_seat['schedule']->id;
+                    $ticket->schedule_id = $departure_seat['schedule']->id;
                     $ticket->bus_seat_id = $selectedDepartureSeat[$i]->id;
                     $ticket->payment_id = $payment->id;
                     $ticket->storage_id = $storage->id;
@@ -92,7 +91,7 @@ class PayWayController extends Controller
                         $ticket = new Ticket();
                         $ticket->ticket_id = $this->generateTicketId();
                         $ticket->is_issued = Carbon::now();
-                        $ticket->schedule = $return_seat['schedule']->id;
+                        $ticket->schedule_id = $return_seat['schedule']->id;
                         $ticket->bus_seat_id = $selectedReturnSeat[$i]->id;
                         $ticket->payment_id = $payment->id;
                         $ticket->storage_id = $storage->id;

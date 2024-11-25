@@ -33,6 +33,8 @@
                     axios.get('available/'+id).then(function(response) {
                         // store the number of seats
                         seatCount = response.data.seat
+                        seatStatus = response.data.seat_status
+                        console.log(seatStatus)
                         // seat header
                         seatHeader = `
                         <div class="seat-status">
@@ -79,6 +81,8 @@
                         }
 
                         seatHtml = ``
+                        seatIndex = 0
+                        // For 37 Seat counts
                                 if(seatCount == 37) {
                                     seatPerRow = 4;
                                     seatPerLastRow = 5;
@@ -88,22 +92,28 @@
                                     for(row=0; row<fullSeatRow; row++) {
                                         seatHtml += `<li class="row"><ol class="seats">`
                                         for(i=0;i<seatPerRow;i++) {
+                                            const seatLabel = generateSeatLabel(row,i, false)
+                                            const seatClass = seatStatus[seatLabel] === 'Sold' ? 'gray' : 'red'
+                                            console.log(seatStatus[seatLabel])
                                             seatHtml += `
                                                 <li class="seat">
-                                                    <input type="checkbox" id="seat-check seat-${generateSeatLabel(row,i, false)}" data-seat="${generateSeatLabel(row,i, false)}" onclick="displaySeatNumber(this)"/>
-                                                    <label for="seat-check seat-${generateSeatLabel(row,i, false)}">${generateSeatLabel(row,i, false)}</label>
+                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${seatClass === 'gray' ? 'disabled' : ''}/>
+                                                    <label for="seat-check seat-${seatLabel}" class="${seatClass}">${seatLabel}</label>
                                                 </li>
                                             `
+                                            seatIndex++
                                         }
                                         seatHtml += `</ol></li>`
                                     }
                                     if(seatCount > fullSeatRow * seatPerRow) {
                                         seatHtml += `<li class="row "><ol class="seats">`
                                             for(let l=0; l<seatPerLastRow; l++) {
+                                                const seatLabel = generateSeatLabel(fullSeatRow,l, true)
+                                                const seatClass = seatStatus[seatLabel] === 'Sold' ? 'gray' : 'red'
                                                 seatHtml += `
                                                 <li class="seat last-seat-row">
-                                                    <input type="checkbox" id="seat-check seat-${generateSeatLabel(fullSeatRow,l, true)}" data-seat="${generateSeatLabel(fullSeatRow ,l, true)}" onclick="displaySeatNumber(this)"/>
-                                                    <label for="seat-check seat-${generateSeatLabel(fullSeatRow,l, true)}">${generateSeatLabel(fullSeatRow,l, true)}</label>
+                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${seatClass === 'gray' ? 'disabled' : ''}/>
+                                                    <label for="seat-check seat-${seatLabel}" class="${seatClass}">${seatLabel}</label>
                                                 </li>
                                             `
                                             }
@@ -111,6 +121,7 @@
                                     }
                                     seatHtml += `</li>`
                                 }
+                        // Other than 37 seats
                                 else {
                                     seatPerRow = 2;
                                     seatPerLastRow = 4;
@@ -120,10 +131,12 @@
                                     for(let row=0; row<fullSeatRow; row++) {
                                         seatHtml += `<li class="row"><ol class="seats">`
                                             for(let i=0;i<seatPerRow;i++) {
+                                                seatLabel = generateSeatLabel(row, i, false)
+                                                seatClass = seatStatus[seatLabel] === 'Sold' ? 'gray' : 'red'
                                                 seatHtml += `
                                                  <li class="seat">
-                                                    <input type="checkbox" id="seat-check seat-${generateSeatLabel(row, i, false)}" data-seat="${generateSeatLabel(row, i, false)}" onclick="displaySeatNumber(this)"/>
-                                                    <label for="seat-check seat-${generateSeatLabel(row, i, false)}">${generateSeatLabel(row, i, false)}</label>
+                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${seatClass === 'gray' ? 'disabled' : ''}/>
+                                                    <label for="seat-check seat-${seatLabel}" class="${seatClass}">${seatLabel}</label>
                                                 </li>
                                                 `
                                             }
@@ -132,10 +145,12 @@
                                     if(seatCount > fullSeatRow * seatPerRow) {
                                         seatHtml += `<li class="row"><ol class="seats">`
                                             for (let l =0; l<seatPerLastRow; l++) {
+                                                seatLabel = generateSeatLabel(fullSeatRow, l, true)
+                                                seatClass = seatStatus[seatLabel] === 'Sold' ? 'gray' : 'red'
                                                 seatHtml += `
                                                  <li class="seat last-seat-row">
-                                                    <input type="checkbox" id="seat-check seat-${generateSeatLabel(fullSeatRow, l, true)}" data-seat="${generateSeatLabel(fullSeatRow, l, true)}" onclick="displaySeatNumber(this)"/>
-                                                    <label for="seat-check seat-${generateSeatLabel(fullSeatRow, l, true)}">${generateSeatLabel(fullSeatRow, l, true)}</label>
+                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${seatClass === 'gray' ? 'disabled' : ''}/>
+                                                    <label for="seat-check seat-${seatLabel}" class="${seatClass}">${seatLabel}</label>
                                                 </li>
                                                 `
                                             }

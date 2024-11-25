@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FrontEnd\HomeFormController;
-use App\Http\Controllers\SeatTypeController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\SeatController;
-use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusSeatController;
 use App\Http\Controllers\BusSeatDailyController;
 use App\Http\Controllers\FrontEnd\PayWayController;
@@ -20,6 +18,7 @@ use App\Http\Controllers\FrontEnd\TicketController as FrontEndTicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StaffController;
 use App\Notifications\InvoicePaid;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 /*
@@ -137,7 +136,19 @@ Route::get('/language/{locale}', function ($locale) {
 //     Route::get('/admin/users', [BusController::class, 'index']);
 //     // Add other admin routes here
 // });
-Route::get('/admin', [TicketController::class, 'index']);
+Route::middleware(['permission:Admin'])->group(function() {
+    Route::group([
+        'prefix' => 'dashboard',
+    ], function() {
+        Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.list');
+        Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket.edit');
+        Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
+        Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
+        Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
+        Route::get('/get-seats/{scheduleId}', [TicketController::class, 'getSeats']);
+    });
+});
+
 /* 
     Bus View
     Bus Create
@@ -191,19 +202,6 @@ Route::delete('/schedule/{id}', [BusSeatDailyController::class, 'destroy'])->nam
 Route::get('/schedule/{id}', [BusSeatDailyController::class, 'show'])->name('schedule.view');
 
 /*
-    Ticket
-*/
-Route::prefix('dashboard/')->group(function () { 
-    Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.list');
-    Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
-    Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
-    Route::get('/ticket/{id}/edit', [TicketController::class, 'edit'])->name('ticket.edit');
-    Route::put('/ticket/{id}', [TicketController::class, 'update'])->name('ticket.update');
-    Route::delete('/ticket/{id}', [TicketController::class, 'destroy'])->name('ticket.delete');
-    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.view');
-});
-
-/*
     Payment
 */
 
@@ -224,3 +222,9 @@ Route::get('/staff/{id}/edit', [StaffController::class, 'edit'])->name('staff.ed
 Route::put('/staff/{id}', [StaffController::class, 'update'])->name('staff.update');
 Route::delete('/staff/{id}', [StaffController::class, 'destroy'])->name('staff.delete');
 Route::get('/staff/{id}', [StaffController::class, 'show'])->name('staff.view');
+
+
+/* 
+    Auth 
+*/
+Auth::routes();

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('ticket_id')->unique();
             $table->timestamp('is_issued')->useCurrent();
-            $table->biginteger('schedule')->unsigned();
-            $table->foreign('schedule')->references('id')->on('tbl_schedule');
+            $table->biginteger('schedule_id')->unsigned();
+            $table->foreign('schedule_id')->references('id')->on('tbl_schedule');
             $table->biginteger('bus_seat_id')->unsigned();
             $table->foreign('bus_seat_id')->references('id')->on('tbl_bus_seat');
             $table->biginteger('payment_id')->unsigned();

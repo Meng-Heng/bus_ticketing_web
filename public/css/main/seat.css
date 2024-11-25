@@ -80,6 +80,13 @@
 .front-bus {
   text-align: center;
 }
+.seat .red {
+  background-color: #a7131f;
+}
+
+.seat .gray {
+  background-color: #545454;
+}
 /* Bus Info */
 .bus-info {
   width: 100%;
