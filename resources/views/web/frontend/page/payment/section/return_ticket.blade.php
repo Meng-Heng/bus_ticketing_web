@@ -56,11 +56,6 @@
     <div class="box">
         <small>Time</small>
         <strong>{{ $return_seat['schedule']->departure_time }}
-            @if($return_seat['schedule']->departure_time >= "12:00:00")
-                PM
-            @else
-                AM
-            @endif
         </strong>
     </div>
     <div class="box">
@@ -70,11 +65,6 @@
     <div class="box">
         <small>Time</small>
         <strong>{{ $return_seat['schedule']->arrival_time }}
-            @if($return_seat['schedule']->departure_time >= "12:00:00")
-                PM
-            @else
-                AM
-            @endif
         </strong>
     </div>
     </div>

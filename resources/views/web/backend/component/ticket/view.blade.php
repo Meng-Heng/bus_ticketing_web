@@ -16,7 +16,6 @@
     <div class="mx-4">
         <h1>Ticket</h1>
         @if (count($tbl_ticket) > 0)
-        <a class="btn btn-primary" href="{{url('/ticket/create')}}">Create</a>
         <div class="panel panel-default">
         <div class="panel-body">
             <table class="table table-striped task-table">
@@ -45,7 +44,7 @@
                             <div>{{ $ticket->bus_seat->seat_number }}</div>
                         </td>
                         <td>
-                            <div>{{ $ticket->schedule }}</div>
+                            <div>{{ $ticket->schedule_id }}</div>
                         </td>
                         <td>
                             <div>{{ $ticket->payment->user->username }}</div>
@@ -54,7 +53,7 @@
                             <div><a href="{{url('dashboard/payment/'.$ticket->payment->id)}}">{{ $ticket->payment->id }}</a> - {{ $ticket->payment->payment_method }}</div>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{!! url('ticket/' . $ticket->id . '/edit') !!}">Edit</a>
+                            <a class="btn btn-primary" href="{!! url('dashboard/ticket/' . $ticket->id . '/edit') !!}">Edit</a>
                         </td>
                     </tr>
                 @endforeach

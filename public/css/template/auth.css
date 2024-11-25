@@ -102,6 +102,7 @@ body{
 
 .input-group {
     width: 100%;
+    position: relative;
 }
 
 .goto {
@@ -126,13 +127,14 @@ hr {
     color: red;
 }
 
-.input-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
 #password, #confirm-password {
     margin-right: 5px;
+}
+
+.show-password, .show-confirm-password {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }

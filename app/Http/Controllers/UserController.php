@@ -5,39 +5,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function showRegisterForm() {
-        return view('web.frontend.page.auth.register');
-    }
-
-    public function registerUser(Request $request) {
-        $request->validate([
-            'username' => 'required|string|unique:tbl_user|max:30',
-            'email' => 'required|string|email|unique:tbl_user',
-            'password' => 'required|string|min:8|confirmed'
-        ]);
-
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'pwd' => Hash::make($request->password),
-        ]);
-
-        Auth::login($user);
-        return redirect()->intended()->with(['register', 'Register successfully!', $user]);
-    }
-
-    public function showLoginForm() {
-        return view('web.frontend.page.auth.login');
-    }
 
     public function loginUser(Request $request) {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'g-recaptcha-response' => 'recaptcha'
         ]);
 
         $user = User::where('email', $request->email)->first();

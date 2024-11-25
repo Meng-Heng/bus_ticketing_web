@@ -6,6 +6,14 @@
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @if(session('not_found'))
+                <div class="alert alert-success">
+                        {{ session('not_found') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 {{-- Ticket will be place here --}}
             </div>
         </div>

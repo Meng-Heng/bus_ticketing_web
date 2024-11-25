@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Bus;
+use App\Models\Bus_seat;
 use App\Models\Price;
 use App\Models\User;
 use App\Models\Storage;
@@ -82,24 +83,42 @@ class BusTicketingController extends Controller
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
             // Counting how many Seat does the Bus have using the assigned Schedule ID in the Database?
-            $seat = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
+            $seatInfo = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
                 $q->where('id', $schedule->id);
             })->first();
             
             // Condition
-            if(!$seat) {
+            if(!$seatInfo) {
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
-
             // Get the latest data from Storage & Price
             $storage = Storage::all()->last();
             $price = Price::all()->last();
+
+            // Get seats on Bus Seat table with schedule bus id 
+            $seat = Bus_seat::where('bus_id', $schedule->bus_id)->get();
+
+            // Get all tickets for the selected schedule
+            $bookedSeats = Ticket::where('schedule_id', $schedule->id)
+            ->pluck('bus_seat_id')->toArray();
+
+            $seatStatus = [];
+        
+            foreach ($seat as $seats) {
+                $seatStatus[$seats->seat_number] = in_array($seats->id, $bookedSeats)
+                    ? 'Sold'
+                    : 'Available';
+            }
+            
+            // Get seats from only the Bus ID
+            // $seat_status = Bus_seat::where('bus_id', $seat->id)->pluck('status', 'seat_number');
             
             // Prepare data for Session::departure_seat & Return
             $data = [
                 'schedule' => $schedule,
-                'seat' => $seat->total_seat,
-                'bus_plate' => $seat->bus_plate,
+                'seat' => $seatInfo->total_seat,
+                'seat_status' => $seatStatus,
+                'bus_plate' => $seatInfo->bus_plate,
                 'storage' => $storage,
                 'price' => $price,
             ];

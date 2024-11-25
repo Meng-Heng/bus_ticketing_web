@@ -92,6 +92,35 @@ INSERT INTO `tbl_schedule`
 (NULL, '10', 'Kep', '2024-12-03', '18:00:00', 'Kompot', '2024-12-03', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
 (NULL, '10', 'Kompot', '2024-12-03', '21:00:00', 'Phnom Penh - DN', '2024-12-04', '24:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
 
+   INSERT INTO `tbl_schedule` (`id`, `bus_id`, `origin`, `departure_date`, `departure_time`, `destination`, `arrival_date`, `arrival_time`, `sold_out`, `created_at`, `updated_at`) VALUES 
+(NULL, '4', 'Phnom Penh - DN', '2024-12-04', '07:00:00', 'Battambang', '2024-12-04', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-04', '14:00:00', 'Banteay Meanchey', '2024-12-04', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-04', '17:00:00', 'Siem Reap', '2024-12-04', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-04', '21:00:00', 'Phnom Penh - DN', '2024-12-05', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-05', '07:00:00', 'Battambang', '2024-12-05', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-05', '14:00:00', 'Banteay Meanchey', '2024-12-05', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-05', '17:00:00', 'Siem Reap', '2024-12-05', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-05', '21:00:00', 'Phnom Penh - DN', '2024-12-06', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-06', '07:00:00', 'Battambang', '2024-12-06', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-06', '14:00:00', 'Banteay Meanchey', '2024-12-06', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-06', '17:00:00', 'Siem Reap', '2024-12-06', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-06', '21:00:00', 'Phnom Penh - DN', '2024-12-07', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-07', '07:00:00', 'Battambang', '2024-12-07', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-07', '14:00:00', 'Banteay Meanchey', '2024-12-07', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-07', '17:00:00', 'Siem Reap', '2024-12-07', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-07', '21:00:00', 'Phnom Penh - DN', '2024-12-08', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-08', '07:00:00', 'Battambang', '2024-12-08', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-08', '14:00:00', 'Banteay Meanchey', '2024-12-08', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-08', '17:00:00', 'Siem Reap', '2024-12-08', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-08', '21:00:00', 'Phnom Penh - DN', '2024-12-09', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-09', '07:00:00', 'Battambang', '2024-12-09', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-09', '14:00:00', 'Banteay Meanchey', '2024-12-09', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-09', '17:00:00', 'Siem Reap', '2024-12-09', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-09', '21:00:00', 'Phnom Penh - DN', '2024-12-10', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Phnom Penh - DN', '2024-12-10', '07:00:00', 'Battambang', '2024-12-10', '13:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-10', '14:00:00', 'Banteay Meanchey', '2024-12-10', '16:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Banteay Meanchey', '2024-12-10', '17:00:00', 'Siem Reap', '2024-12-10', '20:00:00', '0', CURRENT_DATE(), CURRENT_DATE()),
+(NULL, '4', 'Siem Reap', '2024-12-10', '21:00:00', 'Phnom Penh - DN', '2024-12-11', '02:00:00', '0', CURRENT_DATE(), CURRENT_DATE());
 */
 
         /*

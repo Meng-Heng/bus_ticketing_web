@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-class PayWayService{
+class PayWayService {
     public function getApiURL() {
         return config('payway.api_url');
     }

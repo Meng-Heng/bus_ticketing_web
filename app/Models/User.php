@@ -58,6 +58,32 @@ class User extends Authenticatable
         return $this->hasMany(Staff::class);
     }
     public function user_permission() {
-        return $this->hasMany(UserPermission::class);
+        return $this->hasMany(UserPermission::class, 'user_id');
     }
+    public function getAuthPassword()
+    {
+        return $this->pwd; // Use 'pwd' instead of 'password'
+    }
+
+    public function permissions() {
+        return $this->belongsToMany(
+            Permission::class,
+            'tbl_user_permission',
+            'user_id',
+            'permission_id'
+        );
+    }
+
+    public function hasPermission($permission)
+    {
+        // Check if the user has the given permission
+        return $this->permissions->contains('permission', $permission);
+    }
+
+    public function isDefaultUser()
+    {
+        // Treat as default if no permissions are assigned
+        return $this->permissions->isEmpty();
+    }
+
 }

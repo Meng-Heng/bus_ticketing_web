@@ -16,31 +16,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#checkout_button').on('click', async (e) => {
-                try {
                     AbaPayway.checkout();
-                } 
-                catch(error) {
-                    console.error('MengHeng\'s Error: ', error)
-                }
             });
         });
-
-        $(document).ready(function () {
-            $('#woori_checkout').on('click', ()=> {
-                let khqr_payment = `
-                    <div class="col">
-                        <img src="{{asset('images/background/payment/woori_usd.JPG')}}" alt="Woori KhQR" style="width:45%; margin:10px">
-                        <img src="{{asset('images/background/payment/woori_khr.JPG')}}" alt="Woori KhQR" style="width:45%; margin:10px">
-                    </div>
-                        `
-                    $('#wooriModal .modal-body').html(
-                        `
-                        ${khqr_payment}
-                        `
-                    )
-                    $('#wooriModal').modal('show')
-                })
-            });
     </script>
     {{-- End Checkout Scripts --}}
 
