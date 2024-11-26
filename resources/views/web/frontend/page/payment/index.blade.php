@@ -2,6 +2,7 @@
 
 @section('ticket-confirmation-style') 
     <link href="{{asset('css/main/ticket.css')}}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 @endsection
 
 @section('content')
