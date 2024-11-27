@@ -6,10 +6,9 @@
 		<meta name="author" content="PayWay">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	</head>
-
 	<body>
         <div class="container" style="margin: auto;">
-			<form method="POST" target="aba_webservice" action="{{config('payway.api_url')}}" id="aba_merchant_request">
+			<form method="POST" target="aba_webservice" action="https://checkout-sandbox.payway.com.kh/api/payment-gateway/v1/payments/purchase" id="aba_merchant_request">
 				@csrf
 				<input type="hidden" name="req_time" value="{{ $paywayData['req_time'] }}" id="req_time"/>
 				<input type="hidden" name="tran_id" value="{{ $paywayData['tran_id'] }}" id="tran_id"/>

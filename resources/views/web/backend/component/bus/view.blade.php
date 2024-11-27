@@ -7,25 +7,31 @@
             <strong>Deleted!</strong> {!! session('bus_deleted') !!}
             @endif
         </div>
-        
         <div class="mx-4">
                 @if (count($tbl_bus) > 0)
-                <a class="btn btn-primary" href="{{url('/bus/create')}}">Create</a>
+                <div class="d-flex flex-row">
+                    <div class="col">
+                        <a class="btn btn-primary" href="{{route('bus.create')}}">Create</a>
+                    </div>
+                        @foreach ($tbl_bus as $bus)
+                        {{ $bus->name }}
+                        @endforeach
+                        {{ $tbl_bus->links() }}
+                </div>
                 <div class="panel panel-default">
-                
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
                                 <th>Bus Plate Number</th>
                                 <th>Description</th>
                                 <th>Total Seat</th>
-                                <th>Active status</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
                                 @foreach ($tbl_bus as $buses)
                                 <tr>
                                     <td>
-                                        <div class=""><a href="{{url('/bus/'.$buses->id)}}">{{ $buses->bus_plate }}</a></div>
+                                        <div class=""><a href="{{route('bus.show', $buses->id)}}">{{ $buses->bus_plate }}</a></div>
                                     </td>
                                     <td>
                                         <div>{!! $buses->description !!}</div>
@@ -35,16 +41,16 @@
                                     </td>
                                     <td>
                                         @if ($buses->is_active == 0)
-                                        <span style="color:red">Maintenance</span>
+                                        <span style="color:red">Inactive</span>
                                             @elseif ($buses->is_active == 1)
-                                            <span style="color:lime">OK</span>
+                                            <span style="color:lime">Active</span>
                                         @endif
                                     </td>
 
-                                    <td><a class="btn btn-primary" href="{!! url('bus/' . $buses->id . '/edit') !!}">Edit</a></td>
+                                    <td><a class="btn btn-primary" href="{{route('bus.edit', $buses->id) }}">Edit</a></td>
 
                                     <td>
-                                        {!! Form::open(array('url'=>'bus/'. $buses->id, 'method'=>'DELETE')) !!}
+                                        {!! Form::open(array('route'=>['bus.delete', $buses->id], 'method'=>'DELETE')) !!}
                                         {!! csrf_field() !!}
                                         {!! method_field('DELETE') !!}
                                         <button class="btn btn-danger delete">Delete</button>

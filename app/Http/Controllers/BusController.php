@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class BusController extends Controller
 {
     public function index() {
-        $bus = Bus::all();
+        $bus = Bus::paginate(15);
         return view('web.backend.component.bus.view')->with('tbl_bus', $bus);
     }
 
@@ -20,7 +20,7 @@ class BusController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'bus_plate' => 'required|max:50|min:6',
+            'bus_plate' => 'required|max:50|min:6|unique:tbl_bus',
             'description' => 'max:255',
             'total_seat' => 'max:5',
             'is_active' => 'required|max:50'
@@ -35,13 +35,13 @@ class BusController extends Controller
         $bus->is_active = $request->is_active;
         Session::flash('bus_created','New data is created.');
         $bus->save();
-        return redirect('/bus');
+        return redirect()->route('bus.view');
     }
 
     public function edit($id)
     {
         $bus = Bus::find($id);
-        return redirect('bus/edit')->with('tbl_bus', $bus);
+        return view('web.backend.component.bus.edit')->with('tbl_bus', $bus);
     }
 
     public function update(Request $request, $id) {
@@ -52,7 +52,7 @@ class BusController extends Controller
             'is_active' => 'required|max:50'
 		]);
 		if ($validator->fails()) {
-			return redirect('bus/' . $id . '/edit')
+			return redirect()->route('bus.edit',$id)
             ->withInput()
             ->withErrors($validator);
 		}
@@ -63,7 +63,7 @@ class BusController extends Controller
         $bus->is_active = $request->Input('is_active');
 		$bus->save();
 		Session::flash('bus_updated','Bus has been updated.');
-		return redirect('bus/' . $id . '/edit');
+		return redirect()->route('bus.view');
     }
 
     public function destroy($id)
@@ -71,7 +71,7 @@ class BusController extends Controller
         $bus = Bus::find($id);
         $bus->delete();
         Session::flash('bus_deleted','Bus information '. $bus->id . ' was deleted.');
-        return redirect('bus');
+        return redirect()->route('bus.view');
     }
 
     public function show($id) {
