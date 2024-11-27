@@ -271,7 +271,7 @@ class BusTicketingController extends Controller
         ];
 
         $req_time = time();
-        $merchant_id = config('payway.merchant_id');
+        $merchant_id = 'ec438722';
         $tran_id = $req_time;
         $firstname = Auth::user()->username;
         $phone = Auth::user()->contact;
@@ -285,7 +285,8 @@ class BusTicketingController extends Controller
         // WARNING: Do not change the order of these data! 
         // Follow this order: https://www.payway.com.kh/developers/create-transaction
         $hash = $req_time . $merchant_id . $tran_id . $amount . $items . $firstname . $phone . $payment_option . $return_url . $continue_success_url . $currency . $return_params;
-        $hashReady = $this->payWayService->getHash($hash);
+        
+        $hashReady = $this->getHash($hash);
 
         // This order does not matter. Just use the RIGHT INDEXING on the View.
         $paywayData = [
@@ -316,6 +317,11 @@ class BusTicketingController extends Controller
     /* 
             Operation outside of the System.
     */
+    public function getHash($str) {
+        $key = 'd7ec23576c37ee75580fe36efd2017312f7a1ac3';
+        return base64_encode(hash_hmac('sha512', $str, $key, true));
+    }
+
     public function backToSchedule() {
         if(session('schedule_url')) {
             return redirect(session('schedule_url'));

@@ -3,9 +3,6 @@
 <main>
     <div class="container-fluid">
         <h1 class="mt-4">Create Bus</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{url('/bus/create')}}">Bus</a></li>
-        </ol>
         <div class="card mb-4">
             <div class="card-body">
                 @if(Session::has('bus_created'))
@@ -28,7 +25,7 @@
                 @endif
                 <!-- It Create the new Category -->
 
-                {!! Form::open(array('url'=>'bus')) !!}
+                {!! Form::open(array('route'=>'bus.store')) !!}
                 <br>
                 {!! Form::label('bus_plate', 'Bus Plate Number:') !!}
                 {!! Form::text('bus_plate',null, array('class'=>'form-control')) !!}
@@ -37,14 +34,20 @@
                 {!! Form::text('description',null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('total_seat', 'Total seat:') !!}
-                {!! Form::text('total_seat',null, array('class'=>'form-control')) !!}
+                <select name="total_seat" class="form-control">
+                    <option value="37">37</option>
+                    <option value="6">6</option>
+                </select>
                 <br>
                 {!! Form::label('is_active', 'Active:') !!}
-                {!! Form::select('is_active', ["false", "true"], array('class'=>'form-control')) !!}
-                <br>
+                <select name="is_active" class="form-control">
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                </select>
+                <br><br>
                 {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
 
-                <a class="btn btn-primary" href="{!! url('/bus')!!}">Back</a>
+                <a class="btn btn-primary" href="{!! route('bus.view')!!}">Back</a>
 
                 {!! Form::close() !!}
                 

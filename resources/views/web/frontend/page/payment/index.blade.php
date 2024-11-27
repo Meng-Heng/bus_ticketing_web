@@ -2,7 +2,6 @@
 
 @section('ticket-confirmation-style') 
     <link href="{{asset('css/main/ticket.css')}}" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 @endsection
 
 @section('content')
@@ -10,7 +9,6 @@
         @include('web.frontend.page.payment.ticket')
 
         @include('web.frontend.page.payment.checkout')
-        
     </div>
     {{-- Checkout Scripts --}}
     <script src="https://checkout.payway.com.kh/plugins/checkout2-0.js"></script>

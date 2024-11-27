@@ -74,10 +74,20 @@ class User extends Authenticatable
         );
     }
 
-    public function hasPermission($permission)
+    public function hasPermission($requiredPermission)
     {
-        // Check if the user has the given permission
-        return $this->permissions->contains('permission', $permission);
+        // Get the default permission from config
+        $defaultPermission = config('auth.permissions.default');
+
+        // If the required permission is the default, no explicit check is needed
+        if ($requiredPermission === $defaultPermission || !$this->user_permission()->exists()) {
+            return true;
+        } else {
+            // Check if the user has the required permission
+            return $this->user_permission()->whereHas('permission', function ($query) use ($requiredPermission) {
+                $query->where('permission', $requiredPermission);
+            })->exists();
+        }
     }
 
     public function isDefaultUser()
