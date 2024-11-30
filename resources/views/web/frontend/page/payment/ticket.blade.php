@@ -1,12 +1,18 @@
 <div class="p-3">
     <p class="mb-0 fw-bold h4">Your ticket information</p>
 </div>
-<div class="boarding-pass">
-    @include('web.frontend.page.payment.section.departure_ticket')
-</div>
-<div class="boarding-pass">
-    @include('web.frontend.page.payment.section.return_ticket')
-</div>
+@if($departure_data['return_date'] == null)
+    <div class="boarding-pass">
+        @include('web.frontend.page.payment.section.departure_ticket')
+    </div>
+@else
+    <div class="boarding-pass">
+        @include('web.frontend.page.payment.section.departure_ticket')
+    </div>
+    <div class="boarding-pass">
+        @include('web.frontend.page.payment.section.return_ticket')  
+    </div>
+@endif
 <hr style="width: 50%; border: 1px solid black;">
 <div class="p-3">
     <p class="mb-0 fw-bold h4">Payment</p>

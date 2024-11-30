@@ -1,93 +1,45 @@
-@extends('layout.backend')
+@extends('web.backend.layout.admin')
 @section('content')
-        @if(Session::has('station'))
+        @if(Session::has('storage_deleted'))
         <div class="alert alert-danger alert-dismissible">
         
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Deleted!</strong> {!! session('station_deleted') !!}
+            <strong>Deleted!</strong> {!! session('storage_deleted') !!}
             @endif
         </div>
         
         <div class="mx-4">
-                @if (count($tbl_station) > 0)
-                <a class="btn btn-primary" href="{{url('/station/create')}}">Create</a>
+                @if (count($tbl_storage) > 0)
+                <a class="btn btn-primary" href="{{route('storage.create')}}">Create</a>
                 <div class="panel panel-default">
                 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
-                                <th>Station Name</th>
-                                <th>Primary address</th>
-                                <th>Secondary Name</th>
-                                <th>Commune</th>
-                                <th>District</th>
-                                <th>City</th>
+                                <th>Storage capacity</th>
+                                <th>Measurement</th>
+                                <th>Start Date</th>
                             </thead>
                             <tbody>
-                                @foreach ($tbl_station as $stations)
+                                @foreach ($tbl_storage as $storage)
                                 <tr>
                                     <td>
-                                        <div class=""><a href="{{url('/station/'.$stations->id)}}">{{ $stations->name }}</a></div>
+                                        <div class=""><a href="{{route('storage.show', $storage->id)}}">{{ $storage->luggage }}</a></div>
                                     </td>
                                     <td>
-                                        <div>{!! $stations->p_address !!}</div>
+                                        <div>{!! $storage->measurement !!}</div>
                                     </td>
                                     <td>
-                                        <div>{!! $stations->s_address !!}</div>
-                                    </td>
-                                    <td>
-                                        <div>{!! $stations->commune !!}</div>
-                                    </td>
-                                    <td>
-                                        <div>{!! $stations->district !!}</div>
-                                    </td>
-                                    <td>
-                                        <div>{!! $stations->city !!}</div>
+                                        <div>{!! $storage->start_date !!}</div>
                                     </td>
 
-                                    <td><a class="btn btn-primary" href="{!! url('station/' . $stations->id . '/edit') !!}">Edit</a></td>
-
-                                    <td>
-                                        {{ Form::open(array('url'=>'station/'. $stations->id, 'method'=>'DELETE')) }}
-                                        {!! csrf_field() !!}
-                                        {!! method_field('DELETE') !!}
-                                        <button class="btn btn-danger delete">Delete</button>
-                                        {!! Form::close() !!}
-                                    </td>
+                                    <td><a class="btn btn-primary" href="{!! route('storage.edit', $storage->id) !!}">Edit</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <script>
-                    $(".delete").click(function() {
-                        var form = $(this).closest('form');
-                        $('<div></div>').appendTo('body')
-                            .html('<div><h6> Are you sure ?</h6></div>')
-                            .dialog({
-                                modal: true,
-                                title: 'Delete message',
-                                zIndex: 10000,
-                                autoOpen: true,
-                                width: 'auto',
-                                resizable: false,
-                                buttons: {
-                                    Yes: function() {
-                                        $(this).dialog('close');
-                                        form.submit();
-                                    },
-                                    No: function() {
-                                        $(this).dialog("close");
-                                        return false;
-                                    }
-                                },
-                                close: function(event, ui) {
-                                    $(this).remove();
-                                }
-                            });
-                        return false;
-                    });
-                </script>
+                
                 @endif
                 @endsection

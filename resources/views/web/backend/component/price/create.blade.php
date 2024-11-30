@@ -2,13 +2,13 @@
 @section('content')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Add Storage</h1>
+        <h1 class="mt-4">Add Price</h1>
         <div class="card mb-4">
             <div class="card-body">
-                @if(Session::has('storage_created'))
+                @if(Session::has('price_created'))
                 <div class="alert alert-primary alert-dismissible">
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <strong>Primary!</strong> {!! session('storage_created') !!}
+                    <strong>Primary!</strong> {!! session('price_created') !!}
                 </div>
                 @endif
                 @if (count($errors) > 0)
@@ -25,17 +25,17 @@
                 @endif
                 <!-- It Create the new Category -->
 
-                {!! Form::open(array('route'=>'storage.store')) !!}
+                {!! Form::open(array('route'=>'price.store')) !!}
                 <br>
-                {!! Form::label('luggage', 'Storage:') !!}
-                <input class="form-control" name="luggage" type="text">
+                {!! Form::label('price', 'Price:') !!}
+                <input class="form-control" name="price" type="text" placeholder="Format: 12.99">
 
-                {!! Form::label('measurement', 'Measurement:') !!}
-                <input class="form-control" name="measurement" type="text" value="KG" readonly>
+                {!! Form::label('currency', 'Currency:') !!}
+                <input class="form-control" name="currency" type="text" value="USD" readonly>
                 <br>
                 {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
 
-                <a class="btn btn-primary" href="{!! route('storage.view')!!}">Back</a>
+                <a class="btn btn-primary" href="{!! route('price.view')!!}">Back</a>
 
                 {!! Form::close() !!}
                 

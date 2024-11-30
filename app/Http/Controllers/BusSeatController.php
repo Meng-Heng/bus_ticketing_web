@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Bus;
 use App\Models\Price;
+use App\Models\Storage;
 
 class BusSeatController extends Controller
 {
     public function index() {
-        $bus_seat = Bus_seat::all();
-        return redirect('/seat')->with('tbl_bus_seat', $bus_seat);
+        $bus_seat = Bus_seat::paginate(15);
+        return view('web.backend.component.bus_seat.view')->with('tbl_bus_seat', $bus_seat);
     }
 
     public function create() {
@@ -23,14 +24,14 @@ class BusSeatController extends Controller
         foreach (Bus::all() as $bus) {
             $buses[$bus->id] = $bus->bus_plate;
         }
-        foreach (Bus_seat::all() as $seat) {
+        foreach (Storage::all() as $seat) {
             $seats[$seat->id] = $seat->seat_number;
         }
         foreach (Price::all() as $price) {
             $prices[$price->id] = $price->price;
         }
 
-        return view('bus_seat.create', compact('buses', 'seats', 'prices'));
+        return view('web.backend.component.bus_seat.create', compact('buses', 'seats', 'prices'));
     }
 
     public function store(Request $request) {

@@ -24,26 +24,28 @@ class PayWayController extends Controller
         try {
             $departure_data = session()->get('departure_data');
             $departure_seat = session()->get('departure_seat');
-            $return_data = session()->get('return_data');
-            $return_seat = session()->get('return_seat');
+            $return_data = session()->get('return_data', null);
+            $return_seat = session()->get('return_seat', []);
             $payment_data = session()->get('payment_data');
-
-            $departureBus = $departure_seat['schedule']->bus_id;
-            $departure_seat_number = $departure_seat['departureSeatNumber'];
-
-            $returnBus = $return_seat['schedule']->bus_id;
-            $return_seat_number = $return_seat['returnSeatNumber'];
 
             $selectedDepartureSeat = new ArrayObject();
             $selectedReturnSeat = new ArrayObject();
-            // dd(count($return_seat_number));
+
+            $departureBus = $departure_seat['schedule']->bus_id;
+            $departure_seat_number = $departure_seat['departureSeatNumber'];
+            // dd($return_seat);
             foreach($departure_seat_number as $departureSeatNumber) {
                 $selectedDepartureSeat->append(Bus_seat::where('bus_id', $departureBus)->where('seat_number', $departureSeatNumber)->first()); 
             }
             
-            foreach($return_seat_number as $returnSeatNumber) {
-                $selectedReturnSeat->append(Bus_seat::where('bus_id', $returnBus)->where('seat_number', $returnSeatNumber)->first());
+            if($return_seat) {
+                $returnBus = $return_seat['schedule']->bus_id;
+                $return_seat_number = $return_seat['returnSeatNumber'];
+                foreach($return_seat_number as $returnSeatNumber) {
+                    $selectedReturnSeat->append(Bus_seat::where('bus_id', $returnBus)->where('seat_number', $returnSeatNumber)->first());
+                }
             }
+            // dd(count($return_seat_number));
             // dd($selectedDepartureSeat, $selectedReturnSeat);
             
             // Storage and Price
@@ -79,7 +81,7 @@ class PayWayController extends Controller
                     $bus_seat->save();
                 }
                 // Create return ticket after payment success
-                if($selectedReturnSeat) {
+                if($selectedReturnSeat != null) {
                     for($i=0; $i<count($selectedReturnSeat); $i++) {
                         // Payment creation
                         $payment = new Payment();

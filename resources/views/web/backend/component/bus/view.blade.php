@@ -8,6 +8,7 @@
             @endif
         </div>
         <div class="mx-4">
+            <h1>Bus</h1>
                 @if (count($tbl_bus) > 0)
                 <div class="d-flex flex-row">
                     <div class="col">

@@ -42,51 +42,51 @@
                                     <a class="nav-link" href="{{route('bus.create')}}">Add bus information</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="{{url('dashboard/seat')}}">
+                            <a class="nav-link" href="{{route('seat.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Seat
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/schedule')}}">
+                            <a class="nav-link" href="{{route('schedule.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Schedule
                             </a>
                             <div class="sb-sidenav-menu-heading">Price & Storage</div>
-                            <a class="nav-link" href="{{url('dashboard/price')}}">
+                            <a class="nav-link" href="{{route('price.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Set a Price
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/storage')}}">
+                            <a class="nav-link" href="{{route('storage.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Set storage capacity
                             </a>
                             <div class="sb-sidenav-menu-heading">User Data</div>
-                            <a class="nav-link" href="{{url('dashboard/staff')}}">
+                            <a class="nav-link" href="{{route('staff.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Staff
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/user')}}">
+                            <a class="nav-link" href="{{route('user.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 User
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/review')}}">
+                            <a class="nav-link" href="{{route('feedback.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Review
                             </a>
                             <div class="sb-sidenav-menu-heading">Required careful insertion</div>
-                            <a class="nav-link" href="{{url('dashboard/permission')}}">
+                            <a class="nav-link" href="{{route('permission.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Permission
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/user-permission')}}">
+                            <a class="nav-link" href="{{route('userpermission.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 User Permission
                             </a>
                             <div class="sb-sidenav-menu-heading">Prohibited data</div>
-                            <a class="nav-link" href="{{url('dashboard/ticket')}}">
+                            <a class="nav-link" href="{{route('ticket.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Ticket
                             </a>
-                            <a class="nav-link" href="{{url('dashboard/payment')}}">
+                            <a class="nav-link" href="{{route('payment.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Payment
                             </a>
@@ -107,7 +107,7 @@
                     <div class="container-fluid p-4">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <input type="text" id="searchInput" placeholder="Search Tickets" class="form-control mb-3">
+                                <input type="text" id="searchInput" placeholder="Search" class="form-control mb-3">
                                 <hr>
                                 @yield('content')
                             </div>

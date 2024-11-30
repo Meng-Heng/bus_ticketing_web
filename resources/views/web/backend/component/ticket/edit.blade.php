@@ -54,10 +54,9 @@
     {!! Form::label('payment', 'Payment') !!}
     <input class="form-control" type="text" value="{{$tbl_ticket->payment_id}} {{$tbl_ticket->payment->payment_method}}" readonly>
     <br>
-    <a class="btn btn-secondary" href="{{url('dashboard/ticket')}}">Back</a>
+    <a class="btn btn-secondary" href="{{ route('ticket.list')}}">Back</a>
     {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
     {!! Form::close() !!}
-    </div>
     
 <script>
     document.getElementById('departure_time').addEventListener('change', function() {

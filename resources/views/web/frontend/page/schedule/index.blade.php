@@ -35,6 +35,7 @@
                         seatCount = response.data.seat
                         seatStatus = response.data.seat_status
                         console.log(seatStatus)
+                        console.log(response.data.price)
                         // seat header
                         seatHeader = `
                         <div class="seat-status">
