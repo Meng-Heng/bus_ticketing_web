@@ -5,13 +5,13 @@
                     <h5 class="modal-title" id="exampleModalLabel">{{__("Select your seat")}}</h5>
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('schedule.return')}}" method="POST" id="scheduleForm">
-                {{ method_field('POST')}}
-                @csrf
-            <div class="modal-body">
-                <!-- Insert Schedule Information Later -->
-            </div>
-            </form>
+                <form action="{{route('asses.departure.seat')}}" method="GET" id="scheduleForm">
+                    {{ method_field('GET')}}
+                    @csrf
+                    <div class="modal-body">
+                        <!-- Insert Schedule Information Later -->
+                    </div>
+                </form>
         </div>
     </div>
 </div>

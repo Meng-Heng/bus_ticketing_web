@@ -16,6 +16,12 @@
     <div class="mx-4">
         <h1>Ticket</h1>
         @if (count($tbl_ticket) > 0)
+        <div class="d-flex flex-row">
+        @foreach ($tbl_ticket as $ticket)
+            {{ $ticket->name }}
+        @endforeach
+        </div>
+        {{ $tbl_ticket->links() }}
         <div class="panel panel-default">
         <div class="panel-body">
             <table class="table table-striped task-table">
@@ -32,7 +38,7 @@
                 @foreach ($tbl_ticket as $ticket)
                     <tr>
                         <td>
-                            <div><a href="{{url('dashboard/ticket/'.$ticket->id)}}">{{ $ticket->ticket_id}}</a></div>
+                            <div><a href="{{route('ticket.view', $ticket->id)}}">{{ $ticket->ticket_id}}</a></div>
                         </td>
                         <td>
                             <div>{{ $ticket->is_issued}}</div>
@@ -50,10 +56,10 @@
                             <div>{{ $ticket->payment->user->username }}</div>
                         </td>
                         <td>
-                            <div><a href="{{url('dashboard/payment/'.$ticket->payment->id)}}">{{ $ticket->payment->id }}</a> - {{ $ticket->payment->payment_method }}</div>
+                            <div><a href="{{route('payment.view', $ticket->payment->id)}}">{{ $ticket->payment->id }}</a> - {{ $ticket->payment->payment_method }}</div>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{!! url('dashboard/ticket/' . $ticket->id . '/edit') !!}">Edit</a>
+                            <a class="btn btn-primary" href="{!! route('ticket.edit', $ticket->id) !!}">Edit</a>
                         </td>
                     </tr>
                 @endforeach
@@ -62,11 +68,4 @@
     </div>
     @endif
 </div>
-<div class="container">
-    @foreach ($tbl_ticket as $ticket)
-        {{ $ticket->name }}
-    @endforeach
-</div>
-         
-{{ $tbl_ticket->links() }}
 @endsection

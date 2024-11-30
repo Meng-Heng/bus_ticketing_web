@@ -72,7 +72,7 @@ class BusTicketingController extends Controller
     }
 
     // Get Seat for Departure
-    public function departureSeat($id)
+    public function departureSeat($id, Request $request)
     {
         try {
             // Locate the right schedule (From DB) with the selected schedule id from Views/Blades
@@ -128,10 +128,41 @@ class BusTicketingController extends Controller
             
             // Return all the required Data to JQuery in Views/Blades
             return response()->json($data);
-            
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+    
+    public function handleSeatAssignment(Request $request)
+    {
+        $departureData = session()->get('departure_data');
+        // Update Session::departure_seat
+        $assignSeats = Session::get('departure_seat', []);
+
+        // Get The Amount of Selected seat & Seat labels from Interface
+        // Clean the Data & Store them to a Variable
+        $departureSeatData = [
+            'departureSeatCount' => $request->input('departureSeatCount'),
+            'departureSeatNumber' => explode(',', $request->input('departureSeatNumber')),
+        ];
+        // Merge Seat information with Departure Seat
+        $newMerged = array_merge($assignSeats, $departureSeatData);
+
+        // Store Departure Seat to its Original Session
+        Session::put('departure_seat', $newMerged);
+    
+        // Check if a return date is present
+        $returnDate = $departureData['return_date'];
+        // dd($departureData);
+
+        if ($returnDate) {
+            // Handle logic for return seats here (if applicable)
+            return redirect()->route('schedule.return'); // Redirect to the return schedule function
+        }
+    
+        // If no return date, proceed to confirmation with departure data
+        return redirect()->route('ticket.confirmation'); // Redirect to confirmation page
     }
 
     // Get Schedule for Return
@@ -153,24 +184,12 @@ class BusTicketingController extends Controller
                 'arrived' => $destination,
             ];
             
-            // Update Session::departure_seat
-            $assignSeats = Session::get('departure_seat', []);
-            // Get The Amount of Selected seat & Seat labels from Interface
-            // Clean the Data & Store them to a Variable
-            $departureSeatData = [
-                'departureSeatCount' => $request->input('departureSeatCount'),
-                'departureSeatNumber' => explode(',', $request->input('departureSeatNumber')),
-            ];
-            // Merge Seat information with Departure Seat
-            $newMerged = array_merge($assignSeats, $departureSeatData);
-            // Store Departure Seat to its Original Session
-            Session::put('departure_seat', $newMerged);
-
             // Search for the Schedule using the Inputed "%$destination%", "%$origin%", and "%$return_date%"
             $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$return_date%")
             ->where('destination', 'like', "%$destination%")->paginate(10)->withQueryString();
             // dd($data, $result, $destination, "Origin $origin", $departureData);
+
             // Store Return Schedule to Session
             Session::put('return_data', $data);
 
@@ -195,21 +214,39 @@ class BusTicketingController extends Controller
             if(!$schedule){
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
-            $seat = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
+
+            // Counting how many Seat does the Bus have using the assigned Schedule ID in the Database?
+            $seatInfo = Bus::whereHas('bus_schedule', function ($q) use ($schedule) {
                 $q->where('id', $schedule->id);
             })->first();
-
-            if(!$seat) {
+            
+            // Condition
+            if(!$seatInfo) {
                 return response()->json(['error' => 'Schedule not found'], 404);
             }
 
             $storage = Storage::all()->last();
             $price = Price::all()->last();
             
+            $seat = Bus_seat::where('bus_id', $schedule->bus_id)->get();
+
+            // Get all tickets for the selected schedule
+            $bookedSeats = Ticket::where('schedule_id', $schedule->id)
+            ->pluck('bus_seat_id')->toArray();
+
+            $seatStatus = [];
+        
+            foreach ($seat as $seats) {
+                $seatStatus[$seats->seat_number] = in_array($seats->id, $bookedSeats)
+                    ? 'Sold'
+                    : 'Available';
+            }
+
             $data = [
                 'schedule' => $schedule,
-                'seat' => $seat->total_seat,
-                'bus_plate' => $seat->bus_plate,
+                'seat' => $seatInfo->total_seat,
+                'seat_status' => $seatStatus,
+                'bus_plate' => $seatInfo->bus_plate,
                 'storage' => $storage,
                 'price' => $price
             ];
@@ -255,9 +292,9 @@ class BusTicketingController extends Controller
 
         // Calculating the total price
         $totalDeparturePrice = $data['departure_seat']['price']->price;
-        $totalReturnPrice = $data['return_seat']['price']->price;
+        $totalReturnPrice = $data['return_seat']['price']->price ?? 0;
         $totalDepartureSeat = $data['departure_seat']['departureSeatCount'];
-        $totalReturnSeat = $data['return_seat']['returnSeatCount'];
+        $totalReturnSeat = $data['return_seat']['returnSeatCount'] ?? 0;
 
         $totalAmount = ($totalDeparturePrice * $totalDepartureSeat) + ($totalReturnPrice * $totalReturnSeat);
 
@@ -280,7 +317,7 @@ class BusTicketingController extends Controller
         $payment_option = 'cards';
         $return_url = base64_encode("/confirmation");
         $continue_success_url = '/success';
-        $currency = $data['return_seat']['price']->currency;
+        $currency = $data['departure_seat']['price']->currency;
         $return_params = 1;
         // WARNING: Do not change the order of these data! 
         // Follow this order: https://www.payway.com.kh/developers/create-transaction

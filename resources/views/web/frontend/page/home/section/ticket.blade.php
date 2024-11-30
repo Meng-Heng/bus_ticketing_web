@@ -3,8 +3,8 @@
             <div class="row">
                 <div class="pb-3 h3 text-left">{{ __("Where are you heading?") }}</div>
             </div>
-            <form action="/available" id="bus-form" method="POST">
-                {{ method_field('POST')}}
+            <form action="/available" id="bus-form" method="GET">
+                {{ method_field('GET')}}
                 {{ csrf_field()}}
                 <div class="row">   
                     <div class="form-group col-md align-items-start flex-column">
