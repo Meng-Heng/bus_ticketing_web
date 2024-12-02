@@ -52,7 +52,10 @@ class BusTicketingController extends Controller
         // Search for the Schedule using the Inputed "%$origin%", "%$arrived%", and "%$origin_date%"
         $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$origin_date%")
-            ->where('destination', 'like', "%$arrived%")->paginate(10)->withQueryString();
+            ->where('destination', 'like', "%$arrived%")
+            ->where('sold_out', 0)->paginate(10)->withQueryString();
+
+        // dd($result);
 
         // Prepare data for Session::departure_data & Return
         $data = [
@@ -275,9 +278,8 @@ class BusTicketingController extends Controller
 
         // Get User information for Bus Ticket
         $user_id = Auth::user()->id;
-        
         $userInfo = User::find($user_id);
-        $current = Carbon::now()->format('l, F-d-Y');
+        $current = Carbon::now()->format('l, d-F-Y');
 
         // Fetch all the required data
         $data = [
@@ -288,13 +290,20 @@ class BusTicketingController extends Controller
             'users' => $userInfo,
             'current_time' => $current
         ];
-        // dd($data);  
+        // dd($data);
+
+        if($data['departure_seat']['departureSeatCount'] == null || $data['return_seat']['returnSeatCount'] == null) {
+            return redirect()->route('homepage');
+        }
 
         // Calculating the total price
         $totalDeparturePrice = $data['departure_seat']['price']->price;
         $totalReturnPrice = $data['return_seat']['price']->price ?? 0;
         $totalDepartureSeat = $data['departure_seat']['departureSeatCount'];
         $totalReturnSeat = $data['return_seat']['returnSeatCount'] ?? 0;
+
+        $totalSumDeparture = $totalDeparturePrice * $totalDepartureSeat;
+        $totalSumReturn = $totalReturnPrice * $totalReturnSeat;
 
         $totalAmount = ($totalDeparturePrice * $totalDepartureSeat) + ($totalReturnPrice * $totalReturnSeat);
 
@@ -340,6 +349,8 @@ class BusTicketingController extends Controller
             'currency' => $currency,
             'return_params' => $return_params,
             'hash' => $hashReady,
+            'total_sum_departure' => $totalSumDeparture,
+            'total_sum_return' => $totalSumReturn,
         ];
         // dd($paywayData);
 
@@ -374,5 +385,34 @@ class BusTicketingController extends Controller
     }
     /* 
             End of Operation outside of the System.
+    */
+
+    /*
+    
+        $scheduleId = $data['departure_seat']['schedule']->id;
+        $myDepartureDate = $data['departure_seat']['schedule']->departure_date;
+        $myBusId = $data['departure_seat']['schedule']->bus_id;
+
+        $soldSeats = Bus_seat::where('bus_id', $data['departure_seat']['schedule']->bus_id)
+        ->whereHas('ticket', function ($query) use ($scheduleId, $myDepartureDate) {
+            // Ensure that the seat is booked on a specific departure schedule
+            $query->where('schedule_id', $scheduleId);
+        })
+        ->count();
+
+        // dd($soldSeats);
+                    
+        $busInfo = Bus::whereHas('bus_schedule', function ($q) use ($scheduleId) {
+            $q->where('id', $scheduleId);
+        })->first();
+        
+        $totalSeats = $busInfo->total_seat;
+
+        $schedule = Schedule::find($scheduleId);
+        if ($soldSeats == $totalSeats) {
+            $schedule->sold_out = 1;  // Mark the schedule as sold out
+        } else {
+            $schedule->sold_out = 0;  // Mark as not sold out
+        }
     */
 }

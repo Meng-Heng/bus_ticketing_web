@@ -20,11 +20,14 @@
     @endif
     {{ Form::model($tbl_bus_seat_daily , array('route' => array('schedule.update', $tbl_bus_seat_daily->id), 'method'=>'PUT')) }}
     <br>
-                {!! Form::label('bus_seat_id', 'Bus Seat ID') !!}
-                {!! Form::select('bus_seat_id',$bus_seats, null, array('class'=>'form-control')) !!}
+    {!! Form::label('id', 'ID') !!}
+    <input type="text" class="form-control" value="{{$tbl_bus_seat_daily->id}}" readonly>
                 <br>
-                {!! Form::label('destination', 'Destination') !!}
-                {!! Form::text('destination', null, array('class'=>'form-control')) !!}
+                {!! Form::label('bus_id', 'Bus ID') !!}
+                {!! Form::select('bus_id', $bus, null, array('class'=>'form-control')) !!}
+                <br>
+                {!! Form::label('origin', 'Origin') !!}
+                {!! Form::text('origin', null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('departure_date', 'Departure date') !!}
                 {!! Form::text('departure_date', null, array('class'=>'form-control')) !!}
@@ -32,18 +35,25 @@
                 {!! Form::label('departure_time', 'Departure time') !!}
                 {!! Form::text('departure_time', null, array('class'=>'form-control')) !!}
                 <br>
+                {!! Form::label('destination', 'Destination') !!}
+                {!! Form::text('destination', null, array('class'=>'form-control')) !!}
+                <br>
                 {!! Form::label('arrival_date', 'Arrival date') !!}
                 {!! Form::text('arrival_date', null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('arrival_time', 'Arrival time') !!}
                 {!! Form::text('arrival_time', null, array('class'=>'form-control')) !!}
                 <br>
-                {!! Form::label('is_sold', 'Sold out') !!}
-                {!! Form::text('is_sold', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('station_id', 'Bus Station') !!}
-                {!! Form::select('station_id', $stations, null, array('class'=>'form-control')) !!}
+                {!! Form::label('sold_out', 'Sold out') !!}
+                <div>
+                    <select name="sold_out" id="">
+                        <option value="0">Available</option>
+                        <option value="1">Sold</option>
+                    </select>
+                </div>
                 <br>
                 {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
+
+                <a class="btn btn-primary" href="{{route('schedule.view')}}">Back</a>
                 {!! Form::close() !!}
 @endsection

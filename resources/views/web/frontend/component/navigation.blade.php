@@ -58,6 +58,7 @@
           @if(Auth::user())
           <a id="openProfile" href="{{url('profile/'.Auth::user()->id)}}" class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
             <i class="fas fa-user nav-fa"></i>
+          </a>
           @else 
           <a class="nav-link" data-toggle="dropdown" data-close-others="false" aria-expanded="true">
             <i class="fas fa-user nav-fa"></i>
@@ -83,3 +84,4 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+

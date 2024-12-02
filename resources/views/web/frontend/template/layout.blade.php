@@ -78,30 +78,89 @@
         $('#your-ticket').on('click', async (e) => {
             e.preventDefault()
             axios.get('your-ticket').then(function(response) {
-              console.log(response.data + " and " + response.data.id)
+              // console.log(response.data + " and " + response.data.id)
               let ticketData = response.data;
+              // console.log("Ticket Data: ", ticketData)
 
               // Foreach ticketData to get ticket-departure-date as a set
-              let uniqueDates = [...new Set(ticketData.map(ticket => ticket.schedule.departure_date))]; 
-              console.log(uniqueDates)
-              let selectedDate = 'Show All'; // Set default selected date
+              let uniquePaymentIds = [...new Set(ticketData.map(ticket => ticket.payment.id))]; 
+              let selectedPaymentId = 'Show All'; // Set default selected date
+              console.log(response.data)
               
               // Generate the dropdown dynamically
+                const groupedTickets = ticketData.reduce((acc, ticket) => {
+                    if (!acc[ticket.payment_id]) {
+                        acc[ticket.payment_id] = [];
+                    }
+                    acc[ticket.payment_id].push(ticket);
+                    return acc;
+                }, {});
+                // console.log(groupedTickets);
+
               function generateDropdown() {
-                let ticketSelect = `<table class="table"><tr><td>Departure Date</td><td>
-                <select id="departure-date-filter">`;
-                ticketSelect += `<option value="Show All" ${selectedDate === "Show All" ? 'selected' : ''}>Show All</option>`;
-                uniqueDates.forEach(date => {
-                  ticketSelect += `<option value="${date}" ${date === selectedDate ? 'selected' : ''}>${date}</option>`;
-                }); // Get Unique Dates by foreach (date)
-                ticketSelect += `</select></td></tr></table>`;
+
+                const ticketCounts = Object.entries(groupedTickets).map(([paymentId, tickets]) => {
+                    const totalPrice = tickets.reduce((sum, ticket) => {
+                        return sum + parseFloat(ticket.price.price || 0); // Convert price to number and sum it
+                    }, 0);
+
+                    const paymentDateTime = tickets
+
+                    return {
+                        paymentId: paymentId,
+                        ticketCount: tickets.length,
+                        ticketPrice: tickets.length > 0 ? tickets[0].price.price : null,
+                        total: totalPrice,
+                        paid_at: tickets.length > 0 ? tickets[0].payment.payment_datetime : null,
+                    };
+                });
+
+                let ticketSelect = `
+                <table class="table">`
+                  ticketSelect += `<thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Payment At</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th id="getTicket">Get ticket</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
+                  ticketCounts.forEach((ticket, index) => {
+                    ticketSelect += `
+                          <tr>
+                              <td>${index+1}</td>
+                              <td>${ticket.paid_at}</td>
+                              <td>${ticket.ticketCount}</td>
+                              <td>USD ${ticket.ticketPrice}</td>
+                              <td>USD ${ticket.total}</td>
+                              <td><button class="" id="getTicketBtn" data-payment-id="${ticket.paymentId}">Show</button></td>
+                          </tr>`
+                })
+                ticketSelect += `</tbody>
+                </table><div id="myTickets">`;
+                
                 return ticketSelect;
               }
               
+              $('#ticketModal .modal-body').html(generateDropdown());
+
               // Generate Tickets by getting the Filtered Date (Selected Date)
               function renderTickets(filteredData) {
-                let ticketContent = `<div><button id="download-receipt-image" class="btn btn-primary">Download Receipt</button></div><div class="ticket-box">`;
+                let totalPrice = 0
+                let ticketPriceCurrency = ""
+                let ticketContent = `<div>
+                                      <button id="download-receipt-image" class="btn btn-primary">Download All Tickets</button>
+                                    </div>
+                                    <div class="ticket-box">`;
+                
                 filteredData.forEach((ticket, index) => {
+                  
+                  ticketPriceCurrency += ticket.price.currency
+                  // console.log(ticketPriceCurrency)
+                  // ticketPriceCurrency += ticketPriceCurrency.filter(c => c.currency)
                   ticketContent += `
                     <h2>${index + 1}</h2> 
                     <div class="ticket">
@@ -116,11 +175,6 @@
                           </div>
                       </div>
                       <div class="ticket-body">
-                          <div class="ticket-body__utensils">
-                              <svg viewBox="0 0 164 100">
-                                  <path d="M146.398 50.277h6.27V5.52c0-1.497.546-2.792 1.639-3.885C155.383.56 156.656.017 158.122 0c1.464.017 2.738.559 3.814 1.634 1.093 1.093 1.64 2.388 1.64 3.885v91.719c0 .746-.274 1.394-.82 1.942-.547.546-1.194.82-1.941.82h-1.985c-3.8 0-7.05-1.353-9.755-4.057-2.704-2.706-4.057-5.957-4.057-9.755v-34.53c0-.374.137-.698.41-.971.272-.273.596-.41.97-.41zM9.238 65.148V5.713c0-1.55.565-2.89 1.698-4.021C12.05.578 13.366.018 14.884 0c1.517.017 2.835.577 3.949 1.69 1.132 1.132 1.697 2.473 1.697 4.022v59.435c1.698.595 8.064 6.269 8.064 8.088v23.905c0 .773-.284 1.444-.849 2.01-.566.565-1.237.85-2.01.85-.775 0-1.445-.285-2.01-.85-.567-.567-.85-1.237-.85-2.01V78.554c0-.776-.283-1.445-.849-2.01-.566-.567-1.236-.849-2.01-.849-.775 0-1.445.282-2.01.848-.566.566-.85 1.237-.85 2.01v18.588c0 .773-.283 1.444-.849 2.01-.565.565-1.236.85-2.01.85-.775 0-1.445-.285-2.01-.85-.567-.567-.85-1.237-.85-2.01V78.554c0-.776-.283-1.445-.849-2.01-.566-.567-1.236-.849-2.01-.849-.775 0-1.445.282-2.01.848-.567.566-.85 1.237-.85 2.01v18.588c0 .773-.282 1.444-.848 2.01-.566.565-1.237.85-2.01.85-.776 0-1.446-.285-2.01-.85-.566-.567-.85-1.237-.85-2.01V73.237c0-1.819 7.54-7.493 9.238-8.089z" fill-rule="nonzero" />
-                              </svg>
-                          </div>
                           <div class="ticket-body__title">
                             <h1 class="alfa">${ticket.id}</h1>
                               <h1 class="alfa">${ticket.ticket_id}</h1>
@@ -168,27 +222,46 @@
                   `;
                 });
                 ticketContent += `</div>`;
-                $('#ticketModal .modal-body').html(generateDropdown() + ticketContent);
+
+                $('#myTickets').html(ticketContent);
               }
 
-              // Step 2: Initial render with all tickets and dropdown functionality
-              renderTickets(ticketData.filter(ticket => ticket.schedule.departure_date === selectedDate));
+              // Click handler and rendering tickets
+              document.addEventListener('click', function(event) {
+                  if (event.target && event.target.matches('#getTicketBtn')) {
+                      const paymentId = event.target.getAttribute('data-payment-id');
+                      const tickets = groupedTickets[paymentId];
+                      renderTickets(tickets);
+                      console.log("Ticket is here!")
+                  }
+              });
 
-              // Attach change event listener to the dropdown
-              $('#ticketModal').on('change', '#departure-date-filter', function() {
-                selectedDate = $(this).val(); // Update selected date
-                const filteredTickets = selectedDate === "Show All" ? ticketData : ticketData.filter(ticket => ticket.schedule.departure_date === selectedDate);
-
-                renderTickets(filteredTickets);
-              })
+              // showPayment(ticketData);
 
               $(document).on('click', '#download-receipt-image', function() {
-                html2canvas(document.querySelector('.ticket-box')).then(canvas => {
-                  const link = document.createElement('a');
-                  link.href = canvas.toDataURL('image/png');
-                  link.download = 'TicketReceipt.png';
-                  link.click();
-                });
+                const tickets = document.querySelectorAll('.ticket-box .ticket');
+    
+                // Loop through each ticket and generate a separate image
+                tickets.forEach((ticket, index) => {
+                  // Set the desired dimensions of the canvas based on the ticket's content
+                  const ticketWidth = ticket.offsetWidth;  // Get the width of the ticket
+                  const ticketHeight = ticket.offsetHeight; // Get the height of the ticket
+                  
+                  html2canvas(ticket, {
+                      width: ticketWidth,
+                      height: ticketHeight,
+                      scrollX: 0,
+                      scrollY: -window.scrollY, // Fixes issues with cut-off if the page is scrolled
+                      x: 0,
+                      y: 0,
+                      scale: 2 // Optional: Higher scale for better image quality
+                  }).then(canvas => {
+                      const link = document.createElement('a');
+                      link.href = canvas.toDataURL('image/png');
+                      link.download = `TicketReceipt-${index + 1}.png`; // Naming each file separately
+                      link.click();
+                  });
+              });
               });
             });
             $('#ticketModal').modal('show');

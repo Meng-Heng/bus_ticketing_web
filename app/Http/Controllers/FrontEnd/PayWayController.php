@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bus;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -11,6 +12,7 @@ use App\Models\Storage;
 use App\Models\Bus_seat;
 use App\Models\Ticket;
 use App\Models\Payment;
+use App\Models\Schedule;
 use App\Services\PayWayService;
 use ArrayObject;
 use Illuminate\Support\Facades\Auth;
@@ -55,15 +57,13 @@ class PayWayController extends Controller
             // Start insertion if payment success!
             if($payment_data['return_params'] == '1') {
                 Session::flash('payment_created','Your purchase has been successful!');
-
+                $payment = new Payment();
+                $payment->payment_method = $payment_data['payment_option'];
+                $payment->payment_datetime = Carbon::now();
+                $payment->user_id = Auth::user()->id;
+                $payment->save();
                 // Create departure ticket after payment success
                 for($i=0; $i<count($selectedDepartureSeat); $i++) {
-                    // Payment creation
-                    $payment = new Payment();
-                    $payment->payment_method = $payment_data['payment_option'];
-                    $payment->payment_datetime = Carbon::now();
-                    $payment->user_id = Auth::user()->id;
-                    $payment->save();
                     // Ticket creation
                     $ticket = new Ticket();
                     $ticket->ticket_id =  $this->generateTicketId();
@@ -83,12 +83,6 @@ class PayWayController extends Controller
                 // Create return ticket after payment success
                 if($selectedReturnSeat != null) {
                     for($i=0; $i<count($selectedReturnSeat); $i++) {
-                        // Payment creation
-                        $payment = new Payment();
-                        $payment->payment_method = $payment_data['payment_option'];
-                        $payment->payment_datetime = Carbon::now();
-                        $payment->user_id = Auth::user()->id;
-                        $payment->save();
                         // Ticket creation
                         $ticket = new Ticket();
                         $ticket->ticket_id = $this->generateTicketId();
@@ -106,6 +100,7 @@ class PayWayController extends Controller
                         $bus_seat->save();
                     }
                 }
+                $this->checkIfSoldOut($departure_seat['schedule']->bus_id, $departure_seat['schedule']->id);
                 Session::flash('Your have acquired your ticket!', 'Success!');
             } else {
                 Session::flash('payment_failing', 'Failed');
@@ -121,6 +116,31 @@ class PayWayController extends Controller
         $myTicket = Ticket::findOrFail($id)->where('user_id');
     }
 
+    public function checkIfSoldOut($bus_id, $schedule_id)
+    {
+        // Get all seats for a given schedule
+        $soldSeats = Bus_seat::where('bus_id', $bus_id)
+        ->whereHas('ticket', function ($query) use ($schedule_id) {
+            // Ensure that the seat is booked on a specific departure schedule
+            $query->where('schedule_id', $schedule_id);
+        })
+        ->count();
+
+        $busInfo = Bus::whereHas('bus_schedule', function ($q) use ($schedule_id) {
+            $q->where('id', $schedule_id);
+        })->first();
+        $totalSeats = $busInfo->total_seat;
+
+        // If the number of sold seats equals the total seats, mark as sold out
+        $schedule = Schedule::find($schedule_id);
+        if ($soldSeats == $totalSeats) {
+            $schedule->sold_out = 1;  // Mark the schedule as sold out
+        } else {
+            $schedule->sold_out = 0;  // Mark as not sold out
+        }
+        
+        $schedule->save();
+    }
     /* 
             Operation outside of the System.
     */
