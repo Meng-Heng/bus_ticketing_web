@@ -10,12 +10,18 @@ use App\Models\User;
 use App\Models\Payment;
 use App\Models\Bus_seat;
 use App\Models\Schedule;
+use App\Models\UserPermission;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
     public function index() {
         $ticket = Ticket::paginate(15);
-        return view('web.backend.component.ticket.view')->with('tbl_ticket', $ticket);
+
+        $user_id = Auth::user()->id;
+
+        $permission = UserPermission::where('user_id', $user_id);
+        return view('web.backend.component.ticket.view')->with('tbl_ticket', $ticket, 'permission', $permission);
     }
 
     public function edit($id) {

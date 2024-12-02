@@ -55,7 +55,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Set a Price
                             </a>
-                            <a class="nav-link" href="{{route('storage.view')}}">
+                                <a class="nav-link" href="{{route('storage.view')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Set storage capacity
                             </a>

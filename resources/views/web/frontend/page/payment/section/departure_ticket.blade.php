@@ -47,6 +47,14 @@
         <small>Price</small>
         <strong>{{ $departure_data['price']->currency }} {{ $departure_data['price']->price }}</strong>
     </div>
+    <div class="box">
+        <small>Calculation</small>
+        <strong>{{ $departure_seat['departureSeatCount'] }} Seat(s) * {{ $departure_data['price']->price }}</strong>
+    </div>
+    <div class="box">
+        <small>Total</small>
+        <strong>{{ $departure_data['price']->currency }} {{ $paywayData['total_sum_departure'] }}</strong>
+    </div>
     </div>
     <div class="times">
     <div class="box">
@@ -71,34 +79,34 @@
 </section>
 <section class="strap">
     <div class="box">
-    <small>passenger information</small>
-    <div class="passenger">
-        <small class="item-1">ID:</small>
-        <strong class="item-1">{{$users->id}}</strong>
-        <small class="item-2">Username:</small>
-        <strong class="item-2">{{$users->username}}</strong>
-        <small class="item-3">Gender:</small>
-        @if($users->gender == 1)
-        <strong class="item-3">Male</strong>
-        @elseif($users->gender == 2)
-        <strong class="item-3">Female</strong>
-        @else
-        <strong class="item-3">Prefer Not to Say</strong>
-        @endif
-        <small class="item-4">Contact:</small>
-        <strong class="item-4">{{$users->contact}}</strong>
-    </div>
+        <small>passenger information</small>
+        <div class="passenger">
+            <small class="item-1">ID:</small>
+            <strong class="item-1">{{$users->id}}</strong>
+            <small class="item-2">Username:</small>
+            <strong class="item-2">{{$users->username}}</strong>
+            <small class="item-3">Gender:</small>
+            @if($users->gender == 1)
+                <strong class="item-3">Male</strong>
+            @elseif($users->gender == 2)
+                <strong class="item-3">Female</strong>
+            @else
+                <strong class="item-3">Prefer Not to Say</strong>
+            @endif
+            <small class="item-4">Contact:</small>
+            <strong class="item-4">{{$users->contact}}</strong>
+        </div>
     </div>
     <div class="box">
-    <div class="date">
-        <small>Issued Date</small>
-        <strong>{{$current_time}}</strong>
-    </div>
+        <div class="date">
+            <small>Issued Date</small>
+            <strong>{{$current_time}}</strong>
+        </div>
     </div>
     <div class="box box-2">
         <a href="{{route('backtoschedule')}}" class="btn btn-success">Check other dates</a>
     </div>
     <svg class="qrcode">
-    <use xlink:href="#qrcode"></use>
+        <use xlink:href="#qrcode"></use>
     </svg>
 </section>

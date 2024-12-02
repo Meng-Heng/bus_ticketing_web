@@ -47,6 +47,14 @@
         <small>Price</small>
         <strong>{{ $departure_data['price']->currency }} {{ $departure_data['price']->price }}</strong>
     </div>
+    <div class="box">
+        <small>Calculation</small>
+        <strong>{{ $return_seat['returnSeatCount'] }} Seat(s) * {{ $departure_data['price']->price }}</strong>
+    </div>
+    <div class="box">
+        <small>Total</small>
+        <strong>{{ $departure_data['price']->currency }} {{ $paywayData['total_sum_return'] }}</strong>
+    </div>
     </div>
     <div class="times">
     <div class="box">

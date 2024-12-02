@@ -55,7 +55,8 @@ class CheckPermission
         Log::info('Final Permissions List:', $userPermissions);
 
         // Check if the required permission matches the user's permissions
-        if (in_array($requiredPermission, $userPermissions)) {
+        $requiredPermissions = explode('|', $requiredPermission);
+        if (array_intersect($userPermissions, $requiredPermissions)) {
             return $next($request);
         }
 
@@ -66,8 +67,9 @@ class CheckPermission
             'user_permissions' => $userPermissions,
         ]);
 
+        return redirect()->route('homepage');
         // Deny access for other cases
-        abort(403, 'Unauthorized. You do not have the right permission. Please leave!');
+        // abort(403, 'Unauthorized. You do not have the right permission. Please leave!');
     }
 
 }

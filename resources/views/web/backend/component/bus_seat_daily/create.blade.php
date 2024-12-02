@@ -2,10 +2,7 @@
 @section('content')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Create Seat</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{url('/schedule/create')}}">Seat Type</a></li>
-        </ol>
+        <h1 class="mt-4">Add Schedule</h1>
         <div class="card mb-4">
             <div class="card-body">
                 @if (count($errors) > 0)
@@ -19,40 +16,59 @@
                     </ul>
                 </div>
                 @endif
-
-                {!! Form::open(array('url'=>'schedule')) !!}
-                <br>
-                {!! Form::label('bus_seat_id', 'Bus Seat ID') !!}
-                {!! Form::select('bus_seat_id',$bus_seats, null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('destination', 'Destination') !!}
-                {!! Form::text('destination', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('departure_date', 'Departure date') !!}
-                {!! Form::text('departure_date', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('departure_time', 'Departure time') !!}
-                {!! Form::text('departure_time', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('arrival_date', 'Arrival date') !!}
-                {!! Form::text('arrival_date', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('arrival_time', 'Arrival time') !!}
-                {!! Form::text('arrival_time', null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('is_sold', 'Sold out') !!}
-                {!! Form::select('is_sold', ["false (Available)", "true (Sold out)"], null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::label('station_id', 'Bus Station') !!}
-                {!! Form::select('station_id', $stations, null, array('class'=>'form-control')) !!}
-                <br>
-                {!! Form::submit('Create', array('class'=>'btn btn-primary')) !!}
-
-                <a class="btn btn-primary" href="{!! url('/schedule')!!}">Back</a>
-
-                {!! Form::close() !!}
+                <form method="POST" action="{{ route('schedule.store') }}">
+                    @csrf
+                    <!-- Bus Selection -->
+                    <label for="bus_id">Bus:</label>
+                    <select name="bus_id" id="bus_id" class="form-control" required>
+                        @foreach ($buses as $id => $plate)
+                            <option value="{{ $id }}">{{ $plate }}</option>
+                        @endforeach
+                    </select>
+                    <!-- Origin Selection -->
+                    <label for="origin">Origin:</label>
+                    <select name="origin" id="origin" class="form-control" required>
+                        @foreach ($locations as $location)
+                            <option value="{{ $location }}">{{ $location }}</option>
+                        @endforeach
+                    </select>
+                    <label for="departure_date">Departure Date:</label>
+                    <input type="text" name="departure_date" id="departure_date" class="form-control" required placeholder="2024-12-21">
+                    <label for="departure_time">Departure Time:</label>
+                    <input type="text" name="departure_time" id="departure_time" class="form-control" required placeholder="00:00:00">
+                    <!-- Destination Selection -->
+                    <label for="destination">Destination:</label>
+                    <select name="destination" id="destination" class="form-control" required>
+                        @foreach ($locations as $location)
+                            <option value="{{ $location }}">{{ $location }}</option>
+                        @endforeach
+                    </select>
+                    <label for="arrival_date">Arrival Date:</label>
+                    <input type="text" name="arrival_date" id="arrival_date" class="form-control" required placeholder="2024-12-21">
+                    <label for="arrival_time">Arrival Time:</label>
+                    <input type="text" name="arrival_time" id="arrival_time" class="form-control" required placeholder="00:00:00">
+                    <label for="sold_out">Sold Out:</label>
+                    <input type="text" name="sold_out" id="sold_out" class="form-control" value="0" readonly>
+                    <!-- Pattern Selection -->
+                    {{-- <div class="form-group">
+                        <label for="pattern">Pattern:</label>
+                        <div>
+                            @foreach ($patterns as $patternName => $pattern)
+                                <label>
+                                    <input type="radio" name="pattern" value="{{ $patternName }}" required>
+                                    {{ $patternName }}
+                                </label>
+                                <br>
+                            @endforeach
+                        </div>
+                    </div> --}}
                 
+                    <!-- Departure Date -->
+                    
+                    <br>
+                    <button type="submit" class="btn btn-primary">Create Schedule</button>
+                </form>
             </div>
         </div>
-</main>
+    </main>
 @endsection

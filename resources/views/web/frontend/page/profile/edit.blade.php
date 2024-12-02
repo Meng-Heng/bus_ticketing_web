@@ -31,42 +31,53 @@
         </div>
         <div class="col-md-8 border-right">
             <div class="p-3 py-5">
-                {!! Form::model($user , array('route' => array('profile.update', $user->id),'method'=>'PUT','files'=>'true')) !!}
+                {{ Form::model($tbl_user , array('route' => array('profile.update', $tbl_user->id), 'method'=>'PUT')) }}
                 @method('PUT')
+                @csrf
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Edit your profile</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Username</label>
+                    <div class="col-md-6">
+                      <label class="labels">Username</label>
                       {!! Form::text('username',null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-6"><label class="labels">Gender</label>
+                    <div class="col-md-6">
+                      <label class="labels">Gender</label>
                       <div>
-                      {!! Form::select('gender',['Male','Female','Other'], array('class'=>'form-control', 'name'=>'gender', 'id'=>'gender')) !!}
+                        <select name="gender" id="">
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                      </select>
                       </div>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Contact</label>
-                      {!! Form::text('contact',null, array('class'=>'form-control')) !!}
+                    <div class="col-md-12">
+                      <label class="labels">Contact</label>
+                      {!! Form::text('contact', null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-12"><label class="labels">Email</label>
-                      {!! Form::text('email',null, array('class'=>'form-control')) !!}
+                    <div class="col-md-12">
+                      <label class="labels">Email</label>
+                      {!! Form::text('email', null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-12"><label class="labels">Identification number</label>
-                      {!! Form::text('id_card',null, array('class'=>'form-control')) !!}
+                    <div class="col-md-12">
+                      <label class="labels">Identification number</label>
+                      {!! Form::text('id_card', null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-12"><label class="labels">Hometown</label>
-                      {!! Form::text('hometown',null, array('class'=>'form-control')) !!}
+                    <div class="col-md-12">
+                      <label class="labels">Hometown</label>
+                      {!! Form::text('hometown', null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-12"><label class="labels">Date of Birth</label>
-                      {!! Form::date('date_of_birth',null, array('class'=>'form-control')) !!}
+                    <div class="col-md-12">
+                      <label class="labels">Date of Birth</label>
+                      {!! Form::date('date_of_birth', null, array('class'=>'form-control')) !!}
                     </div>
-                    <div class="col-md-12"><label class="labels">Picture</label>
+                    {{-- <div class="col-md-12"><label class="labels">Picture</label>
                       <div>
                         {!! Form::file('picture',null, array('class'=>'form-control')) !!}
                       </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6"><label class="labels">Account created at</label>

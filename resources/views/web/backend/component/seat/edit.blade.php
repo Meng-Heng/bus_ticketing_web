@@ -19,12 +19,46 @@
     </div>
     @endif
     {{ Form::model($tbl_seat , array('route' => array('seat.update', $tbl_seat->id), 'method'=>'PUT')) }}
-    {!! Form::label('name', 'Seat number:') !!}
-    {!! Form::text('seat_number',null, array('class'=>'form-control')) !!}
+    {!! Form::label('id', 'Seat ID:') !!}
+    <div>
+        <input class="form-control" type="text" name="id" value="{{ $tbl_seat->id }}" readonly>
+    </div>
     <br>
-    {!! Form::label('seat_type_id', 'Seat Type:') !!}
-    {!! Form::select('seat_type_id',$seatTypes, null,array('class'=>'form-select')) !!}
+    {!! Form::label('seat_number', 'Seat Number:') !!}
+    {!! Form::text('seat_number', null, array('class'=>'form-control')) !!}
+    <br>
+    {!! Form::label('seat_type', 'Seat Type:') !!}
+    <div>
+        <select name="seat_type" id="">
+            <option value="Window">Window</option>
+            <option value="Aisle">Aisle</option>
+        </select>
+    </div>
+    <br>
+    {!! Form::label('bus_id', 'Bus ID:') !!}
+    {!! Form::select('bus_id', $bus, null, array('class'=>'form-control')) !!}
+    <br>
+    {!! Form::label('storage_id', 'Storage ID:') !!}
+    <div>
+        <input class="form-control" type="text" name="storage_id" value="{{ $storage->id }}" readonly>
+    </div>
+    <br>
+    {!! Form::label('price_id', 'Price ID:') !!}
+    <div>
+        <input class="form-control" type="text" name="price_id" value="{{ $price->id }}" readonly>
+    </div>
+    <br>
+    {!! Form::label('status', 'Status:') !!}
+    <div>
+        <select name="status" id="">
+            <option value="Sold">Sold</option>
+            <option value="Available">Available</option>
+        </select>
+    </div>
     <br>
     {!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
+
+    <a class="btn btn-primary" href="{!! route('seat.view')!!}">Back</a>
+
     {!! Form::close() !!}
 @endsection

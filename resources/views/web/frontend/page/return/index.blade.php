@@ -140,7 +140,7 @@
                                                 seatClass = seatStatus[seatLabel] === 'Sold' ? 'gray' : 'red'
                                                 seatHtml += `
                                                  <li class="seat last-seat-row">
-                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${sealClass === 'gray' ? 'disabled' : ''}/>
+                                                    <input type="checkbox" id="seat-check seat-${seatLabel}" data-seat="${seatLabel}" onclick="displaySeatNumber(this)" ${seatClass === 'gray' ? 'disabled' : ''}/>
                                                     <label for="seat-check seat-${seatLabel}" class="${seatClass}">${seatLabel}</label>
                                                 </li>
                                                 `
