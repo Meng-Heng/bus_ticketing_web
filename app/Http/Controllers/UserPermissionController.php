@@ -44,8 +44,8 @@ class UserPermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'permission_id' => 'required|exists:tbl_permission',
-            'user_id' => 'required|exists:tbl_user',
+            'permission_id' => 'required|exists:tbl_permission,id',
+            'user_id' => 'required|exists:tbl_user,id',
         ]);
     
         // Create The Bus information
@@ -91,8 +91,8 @@ class UserPermissionController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-			'permission_id' => 'required|exists:tbl_permission',
-            'user_id' => 'required|exists:tbl_user',
+			'permission_id' => 'required|exists:tbl_permission,id',
+            'user_id' => 'required|exists:tbl_user,id',
 		]);
 		if ($validator->fails()) {
 			return redirect()->route('userpermission.edit',$id)

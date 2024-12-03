@@ -26,7 +26,7 @@ class BusTicketingController extends Controller
     }
 
     // Populate dropdown Ticket search in Homepage
-    public $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
+    public $location = ["Phnom Penh - DN", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
 
     // Get Schedule for Departure
     public function departureSchedule(Request $request)
@@ -34,7 +34,7 @@ class BusTicketingController extends Controller
         // Store URL Inputs for Schedule Search
         Session::put('schedule_url', $request->fullUrl());
         
-        $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
+        $location = ["Phnom Penh - DN", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
         // Fetch data from Views/Blades
         $request->validate([
             'origin' => 'required',
@@ -53,7 +53,11 @@ class BusTicketingController extends Controller
         $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$origin_date%")
             ->where('destination', 'like', "%$arrived%")
-            ->where('sold_out', 0)->paginate(10)->withQueryString();
+            ->where('sold_out', 0)
+            ->whereHas('bus', function ($query) {
+                $query->where('is_active', 1); // Ensure the bus is active
+            })
+            ->paginate(10)->withQueryString();
 
         // dd($result);
 
@@ -171,7 +175,7 @@ class BusTicketingController extends Controller
     // Get Schedule for Return
     public function returnSchedule(Request $request) {
         try {
-            $location = ["Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
+            $location = ["Phnom Penh - DN", "Siem Reap", "Sihanouk Ville", "Kompot", "Kep", "Battambang", "Banteay Meanchey"];
             // Fetch Departure Schedule
             $departureData = session()->get('departure_data');
 
@@ -190,7 +194,10 @@ class BusTicketingController extends Controller
             // Search for the Schedule using the Inputed "%$destination%", "%$origin%", and "%$return_date%"
             $result = Schedule::where('origin', 'like', "%$origin%")
             ->where('departure_date', 'like', "%$return_date%")
-            ->where('destination', 'like', "%$destination%")->paginate(10)->withQueryString();
+            ->where('destination', 'like', "%$destination%")
+            ->whereHas('bus', function ($query) {
+                $query->where('is_active', 1); // Ensure the bus is active
+            })->paginate(10)->withQueryString();
             // dd($data, $result, $destination, "Origin $origin", $departureData);
 
             // Store Return Schedule to Session
@@ -291,9 +298,10 @@ class BusTicketingController extends Controller
             'current_time' => $current
         ];
         // dd($data);
+        // dd($data['departure_seat']['departureSeatCount']);
 
-        if($data['departure_seat']['departureSeatCount'] == null || $data['return_seat']['returnSeatCount'] == null) {
-            return redirect()->route('homepage');
+        if($data['departure_seat']['departureSeatCount'] == null) {
+            return redirect()->route('schedule.view');
         }
 
         // Calculating the total price
@@ -372,9 +380,9 @@ class BusTicketingController extends Controller
 
     public function backToSchedule() {
         if(session('schedule_url')) {
-            return redirect(session('schedule_url'));
+            return redirect()->route('schedule.view');
         } 
-        return redirect('/');
+        return redirect()->route('schedule.view');
     }
 
     public function backToReturn() {

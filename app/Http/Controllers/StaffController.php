@@ -18,11 +18,7 @@ class StaffController extends Controller
     }
 
     public function create() {
-        $user = array();
-
-        foreach (User::all() as $users) {
-            $user[$users->id] = $users->id . ': ' . $users->username;
-        }
+        $user = Auth::user()->id;
 
         return view('web.backend.component.staff.create', compact('user'));
     }
@@ -110,5 +106,13 @@ class StaffController extends Controller
     public function show($id) {
         $staff = Staff::findOrFail($id);
         return view('web.backend.component.staff.detail')->with('tbl_staff', $staff);
+    }
+
+    public function destroy(string $id)
+    {
+        $staff = Staff::find($id);
+        $staff->delete();
+        Session::flash('staff_deleted','Staff: '. $staff->id . ' was deleted.');
+        return redirect()->route('staff.view');
     }
 }

@@ -20,6 +20,30 @@
                   <strong>{{ $message }}</strong>
                 </div>
               @enderror
+              @error('username')
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>{{ $message }}</strong>
+                </div>
+              @enderror
+              @error('contact')
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>{{ $message }}</strong>
+                </div>
+              @enderror
+              @error('hometown')
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>{{ $message }}</strong>
+                </div>
+              @enderror
+              @error('id_card')
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>{{ $message }}</strong>
+                </div>
+              @enderror
               <!-- Display error for profile_picture -->
               @error('profile_picture')
                 <div class="alert alert-danger alert-dismissible">

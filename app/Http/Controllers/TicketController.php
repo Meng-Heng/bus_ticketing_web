@@ -31,7 +31,9 @@ class TicketController extends Controller
         $departureTimes = Schedule::where('departure_date', $ticket->schedule->departure_date)
                                 ->where('origin', $ticket->schedule->origin)
                                 ->where('destination', $ticket->schedule->destination)
+                                ->where('sold_out', 0)
                                 ->pluck('departure_time', 'id');
+        
 
         // Step 2: Fetch all bus seats related to the bus in the current schedule
         $busSeats = Bus_seat::where('bus_id', $ticket->schedule->bus_id)

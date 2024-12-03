@@ -34,7 +34,7 @@
                 {!! Form::text('lname', null, array('class'=>'form-control')) !!}
                 <br>
                 {!! Form::label('user_id', 'Created by:') !!}
-                {!! Form::select('user_id', $user, null, array('class'=>'form-control')) !!}
+                <input type="text" name="user_id" class="form-control" value="{{ $user }}" readonly>
                 <br>
                 {!! Form::label('hometown', 'Hometown:') !!}
                 {!! Form::text('hometown', null, array('class'=>'form-control')) !!}

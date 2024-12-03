@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                       <th scope="row">User</th>
-                      <td><a href="{{route('user.show', $tbl_ticket->user_id)}}">{{$tbl_ticket->payment->user_id}}</a></td>
+                      <td><a href="{{route('user.show', $tbl_ticket->payment->user_id)}}">{{$tbl_ticket->payment->user_id}}</a></td>
                       <td>{{$tbl_ticket->payment->user->username}}</td>
                       <td></td>
                     </tr>

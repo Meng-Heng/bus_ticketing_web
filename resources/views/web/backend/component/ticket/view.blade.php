@@ -26,6 +26,7 @@
         <div class="panel-body">
             <table class="table table-striped task-table">
                 <thead>
+                    <th>ID</th>
                     <th>Ticket ID</th>
                     <th>Issued Date</th>
                     <th>Bus</th>
@@ -37,6 +38,9 @@
                 <tbody>
                 @foreach ($tbl_ticket as $ticket)
                     <tr>
+                        <td>
+                            <div>{{ $ticket->id }}</div>
+                        </td>
                         <td>
                             <div><a href="{{route('ticket.view', $ticket->id)}}">{{ $ticket->ticket_id}}</a></div>
                         </td>

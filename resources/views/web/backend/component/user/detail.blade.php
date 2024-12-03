@@ -2,7 +2,7 @@
 @section('content')
 <main>
 	<div class="container-fluid">
-		<h1>Permission Detail</h1>
+		<h1>User Detail</h1>
 		<div class="card">
             <div class="card-body">
                 <table class="table">
