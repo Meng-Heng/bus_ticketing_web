@@ -40,7 +40,7 @@ class ProfileController extends Controller
     {   
 		$user = User::find($id);
         $validator = Validator::make($request->all(), [
-			'username' => 'required|string|max:20|regex:/^[a-zA-Z0-9\s]+$/',
+			'username' => 'required|string|max:20|regex:/^[a-zA-Z0-9\s\_]+$/',
             'email' => 'required|email|unique:tbl_user,email,' . $user->id, // Assuming this is an update, with unique email
             'gender' => 'required', // Adjust options as needed
             'date_of_birth' => [
