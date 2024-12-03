@@ -5,7 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\Ticket;
-use App\Models\Schedule;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,18 +20,20 @@ class ReviewController extends Controller
         ->with('schedule')
         ->get();
 
+        $tickets = $tickets->toArray();
+        $user_id = Auth::id();
+
         $reviews = Review::with('user')->paginate(10);
 
-        // dd($reviews);
-        $tickets = $tickets->toArray();
-
+        // dd($payments);
+        
         return view('web.frontend.page.review.index', compact('tickets','reviews'));
     }
     public function store(Request $request) {
 
         $request->validate([
             'star' => 'required|integer|between:1,5',
-            'feedback' => 'required|string|min:25|max:255',
+            'feedback' => 'required|string|min:25|max:255|regex:/^[\pL\pN\s.,!?\'"-]+$/u',
         ]);
 
         // Save the review to tbl_review

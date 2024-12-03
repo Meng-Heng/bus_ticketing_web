@@ -26,8 +26,8 @@ Master Card -	5156 8328 7613 8436:	01/2030:	934
     - Email: myadmin@gmail.com | hengadmin@gmail.com
     - Pwd: 12345678
 2. User
-    - Email: user@gmail.com | havmengheng111@gmail.com
-    - Pwd: 87654321         | 12345678
+    - Email: user@gmail.com | havmengheng111@gmail.com | benedict@gmail.com
+    - Pwd: 87654321         | 12345678                 | 12345678
 3. TOR (Ticket office representative)
     - Email: tor@gmail.com
     - Pwd: 12345678

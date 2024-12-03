@@ -102,7 +102,7 @@
                 const ticketCounts = Object.entries(groupedTickets).map(([paymentId, tickets]) => {
                     const totalPrice = tickets.reduce((sum, ticket) => {
                         return sum + parseFloat(ticket.price.price || 0); // Convert price to number and sum it
-                    }, 0);
+                    }, 0).toFixed(2);
 
                     const paymentDateTime = tickets
 
@@ -241,20 +241,11 @@
               $(document).on('click', '#download-receipt-image', function() {
                 const tickets = document.querySelectorAll('.ticket-box .ticket');
     
-                // Loop through each ticket and generate a separate image
+                // Loop through each ticket
                 tickets.forEach((ticket, index) => {
-                  // Set the desired dimensions of the canvas based on the ticket's content
-                  const ticketWidth = ticket.offsetWidth;  // Get the width of the ticket
-                  const ticketHeight = ticket.offsetHeight; // Get the height of the ticket
                   
                   html2canvas(ticket, {
-                      width: ticketWidth,
-                      height: ticketHeight,
-                      scrollX: 0,
-                      scrollY: -window.scrollY, // Fixes issues with cut-off if the page is scrolled
-                      x: 0,
-                      y: 0,
-                      scale: 2 // Optional: Higher scale for better image quality
+                      scale: 2 
                   }).then(canvas => {
                       const link = document.createElement('a');
                       link.href = canvas.toDataURL('image/png');
