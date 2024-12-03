@@ -99,7 +99,15 @@ class UserController extends Controller
     }
 
     public function show($id) {
-        $user = user::findOrFail($id);
+        $user = User::findOrFail($id);
         return view('web.backend.component.user.detail')->with('tbl_user', $user);
+    }
+
+    public function destroy(string $id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        Session::flash('user_deleted','User: '. $user->id . ' was deleted.');
+        return redirect()->route('user.view');
     }
 }

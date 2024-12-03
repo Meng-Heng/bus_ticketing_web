@@ -51,6 +51,7 @@
                 <div class="panel-body">
                     <table class="table table-striped task-table">
                         <thead>
+                            <th>ID</th>
                             <th>Bus ID</th>
                             <th>Origin</th>
                             <th>Departure date</th>
@@ -63,6 +64,9 @@
                         <tbody>
                         @foreach ($tbl_schedule as $schedule)
                             <tr>
+                                <td>
+                                    <div>{{ $schedule->id}}</div>
+                                </td>
                                 <td>
                                     <div>
                                         <a href="{{route('schedule.show', $schedule->id)}}">{{ $schedule->bus_id }}</a>
@@ -89,13 +93,20 @@
                                 </td>
                                 <td>
                                     @if ($schedule->sold_out == 0)
-                                        <span style="color:lime">Available</span>
+                                        <span style="color:rgb(54, 153, 54)">Available</span>
                                     @elseif ($schedule->sold_out == 1)
                                         <span style="color:red">Sold out!</span>
                                     @endif
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" href="{!! route('schedule.edit', $schedule->id) !!}">Edit</a>
+                                </td>
+                                <td>
+                                    {!! Form::open(array('route'=>['schedule.delete', $schedule->id], 'method'=>'DELETE')) !!}
+                                    {!! csrf_field() !!}
+                                    {!! method_field('DELETE') !!}
+                                    <button class="btn btn-danger delete">Delete</button>
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach

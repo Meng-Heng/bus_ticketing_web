@@ -18,12 +18,15 @@ This is a separate branch only for multi-language purposes.
 ## PayWay Test Cards
  - [Cards for testing](https://www.payway.com.kh/developers/test-card-number/).
 
+Master Card -	5156 8399 3770 6226:	01/2030:	923	
+Master Card -	5156 8328 7613 8436:	01/2030:	934
+
 ## Authentication
 1. Admin
     - Email: myadmin@gmail.com | hengadmin@gmail.com
     - Pwd: 12345678
 2. User
-    - Email: user@gmail.com | jellyjoe@gmail.com
+    - Email: user@gmail.com | havmengheng111@gmail.com
     - Pwd: 87654321         | 12345678
 3. TOR (Ticket office representative)
     - Email: tor@gmail.com

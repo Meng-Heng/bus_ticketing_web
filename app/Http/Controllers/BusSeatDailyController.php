@@ -60,7 +60,7 @@ class BusSeatDailyController extends Controller
             $buses = Bus::pluck('bus_plate', 'id'); // Simplified fetching
             
             $locations = [
-                "Phnom Penh - DN", "Phnom Penh - Chhouk Meas", "Siem Reap", "Sihanouk Ville",
+                "Phnom Penh - DN", "Siem Reap", "Sihanouk Ville",
                 "Kompot", "Kep", "Battambang", "Banteay Meanchey"
             ];
             // Access the patterns

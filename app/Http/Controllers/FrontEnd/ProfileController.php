@@ -40,7 +40,7 @@ class ProfileController extends Controller
     {   
 		$user = User::find($id);
         $validator = Validator::make($request->all(), [
-			'username' => 'required|string|max:255',
+			'username' => 'required|string|max:20|regex:/^[a-zA-Z0-9\s]+$/',
             'email' => 'required|email|unique:tbl_user,email,' . $user->id, // Assuming this is an update, with unique email
             'gender' => 'required', // Adjust options as needed
             'date_of_birth' => [
@@ -61,8 +61,8 @@ class ProfileController extends Controller
                     }
                 }
             ],
-            'hometown' => 'string|max:255',
-            'id_card' => 'string|max:20|unique:tbl_user,id_card,' . $user->id,
+            'hometown' => 'string|max:255|regex:/^[a-zA-Z\s]+$/',
+            'id_card' => 'string|max:10|unique:tbl_user,id_card,' . $user->id,
 		]);
 		if ($validator->fails()) {
 			return redirect()->route('profile.edit',$id)

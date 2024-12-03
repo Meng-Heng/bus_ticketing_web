@@ -104,7 +104,7 @@
     </div>
     </div>
     <div class="box box-2">
-        <a href="{{route('backtoreturn')}}" method="POST" class="btn btn-success">Check other dates</a>
+        <a href="{{route('backtoschedule')}}" method="POST" class="btn btn-success">Check other dates</a>
     </div>
     <svg class="qrcode">
     <use xlink:href="#qrcode"></use>

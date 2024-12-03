@@ -63,8 +63,8 @@ Route::get('/return/{schedule_id}', [BusTicketingController::class, 'returnSeat'
 // ----------- Return ------------- //
 
 // Back or Return to Departure & Return searches
-Route::post('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule');
-Route::post('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn');
+Route::get('/back', [BusTicketingController::class, 'backToSchedule'])->name('backtoschedule');
+Route::get('/back-to-return', [BusTicketingController::class, 'backToReturn'])->name('backtoreturn');
 
 // ---------- Fallback 404 Not Found ------------- //
 Route::fallback(function () {
